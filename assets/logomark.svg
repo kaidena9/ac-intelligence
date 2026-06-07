@@ -1,0 +1,11 @@
+<svg width="40" height="28" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AC Intelligence logomark">
+  <defs>
+    <linearGradient id="acGrad" x1="0" y1="0" x2="40" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <path d="M2 26 L11 2 L20 26" stroke="url(#acGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6.4 18 H15.6" stroke="url(#acGrad)" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M37 8.5 A 8 8 0 1 0 37 19.5" stroke="url(#acGrad)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+</svg>
