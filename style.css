@@ -185,6 +185,8 @@ img { max-width: 100%; display: block; }
 .nav__links a:hover::after { right: 0; }
 
 .nav__actions { justify-self: end; display: flex; align-items: center; gap: 12px; }
+/* nudge the Book a call button farther right on desktop, keeping a ~140px gap (not flush) */
+@media (min-width: 941px) { .nav__actions { margin-right: clamp(-560px, calc(676px - 50vw), 0px); } }
 
 .nav__toggle {
   display: none; width: 44px; height: 40px; border: 1px solid var(--line);
