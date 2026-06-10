@@ -264,7 +264,7 @@ img { max-width: 100%; display: block; }
   width: 104px; height: 104px; border-radius: 50%; position: relative;
   background: var(--spectrum); background-size: 180% 180%;
   animation: orb-shift 8s ease-in-out infinite;
-  box-shadow: 0 0 60px -8px rgba(255, 95, 162, .45), 0 0 90px -10px rgba(79, 124, 255, .4);
+  box-shadow: 0 0 40px -12px rgba(139, 92, 246, .38), 0 0 72px -18px rgba(79, 124, 255, .3);
   display: grid; place-items: center;
 }
 .orb::after {
@@ -296,9 +296,12 @@ img { max-width: 100%; display: block; }
 
 /* hero device mockups */
 .hero__stage {
-  position: relative; z-index: 1; margin-top: clamp(48px, 7vw, 88px);
+  position: relative; z-index: 0; margin-top: clamp(56px, 8vw, 96px);
   display: flex; justify-content: center; align-items: flex-end;
   perspective: 1400px; min-height: 320px;
+  opacity: .64;
+  -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
 }
 .device {
   position: relative; width: clamp(190px, 22vw, 260px);
@@ -314,8 +317,8 @@ img { max-width: 100%; display: block; }
 .device--right { z-index: 2; transform: translate(calc(-28px + var(--px)), var(--py)) rotate(6deg); }
 .device--center::before {
   content: ""; position: absolute; inset: -2px; border-radius: 30px; z-index: -1;
-  background: var(--spectrum); background-size: 220% 100%;
-  animation: spectrum-slide 6s linear infinite; opacity: .9;
+  background: var(--spectrum); background-size: 140% 100%;
+  opacity: .38;
 }
 @media (prefers-reduced-motion: reduce) { .device--center::before { animation: none; } }
 
