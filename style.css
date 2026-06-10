@@ -635,39 +635,52 @@ img { max-width: 100%; display: block; }
   color: var(--ink-mute); margin: 0 0 24px; text-align: center;
 }
 .rail__viewport {
-  overflow-x: auto; overflow-y: hidden; padding-bottom: 6px;
-  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; -ms-overflow-style: none;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
 }
-.rail__viewport::-webkit-scrollbar { display: none; }
+/* slow seamless marquee (track holds two identical card sets) */
 .rail__track {
-  display: flex; gap: 16px; width: max-content;
-  padding: 4px max(var(--pad), calc((100vw - var(--container)) / 2 + var(--pad)));
+  display: flex; gap: 16px; width: max-content; padding-block: 6px;
+  animation: rail-scroll 55s linear infinite;
+  will-change: transform;
 }
+@keyframes rail-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.rail__viewport:hover .rail__track { animation-play-state: paused; }
+
 .rail-card {
   flex: 0 0 clamp(246px, 28vw, 298px);
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: column; position: relative; overflow: hidden;
   background: linear-gradient(180deg, var(--bg-panel), #07090b);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c, #6d6bff) 12%, var(--bg-panel)), #07090b);
   border: 1px solid var(--line); border-radius: 16px;
-  padding: 22px 22px 18px; min-height: 174px;
-  scroll-snap-align: start; color: inherit;
+  padding: 22px 22px 18px; min-height: 174px; color: inherit;
   transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
 }
-.rail-card:hover {
-  transform: translateY(-3px); border-color: rgba(125, 150, 220, .32);
-  box-shadow: 0 18px 42px -28px rgba(79, 124, 255, .55);
+/* colored top accent per card */
+.rail-card::before {
+  content: ""; position: absolute; top: 0; left: 22px; width: 38px; height: 3px; border-radius: 0 0 3px 3px;
+  background: var(--c, #6d6bff);
 }
-.rail-card:focus-visible { outline: 2px solid #a9c0e6; outline-offset: 3px; }
+.rail-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--c, #6d6bff) 55%, var(--line));
+  box-shadow: 0 20px 46px -26px color-mix(in srgb, var(--c, #6d6bff) 70%, transparent);
+}
+.rail-card:focus-visible { outline: 2px solid var(--c, #a9c0e6); outline-offset: 3px; }
 .rail-card__title { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: -.01em; margin: 0 0 9px; }
 .rail-card__text { color: var(--ink-dim); font-size: 14px; line-height: 1.55; margin: 0; }
 .rail-card__cue {
   margin-top: auto; padding-top: 18px; display: inline-flex; align-items: center; gap: 7px;
   font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--ink-mute); transition: color .3s var(--ease);
+  color: var(--c, #a9c0e6); opacity: .82; transition: opacity .3s var(--ease);
 }
-.rail-card:hover .rail-card__cue { color: #a9c0e6; }
+.rail-card:hover .rail-card__cue { opacity: 1; }
 .rail-card__arrow { transition: transform .3s var(--ease); }
 .rail-card:hover .rail-card__arrow { transform: translateX(3px); }
-@media (max-width: 560px) { .rail-card { flex-basis: 76vw; } }
+@media (max-width: 560px) { .rail-card { flex-basis: 74vw; } .rail__track { animation-duration: 42s; } }
+@media (prefers-reduced-motion: reduce) {
+  .rail__track { animation: none; }
+  .rail__viewport { overflow-x: auto; scrollbar-width: none; }
+  .rail__viewport::-webkit-scrollbar { display: none; }
+}
