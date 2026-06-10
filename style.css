@@ -41,8 +41,8 @@
   --r-pill: 999px;
 
   /* type */
-  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* rhythm */
@@ -281,9 +281,9 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) { .orb { animation: none; } }
 
 .hero__title {
-  font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(42px, 8vw, 96px); line-height: .98;
-  letter-spacing: -.035em; margin: 0 auto; max-width: 14ch; text-wrap: balance;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(30px, 4.3vw, 56px); line-height: 1.08;
+  letter-spacing: -.022em; margin: 0 auto; max-width: 22ch; text-wrap: balance;
 }
 .hero__title em {
   font-style: normal;
