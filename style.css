@@ -235,9 +235,26 @@ img { max-width: 100%; display: block; }
 
 /* ----------------------------- Hero ----------------------------- */
 .hero {
-  position: relative; padding-top: clamp(88px, 10vw, 116px);
-  padding-bottom: clamp(40px, 8vw, 90px);
-  text-align: center; overflow: hidden;
+  position: relative; overflow: hidden;
+  min-height: clamp(560px, 90vh, 900px);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding: clamp(104px, 15vh, 168px) 0 clamp(64px, 10vh, 116px);
+}
+/* full-bleed background image layer */
+.hero__media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.hero__media img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; display: block;
+  transform: scale(1.04); animation: hero-pan 34s ease-in-out infinite alternate;
+}
+@keyframes hero-pan { from { transform: scale(1.04); } to { transform: scale(1.12) translateY(-1.5%); } }
+@media (prefers-reduced-motion: reduce) { .hero__media img { animation: none; transform: none; } }
+/* cinematic dark vignette + overlay */
+.hero__overlay {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(4,5,8,.76) 0%, rgba(4,5,8,.34) 26%, rgba(4,5,8,.42) 58%, rgba(4,5,8,.98) 100%),
+    radial-gradient(125% 100% at 50% 42%, transparent 32%, rgba(4,5,8,.40) 70%, rgba(4,5,8,.74) 100%);
 }
 .hero__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .hero__bg::before {
@@ -256,7 +273,7 @@ img { max-width: 100%; display: block; }
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 28%, #000 30%, transparent 75%);
 }
 
-.hero__inner { position: relative; z-index: 1; max-width: 940px; margin-inline: auto; padding-inline: var(--pad); }
+.hero__inner { position: relative; z-index: 3; max-width: 900px; margin-inline: auto; padding-inline: var(--pad); }
 
 /* glowing orb cluster (echoes the avatar cluster, abstracted) */
 .orb-cluster { display: flex; justify-content: center; margin-bottom: 22px; }
@@ -283,14 +300,16 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(30px, 4.3vw, 56px); line-height: 1.08;
   letter-spacing: -.022em; margin: 0 auto; max-width: 22ch; text-wrap: balance;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, .55);
 }
 .hero__title em {
   font-style: normal;
   background: var(--spectrum); -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .hero__body {
-  color: var(--ink-dim); font-size: clamp(17px, 1.9vw, 21px);
+  color: #d7dbe2; font-size: clamp(17px, 1.9vw, 21px);
   max-width: 56ch; margin: 20px auto 0;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, .6);
 }
 .hero__cta { margin-top: 30px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
