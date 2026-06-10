@@ -60,32 +60,4 @@
 
     revealEls.forEach(function (el) { io.observe(el); });
   }
-
-  /* ---- Hero device parallax (pointer-driven; sets CSS vars only) ---- */
-  var stage = document.getElementById("heroStage");
-  if (stage && !reduceMotion && window.matchMedia("(pointer: fine)").matches) {
-    var devices = stage.querySelectorAll(".device");
-    var raf = null, targetX = 0, targetY = 0, curX = 0, curY = 0;
-
-    function loop() {
-      curX += (targetX - curX) * 0.08;
-      curY += (targetY - curY) * 0.08;
-      devices.forEach(function (d) {
-        var depth = parseFloat(d.getAttribute("data-depth")) || 0.5;
-        d.style.setProperty("--px", (curX * depth * 14).toFixed(2) + "px");
-        d.style.setProperty("--py", (curY * depth * 10).toFixed(2) + "px");
-      });
-      if (Math.abs(targetX - curX) > 0.001 || Math.abs(targetY - curY) > 0.001) {
-        raf = requestAnimationFrame(loop);
-      } else {
-        raf = null;
-      }
-    }
-
-    window.addEventListener("pointermove", function (e) {
-      targetX = (e.clientX / window.innerWidth) * 2 - 1;
-      targetY = (e.clientY / window.innerHeight) * 2 - 1;
-      if (!raf) raf = requestAnimationFrame(loop);
-    }, { passive: true });
-  }
 })();
