@@ -21,17 +21,15 @@
   --spectrum: linear-gradient(
     90deg,
     #4f7cff 0%,
-    #2ad4d4 22%,
-    #36d977 42%,
-    #f4d03f 60%,
-    #ff8a4c 78%,
-    #ff5fa2 92%,
-    #b06bff 100%
+    #6d6bff 20%,
+    #8b5cf6 44%,
+    #b15cff 66%,
+    #e35ac9 85%,
+    #ff5fa2 100%
   );
   --spectrum-soft: linear-gradient(
     90deg,
-    rgba(79,124,255,.9), rgba(42,212,212,.9), rgba(54,217,119,.9),
-    rgba(244,208,63,.9), rgba(255,138,76,.9), rgba(255,95,162,.9), rgba(176,107,255,.9)
+    rgba(79,124,255,.9), rgba(139,92,246,.9), rgba(177,92,255,.9), rgba(255,95,162,.9)
   );
 
   /* shape */
@@ -336,7 +334,7 @@ img { max-width: 100%; display: block; }
 .screen__bars { display: flex; align-items: flex-end; gap: 5px; height: 64px; margin-top: auto; }
 .screen__bars span { flex: 1; border-radius: 4px 4px 0 0; background: var(--spectrum); background-size: 100% 300%; opacity: .85; }
 .screen__metric { font-family: var(--font-display); font-weight: 800; font-size: 30px; letter-spacing: -.03em; }
-.screen__metric small { font-size: 13px; color: #36d977; font-family: var(--font-body); margin-left: 6px; }
+.screen__metric small { font-size: 13px; color: #b49cff; font-family: var(--font-body); margin-left: 6px; }
 
 /* ----------------------------- Logos / trust strip ----------------------------- */
 .trust { padding-block: clamp(28px, 4vw, 44px); border-block: 1px solid var(--line-soft); }
@@ -458,7 +456,7 @@ img { max-width: 100%; display: block; }
 .panel__bars span { flex: 1; border-radius: 5px 5px 0 0; background: var(--spectrum); background-size: 100% 300%; }
 .panel__stat { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; }
 .panel__stat b { font-family: var(--font-display); font-size: 26px; letter-spacing: -.03em; }
-.panel__stat span { font-size: 12px; color: #36d977; font-family: var(--font-mono); }
+.panel__stat span { font-size: 12px; color: #b49cff; font-family: var(--font-mono); }
 .panel__steps { display: flex; flex-direction: column; gap: 10px; }
 .panel__step { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--ink-dim); }
 .panel__step .num { flex: none; width: 26px; height: 26px; border-radius: 8px; background: var(--spectrum); color: #0b0b0b; font-weight: 800; display: grid; place-items: center; font-size: 12px; font-family: var(--font-display); }
