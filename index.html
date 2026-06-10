@@ -8,11 +8,14 @@
   <link rel="icon" href="assets/logomark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- spectrum top bar -->
+  <div class="spectrum-bar" aria-hidden="true"></div>
 
   <!-- ======================= NAV ======================= -->
   <header class="nav" id="nav">
@@ -22,7 +25,7 @@
           <svg width="40" height="28" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="navGrad" x1="0" y1="0" x2="40" y2="28" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#8aabd0"/><stop offset="1" stop-color="#51719a"/>
+                <stop stop-color="#4f7cff"/><stop offset="0.5" stop-color="#36d977"/><stop offset="1" stop-color="#ff5fa2"/>
               </linearGradient>
             </defs>
             <path d="M2 26 L11 2 L20 26" stroke="url(#navGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -63,13 +66,51 @@
     <!-- ======================= HERO ======================= -->
     <section class="hero">
       <div class="hero__bg" aria-hidden="true"></div>
+
       <div class="hero__inner">
-        <p class="eyebrow eyebrow--accent reveal">AI Consulting &amp; Implementation</p>
-        <h1 class="hero__title reveal" data-delay="1">AI systems and automation that make the business run better.</h1>
+        <div class="orb-cluster reveal">
+          <div class="orb" aria-hidden="true"><span class="orb__core">AC</span></div>
+        </div>
+        <p class="eyebrow eyebrow--spectrum reveal" data-delay="1">AI Consulting &amp; Implementation</p>
+        <h1 class="hero__title reveal" data-delay="1">AI systems and automation that make the business <em>run better</em>.</h1>
         <p class="hero__body reveal" data-delay="2">AC Intelligence helps businesses find where AI can create real operational value, then design, build, and implement the systems that make that value tangible.</p>
         <div class="hero__cta reveal" data-delay="3">
           <a class="btn btn--primary btn--lg" href="contact.html">Book a Discovery Call</a>
           <a class="btn btn--ghost btn--lg" href="#services">Explore Services</a>
+        </div>
+      </div>
+
+      <!-- device trio -->
+      <div class="hero__stage" id="heroStage" aria-hidden="true">
+        <div class="device device--left" data-depth="0.5">
+          <div class="screen">
+            <div class="screen__row"><span class="screen__dot"></span><span class="screen__line w-60"></span></div>
+            <span class="screen__chip">workflow · live</span>
+            <div class="screen__line w-80"></div>
+            <div class="screen__line w-40"></div>
+            <div class="screen__bars"><span style="height:40%"></span><span style="height:65%"></span><span style="height:50%"></span><span style="height:80%"></span><span style="height:60%"></span></div>
+          </div>
+        </div>
+
+        <div class="device device--center" data-depth="1.4">
+          <div class="screen">
+            <div class="screen__row"><span class="screen__dot"></span><span class="screen__line w-40"></span></div>
+            <span class="screen__metric">31h<small>saved / wk</small></span>
+            <div class="screen__line w-80"></div>
+            <div class="screen__line w-60"></div>
+            <div class="screen__bars"><span style="height:30%"></span><span style="height:55%"></span><span style="height:45%"></span><span style="height:70%"></span><span style="height:60%"></span><span style="height:90%"></span></div>
+          </div>
+        </div>
+
+        <div class="device device--right" data-depth="0.5">
+          <div class="screen">
+            <div class="screen__row"><span class="screen__dot"></span><span class="screen__line w-60"></span></div>
+            <span class="screen__chip">agent · replying</span>
+            <div class="screen__line w-80"></div>
+            <div class="screen__line w-60"></div>
+            <div class="screen__line w-40"></div>
+            <div class="screen__bars"><span style="height:60%"></span><span style="height:45%"></span><span style="height:75%"></span><span style="height:50%"></span><span style="height:85%"></span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -93,24 +134,46 @@
     <section class="section" id="what">
       <div class="container">
         <header class="section__head reveal">
-          <p class="eyebrow eyebrow--accent">What we do</p>
+          <p class="eyebrow eyebrow--spectrum">What we do</p>
           <h2 class="section__title">From opportunity mapping to full implementation.</h2>
           <p class="section__body">We identify where AI can reduce friction, improve output, and strengthen execution across the business — then we help put the right systems in place.</p>
         </header>
 
         <div class="cards">
           <article class="fcard reveal">
-            <span class="fcard__idx">01</span>
+            <div class="fcard__art">
+              <div class="art-flow">
+                <span class="node node--lit">●</span>
+                <span class="arrow">→</span>
+                <span class="node">◇</span>
+                <span class="arrow">→</span>
+                <span class="node">▲</span>
+              </div>
+            </div>
             <h3 class="fcard__title">Identify the leverage</h3>
             <p class="fcard__text">We assess how the business operates and pinpoint the areas where AI can save time, reduce waste, or improve performance.</p>
           </article>
+
           <article class="fcard reveal" data-delay="1">
-            <span class="fcard__idx">02</span>
+            <div class="fcard__art">
+              <div class="art-wave">
+                <span style="height:30%"></span><span style="height:55%"></span><span style="height:40%"></span>
+                <span style="height:70%"></span><span style="height:50%"></span><span style="height:85%"></span>
+                <span style="height:60%"></span><span style="height:45%"></span><span style="height:75%"></span>
+                <span style="height:35%"></span><span style="height:65%"></span><span style="height:50%"></span>
+              </div>
+            </div>
             <h3 class="fcard__title">Build the system</h3>
             <p class="fcard__text">We design and implement practical AI workflows, automations, and digital systems tailored to the way your business already works.</p>
           </article>
+
           <article class="fcard reveal" data-delay="2">
-            <span class="fcard__idx">03</span>
+            <div class="fcard__art">
+              <div class="art-toggle">
+                <span class="t on">Audit<br>week 1</span>
+                <span class="t">Live<br>week 4</span>
+              </div>
+            </div>
             <h3 class="fcard__title">Keep it delivering</h3>
             <p class="fcard__text">We help monitor, refine, and improve the systems after launch so the results continue to compound over time.</p>
           </article>
@@ -118,19 +181,28 @@
       </div>
     </section>
 
-    <!-- ======================= SECTION 2 — HOW WE WORK ======================= -->
+    <!-- ======================= SECTION 2 — HOW WE WORK (band) ======================= -->
     <section class="section" id="work">
       <div class="container">
         <div class="band reveal">
-          <div class="band__copy">
+          <div class="band__inner">
             <h2 class="band__title">One partner across strategy, buildout, and execution.</h2>
-            <p class="band__body">Most providers stop at advice or specialize in one narrow slice. AC Intelligence works across the full process — identifying opportunities, building the right systems, and helping the business actually use them.</p>
+            <p class="band__sub">Most providers stop at advice or specialize in one narrow slice. AC Intelligence works across the full process — identifying opportunities, building the right systems, and helping the business actually use them.</p>
+            <ul class="band__bullets">
+              <li><span class="mk" aria-hidden="true"></span> Strategy rooted in business operations</li>
+              <li><span class="mk" aria-hidden="true"></span> Systems built for practical use</li>
+              <li><span class="mk" aria-hidden="true"></span> Implementation that does not stop at launch</li>
+            </ul>
+            <div class="band__avatars" aria-hidden="true">
+              <span class="avatar" style="background:#4f7cff">OPS</span>
+              <span class="avatar" style="background:#2ad4d4">SAL</span>
+              <span class="avatar" style="background:#36d977">CX</span>
+              <span class="avatar" style="background:#f4d03f">MKT</span>
+              <span class="avatar" style="background:#ff8a4c">FIN</span>
+              <span class="avatar" style="background:#ff5fa2">DATA</span>
+              <span class="avatar" style="background:#b06bff">IT</span>
+            </div>
           </div>
-          <ul class="band__list">
-            <li><span class="mk" aria-hidden="true">—</span> Strategy rooted in business operations</li>
-            <li><span class="mk" aria-hidden="true">—</span> Systems built for practical use</li>
-            <li><span class="mk" aria-hidden="true">—</span> Implementation that does not stop at launch</li>
-          </ul>
         </div>
       </div>
     </section>
@@ -139,7 +211,7 @@
     <section class="section" id="services">
       <div class="container">
         <header class="section__head section__head--wide reveal">
-          <p class="eyebrow eyebrow--accent">Services</p>
+          <p class="eyebrow eyebrow--spectrum">Services</p>
           <h2 class="section__title">Capabilities built around real business needs.</h2>
           <p class="section__body">We help companies apply AI where it makes the business more effective — operationally, commercially, and digitally.</p>
         </header>
@@ -177,7 +249,7 @@
     <section class="section" id="why">
       <div class="container">
         <header class="section__head section__head--wide reveal">
-          <p class="eyebrow eyebrow--accent">Why AC Intelligence</p>
+          <p class="eyebrow eyebrow--spectrum">Why AC Intelligence</p>
           <h2 class="section__title">Built for companies that want implementation, not just ideas.</h2>
           <p class="section__body">AI only matters if it improves the way the business actually operates. We focus on systems that can be used, measured, and improved — not abstract innovation for its own sake.</p>
         </header>
@@ -221,7 +293,7 @@
           <a class="brand" href="index.html" aria-label="AC Intelligence home">
             <span class="brand__mark" aria-hidden="true">
               <svg width="40" height="28" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs><linearGradient id="footGrad" x1="0" y1="0" x2="40" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#8aabd0"/><stop offset="1" stop-color="#51719a"/></linearGradient></defs>
+                <defs><linearGradient id="footGrad" x1="0" y1="0" x2="40" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#4f7cff"/><stop offset="0.5" stop-color="#36d977"/><stop offset="1" stop-color="#ff5fa2"/></linearGradient></defs>
                 <path d="M2 26 L11 2 L20 26" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M6.4 18 H15.6" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round"/>
                 <path d="M37 8.5 A 8 8 0 1 0 37 19.5" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
