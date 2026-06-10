@@ -256,6 +256,12 @@ img { max-width: 100%; display: block; }
     linear-gradient(180deg, rgba(4,5,8,.76) 0%, rgba(4,5,8,.34) 26%, rgba(4,5,8,.42) 58%, rgba(4,5,8,.98) 100%),
     radial-gradient(125% 100% at 50% 42%, transparent 32%, rgba(4,5,8,.40) 70%, rgba(4,5,8,.74) 100%);
 }
+/* localized atmospheric haze behind the text zone (no visible box) */
+.hero__overlay::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 46% at 50% 49%,
+    rgba(4,5,8,.52) 0%, rgba(4,5,8,.40) 34%, rgba(4,5,8,.20) 56%, transparent 74%);
+}
 .hero__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .hero__bg::before {
   content: ""; position: absolute; left: 50%; top: -10%; transform: translateX(-50%);
