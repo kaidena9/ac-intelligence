@@ -20,16 +20,17 @@
   /* spectrum — the signature accent */
   --spectrum: linear-gradient(
     90deg,
-    #4f7cff 0%,
-    #6d6bff 20%,
-    #8b5cf6 44%,
-    #b15cff 66%,
-    #e35ac9 85%,
+    #2f6bff 0%,
+    #3b82ff 22%,
+    #4f7cff 42%,
+    #6d6bff 60%,
+    #8b5cf6 76%,
+    #b15cff 89%,
     #ff5fa2 100%
   );
   --spectrum-soft: linear-gradient(
     90deg,
-    rgba(79,124,255,.9), rgba(139,92,246,.9), rgba(177,92,255,.9), rgba(255,95,162,.9)
+    rgba(47,107,255,.9), rgba(79,124,255,.9), rgba(139,92,246,.9), rgba(255,95,162,.9)
   );
 
   /* shape */
