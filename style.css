@@ -162,7 +162,7 @@ img { max-width: 100%; display: block; }
   padding: 14px var(--pad);
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px;
 }
-.brand { display: inline-flex; align-items: center; gap: 11px; justify-self: start; }
+.brand { display: inline-flex; align-items: center; gap: 8px; justify-self: start; }
 .nav__center { justify-self: center; }
 .brand__mark { display: inline-grid; place-items: center; }
 .brand__word {
