@@ -584,27 +584,45 @@ img { max-width: 100%; display: block; }
 /* Services — consulting list with spectrum accents */
 .services { border-top: 1px solid var(--line); }
 .srow {
-  position: relative;
-  display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(20px, 5vw, 72px);
-  padding: clamp(28px, 3.4vw, 46px) 0; border-bottom: 1px solid var(--line);
-  transition: background .3s var(--ease);
+  position: relative; display: grid; align-items: center;
+  grid-template-columns: clamp(46px, 5vw, 66px) minmax(190px, 0.82fr) minmax(0, 1.18fr) 30px;
+  grid-template-areas: "num title body arrow";
+  gap: clamp(18px, 3.4vw, 54px);
+  padding: clamp(26px, 3.1vw, 42px) clamp(8px, 1.4vw, 20px);
+  border-bottom: 1px solid var(--line); color: inherit;
+  transition: background .35s var(--ease), padding-left .35s var(--ease);
 }
 .srow::before {
   content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: 0;
   background: var(--spectrum); background-size: 200% 100%;
   animation: spectrum-slide 6s linear infinite;
-  transition: width .45s var(--ease);
+  transition: width .5s var(--ease);
 }
-.srow:hover::before { width: 100%; }
-.srow:hover { background: linear-gradient(90deg, rgba(255,255,255,.028), transparent 62%); }
-.srow__lead { display: flex; gap: 16px; align-items: baseline; }
+.srow:hover::before, .srow:focus-visible::before { width: 100%; }
+.srow:hover, .srow:focus-visible {
+  background: linear-gradient(90deg, rgba(125,150,220,.075), rgba(125,150,220,.02) 42%, transparent 74%);
+  padding-left: clamp(16px, 2.2vw, 32px); outline: none;
+}
+.srow:focus-visible { box-shadow: inset 0 0 0 1px rgba(159,187,219,.4); border-radius: 8px; }
 .srow__num {
-  font-family: var(--font-mono); font-size: 13px; padding-top: 4px;
-  background: var(--spectrum); -webkit-background-clip: text; background-clip: text; color: transparent;
+  grid-area: num; align-self: start; font-family: var(--font-mono); font-weight: 500;
+  font-size: clamp(13px, 1.2vw, 15px); letter-spacing: .04em;
+  background: var(--spectrum); background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.srow__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(20px, 2.1vw, 28px); letter-spacing: -.015em; margin: 0; line-height: 1.15; }
-.srow__body { color: var(--ink-dim); font-size: clamp(15px, 1.4vw, 16.5px); margin: 0; max-width: 54ch; align-self: center; }
-@media (prefers-reduced-motion: reduce) { .srow::before { animation: none; } }
+.srow__title {
+  grid-area: title; font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(20px, 2.1vw, 27px); letter-spacing: -.015em; margin: 0; line-height: 1.18;
+  transition: color .3s var(--ease);
+}
+.srow__body { grid-area: body; color: var(--ink-dim); font-size: clamp(14.5px, 1.35vw, 16px); line-height: 1.55; margin: 0; max-width: 56ch; }
+.srow__go {
+  grid-area: arrow; justify-self: end; align-self: center; font-size: 19px; line-height: 1;
+  color: var(--ink-mute); transition: transform .35s var(--ease), color .35s var(--ease);
+}
+.srow:hover .srow__title, .srow:focus-visible .srow__title { color: #fff; }
+.srow:hover .srow__go, .srow:focus-visible .srow__go { color: #a9c0e6; transform: translateX(6px); }
+@media (prefers-reduced-motion: reduce) { .srow::before { animation: none; } .srow, .srow__go { transition: none; } }
 
 /* Why AC Intelligence — positioning grid with spectrum top accents */
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 3vw, 44px); }
@@ -618,8 +636,15 @@ img { max-width: 100%; display: block; }
 
 /* responsive for added sections */
 @media (max-width: 940px) {
-  .srow { grid-template-columns: 1fr; gap: 12px; }
-  .srow__body { max-width: none; }
+  .srow {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "num title arrow" "body body body";
+    gap: 6px 14px; align-items: center;
+    padding: clamp(22px, 5vw, 30px) 6px;
+  }
+  .srow__num { align-self: center; }
+  .srow__body { max-width: none; margin-top: 8px; }
+  .srow:hover, .srow:focus-visible { padding-left: 6px; }
   .why-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 
