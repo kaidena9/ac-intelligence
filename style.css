@@ -405,7 +405,7 @@ img { max-width: 100%; display: block; }
 }
 .band__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3.6vw, 44px); letter-spacing: -.025em; margin: 0 0 14px; }
 .band__sub { color: var(--ink-dim); max-width: 52ch; margin: 0 auto 30px; }
-.band__avatars { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.band__avatars { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 34px; }
 .avatar {
   width: clamp(54px, 7vw, 74px); height: clamp(54px, 7vw, 74px); border-radius: 50%;
   border: 2px solid rgba(255,255,255,.12); display: grid; place-items: center;
