@@ -220,6 +220,16 @@ img { max-width: 100%; display: block; }
   color: transparent; display: inline-block;
 }
 .eyebrow--num { color: var(--ink-mute); }
+/* subtle glass bubble behind the hero eyebrow for readability */
+.eyebrow--chip {
+  display: inline-flex; align-items: center; padding: 7px 16px;
+  border-radius: var(--r-pill);
+  background: rgba(8, 10, 16, .34);
+  border: 1px solid rgba(255, 255, 255, .12);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+}
+.eyebrow--chip > span { margin-right: -.28em; }
 
 .section__title {
   font-family: var(--font-display); font-weight: 800;
