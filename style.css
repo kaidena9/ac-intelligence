@@ -725,3 +725,86 @@ img { max-width: 100%; display: block; }
   .rail__viewport { overflow-x: auto; scrollbar-width: none; }
   .rail__viewport::-webkit-scrollbar { display: none; }
 }
+
+/* ----------------------------- Final CTA "what happens next" ----------------------------- */
+.cta-final__steps {
+  list-style: none; margin: 36px auto 4px; padding: 0;
+  display: flex; gap: clamp(16px, 3vw, 40px); justify-content: center; flex-wrap: wrap;
+  max-width: 760px; position: relative;
+}
+.cta-final__steps li { display: inline-flex; align-items: center; gap: 11px; color: var(--ink-dim); font-size: 14.5px; }
+.cta-final__step-n {
+  width: 25px; height: 25px; border-radius: 50%; flex: none; display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 12px; color: #cfe0f5;
+  border: 1px solid rgba(159, 187, 219, .38); background: rgba(125, 150, 220, .09);
+}
+
+/* ----------------------------- Contact page ----------------------------- */
+.contact { padding-top: clamp(120px, 16vh, 168px); padding-bottom: clamp(60px, 9vw, 110px); position: relative; overflow: hidden; }
+.contact__glow {
+  position: absolute; left: 50%; top: -10%; transform: translateX(-50%); width: 100vw; height: 70vh;
+  pointer-events: none; z-index: 0;
+  background: radial-gradient(closest-side, rgba(79,124,255,.14), rgba(176,107,255,.05) 50%, transparent 74%);
+}
+.contact__inner { position: relative; z-index: 1; }
+.contact__head { max-width: 660px; margin-bottom: clamp(40px, 5vw, 60px); }
+.contact__title {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.05; letter-spacing: -.025em; margin: 14px 0 0; text-wrap: balance;
+}
+.contact__lead { color: var(--ink-dim); font-size: clamp(17px, 1.7vw, 20px); max-width: 56ch; margin: 20px 0 0; }
+
+.contact__grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+
+/* left: what to expect */
+.expect__label { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 22px; }
+.expect__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 26px; }
+.expect__item { display: grid; grid-template-columns: auto 1fr; gap: 16px; }
+.expect__n {
+  width: 34px; height: 34px; border-radius: 10px; flex: none; display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 13px; color: #0b0b0b; font-weight: 600;
+  background: var(--spectrum); background-size: 200% 100%;
+}
+.expect__t { font-family: var(--font-display); font-weight: 700; font-size: 17.5px; letter-spacing: -.01em; margin: 2px 0 6px; }
+.expect__d { color: var(--ink-dim); font-size: 15px; line-height: 1.55; margin: 0; }
+.expect__direct { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--line); color: var(--ink-dim); font-size: 15px; line-height: 1.6; }
+.expect__direct a { color: #a9c0e6; border-bottom: 1px solid rgba(159,187,219,.35); }
+.expect__direct a:hover { color: #fff; }
+
+/* right: form panel */
+.form-card {
+  position: relative; border-radius: var(--r-lg); padding: clamp(24px, 3vw, 38px);
+  background: linear-gradient(180deg, var(--bg-panel), #07090b); border: 1px solid var(--line);
+}
+.form-card::before {
+  content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 2px; border-radius: var(--r-lg) var(--r-lg) 0 0;
+  background: var(--spectrum); background-size: 200% 100%; opacity: .7;
+}
+.form-card__title { font-family: var(--font-display); font-weight: 700; font-size: 21px; letter-spacing: -.015em; margin: 0 0 6px; }
+.form-card__sub { color: var(--ink-mute); font-size: 14px; margin: 0 0 24px; }
+.field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.field label { font-size: 13px; font-weight: 500; color: var(--ink-dim); letter-spacing: .01em; }
+.field input, .field textarea, .field select {
+  width: 100%; font-family: var(--font-body); font-size: 15px; color: var(--ink);
+  background: rgba(255,255,255,.025); border: 1px solid var(--line); border-radius: 11px;
+  padding: 13px 14px; transition: border-color .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
+}
+.field textarea { resize: vertical; min-height: 120px; }
+.field input::placeholder, .field textarea::placeholder { color: #5f6671; }
+.field input:focus, .field textarea:focus, .field select:focus {
+  outline: none; border-color: rgba(159,187,219,.5); background: rgba(255,255,255,.045);
+  box-shadow: 0 0 0 3px rgba(79,124,255,.16);
+}
+.field--row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field--row .field { margin-bottom: 0; }
+.form-actions { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; }
+.form-actions .btn { width: 100%; }
+.form-note { color: var(--ink-mute); font-size: 13px; margin: 0; text-align: center; }
+
+@media (max-width: 860px) {
+  .contact__grid { grid-template-columns: 1fr; }
+  .form-card { order: -1; }
+}
+@media (max-width: 480px) {
+  .field--row { grid-template-columns: 1fr; }
+}
