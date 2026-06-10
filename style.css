@@ -627,3 +627,47 @@ img { max-width: 100%; display: block; }
 .ocard__body { color: var(--ink-dim); font-size: 15px; line-height: 1.62; margin: 0; }
 @media (max-width: 940px) { .outcomes-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .outcomes-grid { grid-template-columns: 1fr; } }
+
+/* ----------------------------- Capabilities rail (replaces trust chips) ----------------------------- */
+.rail { padding-block: clamp(40px, 6vw, 72px); border-top: 1px solid var(--line-soft); }
+.rail__label {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ink-mute); margin: 0 0 24px; text-align: center;
+}
+.rail__viewport {
+  overflow-x: auto; overflow-y: hidden; padding-bottom: 6px;
+  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%);
+}
+.rail__viewport::-webkit-scrollbar { display: none; }
+.rail__track {
+  display: flex; gap: 16px; width: max-content;
+  padding: 4px max(var(--pad), calc((100vw - var(--container)) / 2 + var(--pad)));
+}
+.rail-card {
+  flex: 0 0 clamp(246px, 28vw, 298px);
+  display: flex; flex-direction: column;
+  background: linear-gradient(180deg, var(--bg-panel), #07090b);
+  border: 1px solid var(--line); border-radius: 16px;
+  padding: 22px 22px 18px; min-height: 174px;
+  scroll-snap-align: start; color: inherit;
+  transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.rail-card:hover {
+  transform: translateY(-3px); border-color: rgba(125, 150, 220, .32);
+  box-shadow: 0 18px 42px -28px rgba(79, 124, 255, .55);
+}
+.rail-card:focus-visible { outline: 2px solid #a9c0e6; outline-offset: 3px; }
+.rail-card__title { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: -.01em; margin: 0 0 9px; }
+.rail-card__text { color: var(--ink-dim); font-size: 14px; line-height: 1.55; margin: 0; }
+.rail-card__cue {
+  margin-top: auto; padding-top: 18px; display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-mute); transition: color .3s var(--ease);
+}
+.rail-card:hover .rail-card__cue { color: #a9c0e6; }
+.rail-card__arrow { transition: transform .3s var(--ease); }
+.rail-card:hover .rail-card__arrow { transform: translateX(3px); }
+@media (max-width: 560px) { .rail-card { flex-basis: 76vw; } }
