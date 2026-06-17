@@ -8,13 +8,10 @@
   <link rel="icon" href="assets/logomark.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- spectrum top bar -->
   <div class="spectrum-bar" aria-hidden="true"></div>
 
   <!-- ======================= NAV ======================= -->
@@ -22,7 +19,7 @@
     <div class="nav__inner">
       <a class="brand" href="index.html" aria-label="AC Intelligence home">
         <span class="brand__mark" aria-hidden="true">
-          <svg width="40" height="28" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="38" height="30" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="navGrad" x1="0" y1="0" x2="40" y2="28" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#3b82ff"/><stop offset="0.5" stop-color="#6d6bff"/><stop offset="1" stop-color="#ff5fa2"/>
@@ -52,7 +49,6 @@
       </div>
     </div>
 
-    <!-- Mobile menu -->
     <div class="mobile-menu" id="mobileMenu" hidden>
       <a href="#what">What we do</a>
       <a href="#work">How we work</a>
@@ -67,27 +63,30 @@
 
     <!-- ======================= HERO ======================= -->
     <section class="hero">
-      <div class="hero__media" aria-hidden="true">
-        <img src="assets/hero-lobby.jpg" alt="" fetchpriority="high" decoding="async" />
-      </div>
-      <div class="hero__overlay" aria-hidden="true"></div>
-
+      <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__inner">
-        <p class="eyebrow eyebrow--chip reveal" data-delay="1"><span class="eyebrow--spectrum">AI Consulting &amp; Implementation</span></p>
-        <h1 class="hero__title reveal" data-delay="1">AI systems that reduce friction, improve execution, and help the business <em>operate at a higher level</em>.</h1>
-        <p class="hero__body reveal" data-delay="2">AC Intelligence helps businesses identify where AI can create real operational gains, then design and implement the systems that make those improvements stick.</p>
+        <p class="eyebrow eyebrow--chip reveal" data-delay="1">AI Consulting &amp; Implementation</p>
+        <h1 class="hero__title reveal" data-delay="1">AI systems that help you <em>operate at a higher level</em>.</h1>
+        <p class="hero__body reveal" data-delay="2">AC Intelligence helps businesses identify where AI can create real operational gains, then designs and implements the systems that make those improvements stick.</p>
         <div class="hero__cta reveal" data-delay="3">
           <a class="btn btn--primary btn--lg" href="contact.html">Book a Discovery Call</a>
           <a class="btn btn--ghost btn--lg" href="#services">Explore Services</a>
+        </div>
+      </div>
+
+      <div class="hero__preview reveal" data-delay="3" aria-hidden="true">
+        <div class="hero__preview-bar"><i></i><i></i><i></i></div>
+        <div class="hero__preview-body">
+          <div class="hero__stat"><b>20+</b><span>Businesses automated</span></div>
+          <div class="hero__stat"><b>Strategy → build</b><span>One partner, end to end</span></div>
+          <div class="hero__stat"><b>Billion-dollar</b><span>Company experience</span></div>
         </div>
       </div>
     </section>
 
     <!-- ======================= CAPABILITIES RAIL ======================= -->
     <section class="rail">
-      <div class="container">
-        <p class="rail__label reveal">We work across the whole business</p>
-      </div>
+      <p class="rail__label reveal">We work across the whole business</p>
       <div class="rail__viewport reveal" data-delay="1">
         <div class="rail__track">
           <!-- set A -->
@@ -168,7 +167,7 @@
       </div>
     </section>
 
-    <!-- ======================= SECTION 1 — WHAT WE DO ======================= -->
+    <!-- ======================= WHAT WE DO ======================= -->
     <section class="section" id="what">
       <div class="container">
         <header class="section__head reveal">
@@ -180,7 +179,8 @@
         <div class="cards">
           <article class="fcard reveal">
             <div class="fcard__art">
-              <img class="fcard__img" src="assets/card-find.jpg" alt="" loading="lazy" decoding="async" />
+              <span class="fcard__num">01</span>
+              <span class="fcard__glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
             </div>
             <h3 class="fcard__title">Find the right use cases</h3>
             <p class="fcard__text">We look at how the business currently operates and identify where AI can save time, reduce manual work, and improve consistency.</p>
@@ -188,7 +188,8 @@
 
           <article class="fcard reveal" data-delay="1">
             <div class="fcard__art">
-              <img class="fcard__img" src="assets/card-build.jpg" alt="" loading="lazy" decoding="async" />
+              <span class="fcard__num">02</span>
+              <span class="fcard__glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
             </div>
             <h3 class="fcard__title">Build the right systems</h3>
             <p class="fcard__text">We design and implement practical AI workflows, automations, and digital tools that fit the way your team already works.</p>
@@ -196,7 +197,8 @@
 
           <article class="fcard reveal" data-delay="2">
             <div class="fcard__art">
-              <img class="fcard__img" src="assets/card-improve.jpg" alt="" loading="lazy" decoding="async" />
+              <span class="fcard__num">03</span>
+              <span class="fcard__glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
             </div>
             <h3 class="fcard__title">Improve over time</h3>
             <p class="fcard__text">We stay involved after launch to refine performance, solve issues, and make sure the systems continue to deliver value.</p>
@@ -205,7 +207,7 @@
       </div>
     </section>
 
-    <!-- ======================= SECTION 2 — HOW WE WORK (band) ======================= -->
+    <!-- ======================= HOW WE WORK ======================= -->
     <section class="section" id="work">
       <div class="container">
         <div class="band reveal">
@@ -232,7 +234,7 @@
       </div>
     </section>
 
-    <!-- ======================= SECTION 3 — SERVICES ======================= -->
+    <!-- ======================= SERVICES ======================= -->
     <section class="section" id="services">
       <div class="container">
         <header class="section__head section__head--wide reveal">
@@ -282,7 +284,7 @@
       </div>
     </section>
 
-    <!-- ======================= OUTCOMES — Where AI creates value ======================= -->
+    <!-- ======================= OUTCOMES ======================= -->
     <section class="section" id="outcomes">
       <div class="container">
         <header class="section__head section__head--wide reveal">
@@ -326,7 +328,7 @@
       </div>
     </section>
 
-    <!-- ======================= WHY AC INTELLIGENCE ======================= -->
+    <!-- ======================= WHY ======================= -->
     <section class="section" id="why">
       <div class="container">
         <header class="section__head section__head--wide reveal">
@@ -379,7 +381,7 @@
         <div class="footer__brand">
           <a class="brand" href="index.html" aria-label="AC Intelligence home">
             <span class="brand__mark" aria-hidden="true">
-              <svg width="40" height="28" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="38" height="30" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs><linearGradient id="footGrad" x1="0" y1="0" x2="40" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#3b82ff"/><stop offset="0.5" stop-color="#6d6bff"/><stop offset="1" stop-color="#ff5fa2"/></linearGradient></defs>
                 <path d="M2 26 L11 2 L20 26" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M6.4 18 H15.6" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round"/>

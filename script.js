@@ -11,8 +11,8 @@
   /* ---- Sticky nav: transparent -> dark on scroll ---- */
   var nav = document.getElementById("nav");
   var onScroll = function () {
-    if (window.scrollY > 24) nav.classList.add("scrolled");
-    else nav.classList.remove("scrolled");
+    if (window.scrollY > 24) nav.classList.add("is-scrolled");
+    else nav.classList.remove("is-scrolled");
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -47,12 +47,12 @@
   var revealEls = document.querySelectorAll(".reveal");
 
   if (reduceMotion || !("IntersectionObserver" in window)) {
-    revealEls.forEach(function (el) { el.classList.add("in-view"); });
+    revealEls.forEach(function (el) { el.classList.add("is-in"); });
   } else {
     var io = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
+          entry.target.classList.add("is-in");
           obs.unobserve(entry.target);
         }
       });
