@@ -74,94 +74,101 @@
         </div>
       </div>
 
-      <div class="hero__preview reveal" data-delay="3" aria-hidden="true">
-        <div class="hero__preview-bar"><i></i><i></i><i></i></div>
-        <div class="hero__preview-body">
-          <div class="hero__stat"><b>20+</b><span>Businesses automated</span></div>
-          <div class="hero__stat"><b>Strategy → build</b><span>One partner, end to end</span></div>
-          <div class="hero__stat"><b>Billion-dollar</b><span>Company experience</span></div>
+      <div class="hero__app reveal" data-delay="3" aria-hidden="true">
+        <div class="hero__app-bar">
+          <i></i><i></i><i></i>
+          <span class="hero__app-url">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            acintelligence.co/workspace
+          </span>
+        </div>
+        <div class="hero__app-body">
+          <!-- sidebar -->
+          <div class="hero__app-col">
+            <div class="hero__app-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Search systems
+              <kbd>⌘K</kbd>
+            </div>
+            <p class="hero__app-h">Workspace</p>
+            <div class="appnav is-active"><span class="dot" style="background:#4f7cff"></span> Operations</div>
+            <div class="appnav"><span class="dot" style="background:#6d6bff"></span> Marketing</div>
+            <div class="appnav"><span class="dot" style="background:#8b5cf6"></span> Sales</div>
+            <div class="appnav"><span class="dot" style="background:#b15cff"></span> Customer Service</div>
+            <div class="appnav"><span class="dot" style="background:#ff5fa2"></span> Workflows</div>
+          </div>
+          <!-- center: where AI fits -->
+          <div class="hero__app-col">
+            <div class="app-date">Where AI fits — this week</div>
+            <div class="approw">
+              <span class="approw__tick"></span>
+              <div><b>Lead follow-up</b><span>Automated across email + CRM</span></div>
+              <span class="tag">Automation</span>
+            </div>
+            <div class="approw">
+              <span class="approw__tick"></span>
+              <div><b>Invoice intake</b><span>4 manual steps removed</span></div>
+              <span class="tag">Workflow</span>
+            </div>
+            <div class="approw">
+              <span class="approw__tick"></span>
+              <div><b>Support triage</b><span>Routed instantly, 24/7</span></div>
+              <span class="tag">Voice AI</span>
+            </div>
+            <div class="approw">
+              <span class="approw__tick"></span>
+              <div><b>Weekly report</b><span>Drafted from live data</span></div>
+              <span class="tag">Assist</span>
+            </div>
+          </div>
+          <!-- right: activity -->
+          <div class="hero__app-col">
+            <p class="hero__app-h">Activity</p>
+            <div class="appfeed">
+              <div class="appfeed__item"><span class="appfeed__ring"></span><div><b>Hours saved</b><span>+18 this week</span></div></div>
+              <div class="appfeed__item"><span class="appfeed__ring"></span><div><b>Response time</b><span>Down 62%</span></div></div>
+              <div class="appfeed__item"><span class="appfeed__ring"></span><div><b>Routine tasks</b><span>Automated</span></div></div>
+              <div class="appfeed__item"><span class="appfeed__ring"></span><div><b>Systems live</b><span>7 in production</span></div></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ======================= CAPABILITIES RAIL ======================= -->
-    <section class="rail">
-      <p class="rail__label reveal">We work across the whole business</p>
-      <div class="rail__viewport reveal" data-delay="1">
-        <div class="rail__track">
-          <!-- set A -->
-          <a class="rail-card" href="#services" style="--c:#4f7cff">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="8" x2="9" y2="8"/><line x1="5" y1="8" x2="3" y2="8"/><circle cx="7" cy="8" r="2"/><line x1="21" y1="16" x2="15" y2="16"/><line x1="11" y1="16" x2="3" y2="16"/><circle cx="13" cy="16" r="2"/></svg></span>
-            <h3 class="rail-card__title">Operations</h3>
-            <p class="rail-card__text">Improve internal workflows, reduce manual steps, and create smoother execution across the business.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
+    <!-- ======================= CAPABILITIES (static grid) ======================= -->
+    <section class="caps">
+      <div class="container">
+        <p class="caps__label reveal">We work across the whole business</p>
+        <div class="caps__grid reveal" data-delay="1">
+          <a class="cap-card" href="#services">
+            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="8" x2="9" y2="8"/><line x1="5" y1="8" x2="3" y2="8"/><circle cx="7" cy="8" r="2"/><line x1="21" y1="16" x2="15" y2="16"/><line x1="11" y1="16" x2="3" y2="16"/><circle cx="13" cy="16" r="2"/></svg></span>
+            <h3 class="cap-card__title">Operations <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
+            <p class="cap-card__text">Improve internal workflows, reduce manual steps, and create smoother execution across the business.</p>
           </a>
-          <a class="rail-card" href="#services" style="--c:#6d6bff">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
-            <h3 class="rail-card__title">Marketing</h3>
-            <p class="rail-card__text">Support campaigns, content systems, lead nurture, and smarter marketing operations.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
+          <a class="cap-card" href="#services">
+            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
+            <h3 class="cap-card__title">Marketing <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
+            <p class="cap-card__text">Support campaigns, content systems, lead nurture, and smarter marketing operations.</p>
           </a>
-          <a class="rail-card" href="#services" style="--c:#8b5cf6">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
-            <h3 class="rail-card__title">Sales</h3>
-            <p class="rail-card__text">Strengthen lead flow, follow-up, qualification, and sales support systems.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
+          <a class="cap-card" href="#services">
+            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+            <h3 class="cap-card__title">Sales <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
+            <p class="cap-card__text">Strengthen lead flow, follow-up, qualification, and sales support systems.</p>
           </a>
-          <a class="rail-card" href="#services" style="--c:#b15cff">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-            <h3 class="rail-card__title">Customer Service</h3>
-            <p class="rail-card__text">Improve responsiveness, automate routine communication, and create more consistent support.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
+          <a class="cap-card" href="#services">
+            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <h3 class="cap-card__title">Customer Service <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
+            <p class="cap-card__text">Improve responsiveness, automate routine communication, and create more consistent support.</p>
           </a>
-          <a class="rail-card" href="#services" style="--c:#cf5cf0">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span>
-            <h3 class="rail-card__title">Internal Workflows</h3>
-            <p class="rail-card__text">Build systems that reduce repetitive work and help teams operate with less friction.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
+          <a class="cap-card" href="#services">
+            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span>
+            <h3 class="cap-card__title">Internal Workflows <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
+            <p class="cap-card__text">Build systems that reduce repetitive work and help teams operate with less friction.</p>
           </a>
-          <a class="rail-card" href="#services" style="--c:#ff5fa2">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-            <h3 class="rail-card__title">Digital Experience</h3>
-            <p class="rail-card__text">Create better websites, smarter journeys, and digital systems that support growth.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
-          </a>
-          <!-- set B (duplicate for seamless loop) -->
-          <a class="rail-card" href="#services" style="--c:#4f7cff" aria-hidden="true" tabindex="-1">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="8" x2="9" y2="8"/><line x1="5" y1="8" x2="3" y2="8"/><circle cx="7" cy="8" r="2"/><line x1="21" y1="16" x2="15" y2="16"/><line x1="11" y1="16" x2="3" y2="16"/><circle cx="13" cy="16" r="2"/></svg></span>
-            <h3 class="rail-card__title">Operations</h3>
-            <p class="rail-card__text">Improve internal workflows, reduce manual steps, and create smoother execution across the business.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
-          </a>
-          <a class="rail-card" href="#services" style="--c:#6d6bff" aria-hidden="true" tabindex="-1">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
-            <h3 class="rail-card__title">Marketing</h3>
-            <p class="rail-card__text">Support campaigns, content systems, lead nurture, and smarter marketing operations.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
-          </a>
-          <a class="rail-card" href="#services" style="--c:#8b5cf6" aria-hidden="true" tabindex="-1">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
-            <h3 class="rail-card__title">Sales</h3>
-            <p class="rail-card__text">Strengthen lead flow, follow-up, qualification, and sales support systems.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
-          </a>
-          <a class="rail-card" href="#services" style="--c:#b15cff" aria-hidden="true" tabindex="-1">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-            <h3 class="rail-card__title">Customer Service</h3>
-            <p class="rail-card__text">Improve responsiveness, automate routine communication, and create more consistent support.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
-          </a>
-          <a class="rail-card" href="#services" style="--c:#cf5cf0" aria-hidden="true" tabindex="-1">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span>
-            <h3 class="rail-card__title">Internal Workflows</h3>
-            <p class="rail-card__text">Build systems that reduce repetitive work and help teams operate with less friction.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
-          </a>
-          <a class="rail-card" href="#services" style="--c:#ff5fa2" aria-hidden="true" tabindex="-1">
-            <span class="rail-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-            <h3 class="rail-card__title">Digital Experience</h3>
-            <p class="rail-card__text">Create better websites, smarter journeys, and digital systems that support growth.</p>
-            <span class="rail-card__cue" aria-hidden="true">Explore <span class="rail-card__arrow">&rarr;</span></span>
+          <a class="cap-card" href="#services">
+            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+            <h3 class="cap-card__title">Digital Experience <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
+            <p class="cap-card__text">Create better websites, smarter journeys, and digital systems that support growth.</p>
           </a>
         </div>
       </div>
