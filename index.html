@@ -3,424 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AC Intelligence — AI Consulting &amp; Implementation</title>
-  <meta name="description" content="AC Intelligence helps businesses identify, implement, and improve AI systems that save time, strengthen operations, and support growth." />
-  <link rel="icon" href="assets/logomark.svg" type="image/svg+xml" />
+  <title>AC Intelligence — AI consulting</title>
+  <meta name="description" content="AC Intelligence is an AI consulting firm. We find where AI pays off, build the systems, and make sure they stick — so your team makes smarter decisions, faster." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AC Intelligence — AI consulting" />
+  <meta property="og:description" content="We put AI to work — turning manual processes and scattered data into decisions you can act on." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="spectrum-bar" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <!-- ======================= NAV ======================= -->
+  <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
-    <div class="nav__inner">
+    <div class="wrap nav-inner">
       <a class="brand" href="index.html" aria-label="AC Intelligence home">
-        <span class="brand__mark" aria-hidden="true">
-          <svg width="38" height="30" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="navGrad" x1="0" y1="0" x2="40" y2="28" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#3b82ff"/><stop offset="0.5" stop-color="#6d6bff"/><stop offset="1" stop-color="#ff5fa2"/>
-              </linearGradient>
-            </defs>
-            <path d="M2 26 L11 2 L20 26" stroke="url(#navGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M6.4 18 H15.6" stroke="url(#navGrad)" stroke-width="2.6" stroke-linecap="round"/>
-            <path d="M37 8.5 A 8 8 0 1 0 37 19.5" stroke="url(#navGrad)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
-          </svg>
-        </span>
-        <span class="brand__word">Intelligence</span>
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><defs><linearGradient id="acm" x1="8" y1="9" x2="32" y2="31" gradientUnits="userSpaceOnUse"><stop stop-color="#9bdcff"/><stop offset="1" stop-color="#2f7bf6"/></linearGradient></defs><ellipse cx="20" cy="20" rx="13" ry="6.6" transform="rotate(-30 20 20)" stroke="url(#acm)" stroke-width="2.2"/><ellipse cx="20" cy="20" rx="13" ry="6.6" transform="rotate(30 20 20)" stroke="url(#acm)" stroke-width="2.2" opacity=".5"/><circle cx="20" cy="20" r="3" fill="#eaf6ff"/></svg></span>
+        <span><span class="ac">AC</span> Intelligence</span>
       </a>
-
-      <nav class="nav__links" aria-label="Primary">
-        <a href="#what">What we do</a>
-        <a href="#work">How we work</a>
-        <a href="#services">Services</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#work">What we do</a>
+        <a href="#contact">Contact</a>
       </nav>
-
-      <div class="nav__actions">
-        <a class="btn btn--primary btn--sm" href="contact.html">Book a call <span class="btn__plus" aria-hidden="true">+</span></a>
-        <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-          <span></span><span></span><span></span>
-        </button>
+      <div class="nav-right">
+        <a class="btn btn-glass" href="#contact">Get in touch</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile"><span></span><span></span><span></span></button>
       </div>
     </div>
-
-    <div class="mobile-menu" id="mobileMenu" hidden>
-      <a href="#what">What we do</a>
-      <a href="#work">How we work</a>
-      <a href="#services">Services</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a class="btn btn--primary" href="contact.html">Book a Discovery Call</a>
-    </div>
   </header>
+  <div class="mobile" id="mobile" hidden>
+    <a href="#work">What we do</a>
+    <a href="#contact">Contact</a>
+    <a class="btn btn-glass" href="#contact">Get in touch</a>
+  </div>
 
   <main id="main">
 
-    <!-- ======================= HERO ======================= -->
+    <!-- ===================== HERO ===================== -->
     <section class="hero">
-      <div class="hero__glow" aria-hidden="true"></div>
-      <div class="hero__inner">
-        <p class="eyebrow eyebrow--chip reveal" data-delay="1">AI Consulting &amp; Implementation</p>
-        <h1 class="hero__title reveal" data-delay="1">AI systems that help you <em>operate at a higher level</em>.</h1>
-        <p class="hero__body reveal" data-delay="2">AC Intelligence helps businesses identify where AI can create real operational gains, then designs and implements the systems that make those improvements stick.</p>
-        <div class="hero__cta reveal" data-delay="3">
-          <a class="btn btn--primary btn--lg" href="contact.html">Book a Discovery Call</a>
-          <a class="btn btn--ghost btn--lg" href="#services">Explore Services</a>
-        </div>
-      </div>
-
-      <div class="hero__app reveal" data-delay="3" aria-hidden="true">
-        <div class="hero__app-bar">
-          <i></i><i></i><i></i>
-          <span class="hero__app-url">
-            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            acintelligence.co/workspace
-          </span>
-        </div>
-        <div class="hero__app-body">
-          <!-- sidebar -->
-          <div class="hero__app-col">
-            <div class="hero__app-search">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              Search systems
-              <kbd>⌘K</kbd>
-            </div>
-            <p class="hero__app-h">Workspace</p>
-            <div class="appnav is-active"><span class="dot" style="background:#4f7cff"></span> Operations</div>
-            <div class="appnav"><span class="dot" style="background:#6d6bff"></span> Marketing</div>
-            <div class="appnav"><span class="dot" style="background:#8b5cf6"></span> Sales</div>
-            <div class="appnav"><span class="dot" style="background:#b15cff"></span> Customer Service</div>
-            <div class="appnav"><span class="dot" style="background:#ff5fa2"></span> Workflows</div>
-          </div>
-          <!-- center: where AI fits -->
-          <div class="hero__app-col">
-            <div class="app-date">Where AI fits — this week</div>
-            <div class="approw">
-              <span class="approw__tick"></span>
-              <div><b>Lead follow-up</b><span>Automated across email + CRM</span></div>
-              <span class="tag">Automation</span>
-            </div>
-            <div class="approw">
-              <span class="approw__tick"></span>
-              <div><b>Invoice intake</b><span>4 manual steps removed</span></div>
-              <span class="tag">Workflow</span>
-            </div>
-            <div class="approw">
-              <span class="approw__tick"></span>
-              <div><b>Support triage</b><span>Routed instantly, 24/7</span></div>
-              <span class="tag">Voice AI</span>
-            </div>
-            <div class="approw">
-              <span class="approw__tick"></span>
-              <div><b>Weekly report</b><span>Drafted from live data</span></div>
-              <span class="tag">Assist</span>
-            </div>
-          </div>
-          <!-- right: activity -->
-          <div class="hero__app-col">
-            <p class="hero__app-h">Activity</p>
-            <div class="appfeed">
-              <div class="appfeed__item"><span class="appfeed__ring"></span><div><b>Hours saved</b><span>+18 this week</span></div></div>
-              <div class="appfeed__item"><span class="appfeed__ring"></span><div><b>Response time</b><span>Down 62%</span></div></div>
-              <div class="appfeed__item"><span class="appfeed__ring"></span><div><b>Routine tasks</b><span>Automated</span></div></div>
-              <div class="appfeed__item"><span class="appfeed__ring"></span><div><b>Systems live</b><span>7 in production</span></div></div>
-            </div>
+      <!-- Drop the hero video here when ready (falls back to the cosmic image):
+      <video class="hero-video" autoplay muted loop playsinline poster="assets/cosmos-bg.jpg"><source src="assets/hero.mp4" type="video/mp4"></video> -->
+      <span class="hero-scrim" aria-hidden="true"></span>
+      <div class="wrap hero-inner">
+        <div class="hero-foot">
+          <h1 class="reveal" data-d="1">Smarter decisions<br>built on AI</h1>
+          <div class="hero-aside reveal" data-d="2">
+            <p>AC Intelligence helps companies put AI to work — turning manual processes and scattered data into decisions you can act on.</p>
+            <a class="btn btn-primary" href="#contact">Start the conversation
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ======================= CAPABILITIES (static grid) ======================= -->
-    <section class="caps">
-      <div class="container">
-        <p class="caps__label reveal">We work across the whole business</p>
-        <div class="caps__grid reveal" data-delay="1">
-          <a class="cap-card" href="#services">
-            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="8" x2="9" y2="8"/><line x1="5" y1="8" x2="3" y2="8"/><circle cx="7" cy="8" r="2"/><line x1="21" y1="16" x2="15" y2="16"/><line x1="11" y1="16" x2="3" y2="16"/><circle cx="13" cy="16" r="2"/></svg></span>
-            <h3 class="cap-card__title">Operations <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
-            <p class="cap-card__text">Improve internal workflows, reduce manual steps, and create smoother execution across the business.</p>
-          </a>
-          <a class="cap-card" href="#services">
-            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
-            <h3 class="cap-card__title">Marketing <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
-            <p class="cap-card__text">Support campaigns, content systems, lead nurture, and smarter marketing operations.</p>
-          </a>
-          <a class="cap-card" href="#services">
-            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
-            <h3 class="cap-card__title">Sales <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
-            <p class="cap-card__text">Strengthen lead flow, follow-up, qualification, and sales support systems.</p>
-          </a>
-          <a class="cap-card" href="#services">
-            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-            <h3 class="cap-card__title">Customer Service <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
-            <p class="cap-card__text">Improve responsiveness, automate routine communication, and create more consistent support.</p>
-          </a>
-          <a class="cap-card" href="#services">
-            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span>
-            <h3 class="cap-card__title">Internal Workflows <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
-            <p class="cap-card__text">Build systems that reduce repetitive work and help teams operate with less friction.</p>
-          </a>
-          <a class="cap-card" href="#services">
-            <span class="cap-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-            <h3 class="cap-card__title">Digital Experience <span class="cap-card__arrow" aria-hidden="true">&rarr;</span></h3>
-            <p class="cap-card__text">Create better websites, smarter journeys, and digital systems that support growth.</p>
-          </a>
+        <div class="hero-strip reveal" data-d="3">
+          <b>Hands-on AI</b> for operations, finance, logistics, and the teams that run them.
         </div>
       </div>
     </section>
 
-    <!-- ======================= WHAT WE DO ======================= -->
-    <section class="section" id="what">
-      <div class="container">
-        <header class="section__head reveal">
-          <p class="eyebrow eyebrow--spectrum">What we do</p>
-          <h2 class="section__title">From identifying the opportunity to putting the system in place.</h2>
-          <p class="section__body">We help businesses figure out where AI can make a meaningful difference, then build the workflows, tools, and automations that support better execution.</p>
-        </header>
-
-        <div class="cards">
-          <article class="fcard reveal">
-            <div class="fcard__art">
-              <span class="fcard__num">01</span>
-              <span class="fcard__glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-            </div>
-            <h3 class="fcard__title">Find the right use cases</h3>
-            <p class="fcard__text">We look at how the business currently operates and identify where AI can save time, reduce manual work, and improve consistency.</p>
+    <!-- ===================== WHAT WE DO ===================== -->
+    <section class="sec" id="work">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="kick">What we do</span>
+          <h2>AI that earns its place.</h2>
+          <p>We don't sell pilots that go nowhere. We find the work AI should own, build it, and make sure it sticks.</p>
+        </div>
+        <div class="pillars">
+          <article class="pillar reveal">
+            <span class="pillar-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span>
+            <span class="pillar-lead">Strategy</span>
+            <h3>Find where AI pays off</h3>
+            <p>We dig into how you actually operate and map the moves with real return, not a wish list.</p>
           </article>
-
-          <article class="fcard reveal" data-delay="1">
-            <div class="fcard__art">
-              <span class="fcard__num">02</span>
-              <span class="fcard__glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
-            </div>
-            <h3 class="fcard__title">Build the right systems</h3>
-            <p class="fcard__text">We design and implement practical AI workflows, automations, and digital tools that fit the way your team already works.</p>
+          <article class="pillar reveal" data-d="1">
+            <span class="pillar-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></span>
+            <span class="pillar-lead">Build</span>
+            <h3>Ship systems, not decks</h3>
+            <p>Custom AI tools, automations, and integrations wired into the way your team already works.</p>
           </article>
-
-          <article class="fcard reveal" data-delay="2">
-            <div class="fcard__art">
-              <span class="fcard__num">03</span>
-              <span class="fcard__glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
-            </div>
-            <h3 class="fcard__title">Improve over time</h3>
-            <p class="fcard__text">We stay involved after launch to refine performance, solve issues, and make sure the systems continue to deliver value.</p>
+          <article class="pillar reveal" data-d="2">
+            <span class="pillar-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 7h4v4"/></svg></span>
+            <span class="pillar-lead">Scale</span>
+            <h3>Make it stick</h3>
+            <p>We train your people and harden what we build so it keeps running long after we leave.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ======================= HOW WE WORK ======================= -->
-    <section class="section" id="work">
-      <div class="container">
-        <div class="band reveal">
-          <div class="band__inner">
-            <p class="eyebrow eyebrow--spectrum">How we work</p>
-            <h2 class="band__title">One partner from strategy through implementation.</h2>
-            <p class="band__sub">Some firms stop at advice. Others only handle the build. AC Intelligence works across both — helping you identify the right opportunities, put the right systems in place, and make them useful in day-to-day operations.</p>
-            <ul class="band__bullets">
-              <li><span class="mk" aria-hidden="true"></span> Clear business focus</li>
-              <li><span class="mk" aria-hidden="true"></span> Hands-on implementation</li>
-              <li><span class="mk" aria-hidden="true"></span> Ongoing refinement</li>
-            </ul>
-            <div class="band__avatars" aria-hidden="true">
-              <span class="avatar" style="background:#2f6bff">OPS</span>
-              <span class="avatar" style="background:#3b82ff">SAL</span>
-              <span class="avatar" style="background:#4f7cff">CX</span>
-              <span class="avatar" style="background:#6d6bff">MKT</span>
-              <span class="avatar" style="background:#8b5cf6">FIN</span>
-              <span class="avatar" style="background:#b15cff">DATA</span>
-              <span class="avatar" style="background:#ff5fa2">IT</span>
-            </div>
-          </div>
+    <!-- ===================== CTA ===================== -->
+    <section class="cta" id="contact">
+      <span class="cta-glow" aria-hidden="true"></span>
+      <div class="wrap">
+        <div class="reveal">
+          <h2>Let's figure out your first move.</h2>
+          <p>A short, honest conversation about where AI fits — and where it doesn't.</p>
+          <a class="btn btn-primary btn-lg" href="#contact">Get in touch
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </section>
-
-    <!-- ======================= SERVICES ======================= -->
-    <section class="section" id="services">
-      <div class="container">
-        <header class="section__head section__head--wide reveal">
-          <p class="eyebrow eyebrow--spectrum">Services</p>
-          <h2 class="section__title">AI capabilities built around practical business needs.</h2>
-          <p class="section__body">We help businesses apply AI in ways that save time, support growth, and reduce unnecessary manual work.</p>
-        </header>
-
-        <div class="services">
-          <a class="srow reveal" href="ai-strategy-advisory.html">
-            <span class="srow__num">01</span>
-            <h3 class="srow__title">AI Strategy &amp; Advisory</h3>
-            <p class="srow__body">Business reviews, opportunity identification, implementation planning, and clear guidance on where AI can create value.</p>
-            <span class="srow__go" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="srow reveal" data-delay="1" href="automation-systems.html">
-            <span class="srow__num">02</span>
-            <h3 class="srow__title">Automation Systems</h3>
-            <p class="srow__body">Workflow automations, internal process improvements, and systems that reduce repetitive work across the business.</p>
-            <span class="srow__go" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="srow reveal" data-delay="2" href="ai-powered-websites.html">
-            <span class="srow__num">03</span>
-            <h3 class="srow__title">AI-Powered Websites</h3>
-            <p class="srow__body">Websites and digital experiences built to convert, support growth, and create smoother customer journeys.</p>
-            <span class="srow__go" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="srow reveal" href="voice-conversational-ai.html">
-            <span class="srow__num">04</span>
-            <h3 class="srow__title">Voice &amp; Conversational AI</h3>
-            <p class="srow__body">Voice agents, chat systems, and communication workflows that improve responsiveness and save your team time.</p>
-            <span class="srow__go" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="srow reveal" data-delay="1" href="ai-marketing-systems.html">
-            <span class="srow__num">05</span>
-            <h3 class="srow__title">AI Marketing Systems</h3>
-            <p class="srow__body">Content workflows, campaign support systems, lead nurture flows, and AI-assisted marketing operations.</p>
-            <span class="srow__go" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="srow reveal" data-delay="2" href="custom-implementation.html">
-            <span class="srow__num">06</span>
-            <h3 class="srow__title">Custom Implementation</h3>
-            <p class="srow__body">Tailored AI systems designed around your workflows, priorities, and operational goals.</p>
-            <span class="srow__go" aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= OUTCOMES ======================= -->
-    <section class="section" id="outcomes">
-      <div class="container">
-        <header class="section__head section__head--wide reveal">
-          <p class="eyebrow eyebrow--spectrum">Where AI creates value</p>
-          <h2 class="section__title">The work gets better when the right systems are doing more of it.</h2>
-          <p class="section__body">We focus on the parts of the business where AI can reduce repetitive work, improve responsiveness, tighten execution, and create more consistency across the team.</p>
-        </header>
-
-        <div class="outcomes-grid">
-          <article class="ocard reveal">
-            <span class="ocard__mark" aria-hidden="true"></span>
-            <h3 class="ocard__title">Less time lost to repetitive work</h3>
-            <p class="ocard__body">Manual follow-up, repetitive admin, status checks, and handoff tasks can often be reduced with better automation and workflow design.</p>
-          </article>
-          <article class="ocard reveal" data-delay="1">
-            <span class="ocard__mark" aria-hidden="true"></span>
-            <h3 class="ocard__title">Faster response across the business</h3>
-            <p class="ocard__body">From inbound leads to customer communication to internal requests, the right systems help the business respond faster and with less drag.</p>
-          </article>
-          <article class="ocard reveal" data-delay="2">
-            <span class="ocard__mark" aria-hidden="true"></span>
-            <h3 class="ocard__title">Clearer visibility into what is working</h3>
-            <p class="ocard__body">AI-supported systems can make it easier to track activity, spot issues earlier, and understand where time and effort are actually going.</p>
-          </article>
-          <article class="ocard reveal">
-            <span class="ocard__mark" aria-hidden="true"></span>
-            <h3 class="ocard__title">More consistency in execution</h3>
-            <p class="ocard__body">When important tasks depend too heavily on memory or manual effort, quality varies. Better systems help teams operate more consistently.</p>
-          </article>
-          <article class="ocard reveal" data-delay="1">
-            <span class="ocard__mark" aria-hidden="true"></span>
-            <h3 class="ocard__title">Stronger support for growth</h3>
-            <p class="ocard__body">As the business grows, manual processes become harder to manage. AI can help create the structure needed to support more volume without adding the same level of overhead.</p>
-          </article>
-          <article class="ocard reveal" data-delay="2">
-            <span class="ocard__mark" aria-hidden="true"></span>
-            <h3 class="ocard__title">Better use of team time</h3>
-            <p class="ocard__body">The goal is not replacing good people. It is freeing them from low-value work so they can focus on higher-value execution.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= WHY ======================= -->
-    <section class="section" id="why">
-      <div class="container">
-        <header class="section__head section__head--wide reveal">
-          <p class="eyebrow eyebrow--spectrum">Why AC Intelligence</p>
-          <h2 class="section__title">Built for companies that want results, not just recommendations.</h2>
-          <p class="section__body">AI should improve the way the business actually runs. We focus on systems that can be implemented, measured, and improved over time.</p>
-        </header>
-
-        <div class="why-grid">
-          <div class="why-col reveal">
-            <h3 class="why-col__title">Business-first thinking</h3>
-            <p class="why-col__body">We start with operational needs and business goals before deciding where AI belongs.</p>
-          </div>
-          <div class="why-col reveal" data-delay="1">
-            <h3 class="why-col__title">Implementation included</h3>
-            <p class="why-col__body">We do not stop at advice. We help build and deploy the systems needed to make AI useful.</p>
-          </div>
-          <div class="why-col reveal" data-delay="2">
-            <h3 class="why-col__title">Designed to hold up</h3>
-            <p class="why-col__body">The goal is not novelty. The goal is stronger workflows, better output, and systems that continue to support the business over time.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= CLOSING CTA ======================= -->
-    <section class="cta-final">
-      <div class="container">
-        <h2 class="cta-final__title reveal">Put AI to work where it matters most.</h2>
-        <p class="cta-final__body reveal" data-delay="1">Book a discovery call and we will show you where AI can save time, improve execution, and create the most value for the business.</p>
-        <ul class="cta-final__steps reveal" data-delay="2">
-          <li><span class="cta-final__step-n">1</span> A short discovery call</li>
-          <li><span class="cta-final__step-n">2</span> We map where AI fits</li>
-          <li><span class="cta-final__step-n">3</span> You get clear next steps</li>
-        </ul>
-        <div class="cta-final__actions reveal" data-delay="3">
-          <a class="btn btn--primary btn--lg" href="contact.html">Book a Discovery Call</a>
-          <p class="cta-final__note">No obligation. Prefer email? <a href="mailto:hello@acintelligence.co">hello@acintelligence.co</a> &middot; we reply within one business day.</p>
-        </div>
-        <p class="cta-final__signature reveal" data-delay="3">Founded by <strong>Kaiden Amaro</strong> and <strong>Frankie Campbell</strong> &middot; <a href="about.html">About AC Intelligence &rarr;</a></p>
-      </div>
-    </section>
-
   </main>
 
-  <!-- ======================= FOOTER ======================= -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <div class="footer__brand">
-          <a class="brand" href="index.html" aria-label="AC Intelligence home">
-            <span class="brand__mark" aria-hidden="true">
-              <svg width="38" height="30" viewBox="0 0 40 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs><linearGradient id="footGrad" x1="0" y1="0" x2="40" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#3b82ff"/><stop offset="0.5" stop-color="#6d6bff"/><stop offset="1" stop-color="#ff5fa2"/></linearGradient></defs>
-                <path d="M2 26 L11 2 L20 26" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M6.4 18 H15.6" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round"/>
-                <path d="M37 8.5 A 8 8 0 1 0 37 19.5" stroke="url(#footGrad)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
-              </svg>
-            </span>
-            <span class="brand__word">Intelligence</span>
-          </a>
-          <p class="footer__tagline">AI consulting and implementation for businesses that want measurable results.</p>
-        </div>
-
-        <div class="footer__col">
-          <h4>Explore</h4>
-          <a href="#what">What we do</a>
-          <a href="#work">How we work</a>
-          <a href="#services">Services</a>
-          <a href="about.html">About</a>
-        </div>
-
-        <div class="footer__col">
-          <h4>Get in touch</h4>
-          <a href="contact.html">Book a discovery call</a>
-          <a href="mailto:hello@acintelligence.co">hello@acintelligence.co</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bar">
-      <p>© 2026 Amaro Campbell Intelligence LLC</p>
-      <p>Built to help businesses operate at a higher level.</p>
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <a class="brand" href="index.html" aria-label="AC Intelligence home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><defs><linearGradient id="acf" x1="8" y1="9" x2="32" y2="31" gradientUnits="userSpaceOnUse"><stop stop-color="#9bdcff"/><stop offset="1" stop-color="#2f7bf6"/></linearGradient></defs><ellipse cx="20" cy="20" rx="13" ry="6.6" transform="rotate(-30 20 20)" stroke="url(#acf)" stroke-width="2.2"/><ellipse cx="20" cy="20" rx="13" ry="6.6" transform="rotate(30 20 20)" stroke="url(#acf)" stroke-width="2.2" opacity=".5"/><circle cx="20" cy="20" r="3" fill="#eaf6ff"/></svg></span>
+        <span><span class="ac">AC</span> Intelligence</span>
+      </a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#work">What we do</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <small>© 2026 AC Intelligence</small>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
