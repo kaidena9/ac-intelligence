@@ -22,6 +22,15 @@
     window.addEventListener("resize", function(){ if (window.innerWidth > 780) setMenu(false); });
   }
 
+  /* cursor-following glass sheen on buttons + nav bar */
+  document.querySelectorAll(".btn, .nav-bar, .nav-cta").forEach(function(el){
+    el.addEventListener("pointermove", function(e){
+      var r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      el.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+  });
+
   var els = document.querySelectorAll(".reveal");
   if (reduce || !("IntersectionObserver" in window)) {
     els.forEach(function(el){ el.classList.add("in"); });
