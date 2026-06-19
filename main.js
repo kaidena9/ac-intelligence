@@ -1,27 +1,9 @@
-/* AC Intelligence — nav scroll · mobile menu · scroll reveals */
+/* AC Intelligence — scroll reveals · play button · contact form */
 (function () {
   "use strict";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  var nav = document.getElementById("nav");
-  function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 24); }
-  onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
-
-  var btn = document.getElementById("menuBtn");
-  var menu = document.getElementById("mobile");
-  function setMenu(open){
-    btn.setAttribute("aria-expanded", String(open));
-    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    menu.classList.toggle("open", open);
-    menu.hidden = !open;
-  }
-  if (btn) {
-    btn.addEventListener("click", function(){ setMenu(btn.getAttribute("aria-expanded") !== "true"); });
-    menu.addEventListener("click", function(e){ if (e.target.closest("a")) setMenu(false); });
-    window.addEventListener("keydown", function(e){ if (e.key === "Escape") setMenu(false); });
-    window.addEventListener("resize", function(){ if (window.innerWidth > 920) setMenu(false); });
-  }
-
+  /* scroll reveals */
   var els = document.querySelectorAll(".reveal");
   if (reduce || !("IntersectionObserver" in window)) {
     els.forEach(function(el){ el.classList.add("in"); });
@@ -30,5 +12,26 @@
       entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add("in"); obs.unobserve(en.target); } });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     els.forEach(function(el){ io.observe(el); });
+  }
+
+  /* play button (reel placeholder until the motion video is added) */
+  var play = document.getElementById("playBtn");
+  if (play) play.addEventListener("click", function(){
+    /* hook the fluid-AI reel here when the video is ready */
+  });
+
+  /* contact form */
+  var form = document.getElementById("contactForm");
+  if (form) {
+    var note = document.getElementById("cformNote");
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var name = (document.getElementById("cf-name").value || "").trim();
+      var email = (document.getElementById("cf-email").value || "").trim();
+      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!name || !ok) { note.textContent = "Add your name and a valid email."; return; }
+      note.textContent = "Thanks " + name + " — we'll be in touch shortly.";
+      form.reset();
+    });
   }
 })();
