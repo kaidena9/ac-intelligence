@@ -41,6 +41,16 @@
     io.observe(sep);
   })();
 
+  /* hero background parallax (translate the bg layer slower than scroll) */
+  (function heroParallax(){
+    var bg = document.querySelector(".hero-bg");
+    if (!bg || reduce) return;
+    var ticking = false;
+    function update(){ bg.style.transform = "translate3d(0," + (window.scrollY * 0.14) + "px,0)"; ticking = false; }
+    window.addEventListener("scroll", function(){ if (!ticking){ requestAnimationFrame(update); ticking = true; } }, { passive: true });
+    update();
+  })();
+
   var els = document.querySelectorAll(".reveal");
   if (reduce || !("IntersectionObserver" in window)) {
     els.forEach(function(el){ el.classList.add("in"); });
