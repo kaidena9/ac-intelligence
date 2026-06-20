@@ -125,9 +125,14 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 .curve-sep.div-off .divider-img{animation-play-state:paused}
 /* vignette scrim: blends the divider into the page on every edge (covers any hard line) */
 .divider-cap{position:absolute;inset:0;z-index:3;display:grid;place-items:center;text-align:center;padding:0 24px;pointer-events:none;
-  background:radial-gradient(ellipse 46% 64% at 50% 50%, rgba(8,13,17,.82) 0%, rgba(8,13,17,.46) 42%, rgba(8,13,17,0) 72%)}
+  background:radial-gradient(ellipse 90% 50% at 50% 50%, rgba(8,13,17,.8) 0%, rgba(8,13,17,.42) 56%, rgba(8,13,17,0) 82%)}
 .divider-line{font-family:var(--f);font-weight:400;color:#fff;letter-spacing:-.02em;line-height:1.1;
   font-size:clamp(1.3rem,2.9vw,2.15rem);text-shadow:0 2px 24px rgba(0,0,0,.6),0 0 30px rgba(0,0,0,.4);max-width:20ch}
+.divider-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;list-style:none;max-width:1080px}
+.divider-strip li{display:flex;align-items:center;color:#dfeaec;font-weight:400;white-space:nowrap;padding:6px 0;
+  font-size:clamp(.92rem,1.5vw,1.08rem);letter-spacing:.005em;text-shadow:0 2px 18px rgba(0,0,0,.65)}
+.divider-strip li:not(:last-child)::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);
+  opacity:.75;margin:0 clamp(18px,3.4vw,46px);box-shadow:0 0 10px var(--glow)}
 .curve-sep::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
     linear-gradient(180deg,var(--bg) 0%,rgba(8,13,17,0) 32%,rgba(8,13,17,0) 58%,var(--bg) 100%),
