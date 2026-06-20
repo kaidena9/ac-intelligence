@@ -105,7 +105,7 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
   100%{transform:scale(1.05) translate3d(-1.8%,0.7%,0);opacity:.84}}
 
 @keyframes divBreathe{0%,100%{opacity:.6}50%{opacity:.74}}
-.divider-canvas{display:none}
+.curve-sep.div-off .divider-img{animation-play-state:paused}
 @media (prefers-reduced-motion:reduce){.divider-img{animation:none}}
 
 /* ---------- glass panels (carry the glass look through the page) ---------- */

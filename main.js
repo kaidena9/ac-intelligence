@@ -31,63 +31,14 @@
     });
   });
 
-  /* divider — glowing particles drifting out of the wave (canvas, additive glow) */
-  (function dividerParticles(){
+  /* divider — pause its CSS drift animation while it is off-screen (perf) */
+  (function dividerAnim(){
     var sep = document.querySelector(".curve-sep");
-    var cv = document.querySelector(".divider-canvas");
-    if (!sep || !cv || reduce) return;
-    var ctx = cv.getContext("2d");
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var W = 0, H = 0;
-    function resize(){
-      var r = sep.getBoundingClientRect();
-      W = r.width; H = r.height;
-      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-    window.addEventListener("resize", resize, { passive: true });
-    // hue follows the wave: teal -> blue/violet -> magenta across the width
-    function hueAt(x){
-      var t = x / (W || 1);
-      if (t < 0.4) return [70, 222, 210];
-      if (t < 0.7) return [120, 112, 236];
-      return [226, 92, 202];
-    }
-    function rand(a, b){ return a + Math.random() * (b - a); }
-    function spawn(p){
-      p.x = rand(0, W);
-      p.y = H * rand(0.42, 0.58);            // emerge from the wave's core
-      var up = Math.random() < 0.62 ? -1 : 1; // mostly drift upward, some down
-      p.vy = up * rand(0.10, 0.42);
-      p.vx = rand(-0.18, 0.18);
-      p.r = rand(0.5, 2.0);
-      p.life = 0; p.max = rand(120, 260);
-      p.c = hueAt(p.x);
-      return p;
-    }
-    var N = Math.max(40, Math.min(120, Math.round(W / 13)));
-    var ps = [];
-    for (var i = 0; i < N; i++){ ps.push(spawn({})); ps[i].life = Math.random() * ps[i].max; }
-    function frame(){
-      ctx.clearRect(0, 0, W, H);
-      ctx.globalCompositeOperation = "lighter";
-      for (var i = 0; i < ps.length; i++){
-        var p = ps[i];
-        p.x += p.vx; p.y += p.vy; p.life++;
-        var lf = p.life / p.max;
-        if (lf >= 1 || p.y < -4 || p.y > H + 4){ spawn(p); p.life = 0; continue; }
-        var a = Math.sin(lf * Math.PI) * 0.6;          // fade in then out
-        ctx.shadowColor = "rgba(" + p.c[0] + "," + p.c[1] + "," + p.c[2] + "," + a.toFixed(3) + ")";
-        ctx.shadowBlur = 7;
-        ctx.fillStyle = "rgba(" + p.c[0] + "," + p.c[1] + "," + p.c[2] + "," + a.toFixed(3) + ")";
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, 6.2832);
-        ctx.fill();
-      }
-      requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
+    if (!sep || reduce || !("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ sep.classList.toggle("div-off", !en.isIntersecting); });
+    }, { rootMargin: "140px 0px 140px 0px" });
+    io.observe(sep);
   })();
 
   var els = document.querySelectorAll(".reveal");
