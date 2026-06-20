@@ -51,6 +51,71 @@
     update();
   })();
 
+  /* hero — soft particles drifting out of the back of the head, down toward the divider.
+     Sprite-based + additive (no shadowBlur), paused off-screen, so it stays cheap. */
+  (function heroParticles(){
+    var hero = document.querySelector(".hero");
+    var cv = document.querySelector(".hero-particles");
+    if (!hero || !cv || reduce) return;
+    var ctx = cv.getContext("2d");
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var W = 0, H = 0, running = false, started = false;
+    function makeSprite(rgb){
+      var c = document.createElement("canvas"), S = 32; c.width = c.height = S;
+      var x = c.getContext("2d");
+      var g = x.createRadialGradient(S/2, S/2, 0, S/2, S/2, S/2);
+      g.addColorStop(0, "rgba(" + rgb + ",1)");
+      g.addColorStop(0.35, "rgba(" + rgb + ",0.5)");
+      g.addColorStop(1, "rgba(" + rgb + ",0)");
+      x.fillStyle = g; x.fillRect(0, 0, S, S); return c;
+    }
+    var sprites = [makeSprite("90,230,220"), makeSprite("70,200,235"), makeSprite("150,120,235")];
+    function resize(){
+      var r = hero.getBoundingClientRect(); W = r.width; H = r.height;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize(); window.addEventListener("resize", resize, { passive: true });
+    function rand(a, b){ return a + Math.random() * (b - a); }
+    function spawn(p){
+      p.x = W * rand(0.34, 0.60);          // back/lower edge of the head (image is right-anchored)
+      p.y = H * rand(0.32, 0.78);
+      p.vx = rand(-0.26, 0.12);            // drift off the back
+      p.vy = rand(0.4, 1.05);             // and stream down toward the bar
+      p.size = rand(2, 7);
+      p.life = 0; p.max = rand(170, 360);
+      p.spr = sprites[(Math.random() * sprites.length) | 0];
+      p.a = rand(0.35, 0.75);
+      return p;
+    }
+    var N = Math.max(26, Math.min(54, Math.round((window.innerWidth || W) / 28)));
+    var ps = [];
+    for (var i = 0; i < N; i++){ ps.push(spawn({})); ps[i].life = Math.random() * ps[i].max; }
+    function frame(){
+      if (!running) return;
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = "lighter";
+      for (var i = 0; i < ps.length; i++){
+        var p = ps[i];
+        p.x += p.vx; p.y += p.vy; p.vy += 0.0014; p.life++;
+        var lf = p.life / p.max;
+        if (lf >= 1 || p.y > H + 12){ spawn(p); p.life = 0; continue; }
+        ctx.globalAlpha = Math.sin(lf * Math.PI) * p.a;
+        ctx.drawImage(p.spr, p.x - p.size, p.y - p.size, p.size * 2, p.size * 2);
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(frame);
+    }
+    if ("IntersectionObserver" in window){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if (e.isIntersecting){ if (!running){ running = true; requestAnimationFrame(frame); } }
+          else running = false;
+        });
+      }).observe(hero);
+    } else { running = true; requestAnimationFrame(frame); }
+  })();
+
   var els = document.querySelectorAll(".reveal");
   if (reduce || !("IntersectionObserver" in window)) {
     els.forEach(function(el){ el.classList.add("in"); });

@@ -61,12 +61,11 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#070b0f}
 .hero-bg{position:absolute;inset:-14% 0;z-index:0;will-change:transform;
   background:#070b0f url("assets/hero-ai.jpg") right center/cover no-repeat}
-.hero-glow{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;
-  background:radial-gradient(58% 64% at 75% 44%, rgba(55,214,205,.16), transparent 60%)}
 .hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(90deg, var(--bg) 0%, rgba(8,13,17,.92) 28%, rgba(8,13,17,.4) 52%, transparent 72%),
     linear-gradient(0deg, var(--bg) 0%, rgba(8,13,17,.82) 9%, transparent 34%)}
 .hero-inner{position:relative;z-index:3;width:100%}
+.hero-particles{position:absolute;inset:0;z-index:2;pointer-events:none}
 .hero-copy{max-width:400px;margin-left:-8px;text-align:center}
 .hero h1{font-size:clamp(2rem,3.8vw,3.1rem);font-weight:400;letter-spacing:-.025em;line-height:1.05;color:#fff;
   text-shadow:0 2px 28px rgba(0,0,0,.55),0 0 34px rgba(55,214,205,.18)}
