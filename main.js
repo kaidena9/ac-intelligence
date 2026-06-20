@@ -51,69 +51,30 @@
     update();
   })();
 
-  /* hero — soft particles falling down the right side from the top.
-     Sprite-based + additive (no shadowBlur), paused off-screen, so it stays cheap. */
+  /* hero — soft particles falling down the right side (CSS-animated DOM dots, universally reliable) */
   (function heroParticles(){
-    var hero = document.querySelector(".hero");
-    var cv = document.querySelector(".hero-particles");
-    if (!hero || !cv || reduce) return;
-    var ctx = cv.getContext("2d");
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var W = 0, H = 0, running = true;
-    function makeSprite(rgb){
-      var c = document.createElement("canvas"), S = 32; c.width = c.height = S;
-      var x = c.getContext("2d");
-      var g = x.createRadialGradient(S/2, S/2, 0, S/2, S/2, S/2);
-      g.addColorStop(0, "rgba(" + rgb + ",1)");
-      g.addColorStop(0.35, "rgba(" + rgb + ",0.5)");
-      g.addColorStop(1, "rgba(" + rgb + ",0)");
-      x.fillStyle = g; x.fillRect(0, 0, S, S); return c;
+    if (reduce) return;
+    var box = document.querySelector(".hero-particles");
+    if (!box) return;
+    var colors = ["90,230,220", "70,200,235", "150,120,235"];
+    var N = Math.max(36, Math.min(72, Math.round((window.innerWidth || 1200) / 22)));
+    var html = "";
+    for (var i = 0; i < N; i++){
+      var c = colors[i % colors.length];
+      var size = (4 + Math.random() * 9).toFixed(1);
+      var left = (58 + Math.random() * 42).toFixed(2);
+      var dur = (7 + Math.random() * 9).toFixed(2);
+      var delay = (-Math.random() * dur).toFixed(2);
+      var op = (0.5 + Math.random() * 0.45).toFixed(2);
+      html += '<span class="p" style="left:' + left + '%;width:' + size + 'px;height:' + size + 'px;'
+            + 'background:radial-gradient(circle,rgba(' + c + ',' + op + ') 0%,rgba(' + c + ',0) 70%);'
+            + 'animation-duration:' + dur + 's;animation-delay:' + delay + 's"></span>';
     }
-    var sprites = [makeSprite("90,230,220"), makeSprite("70,200,235"), makeSprite("150,120,235")];
-    function resize(){
-      var r = hero.getBoundingClientRect(); W = r.width; H = r.height;
-      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize(); window.addEventListener("resize", resize, { passive: true });
-    function rand(a, b){ return a + Math.random() * (b - a); }
-    function spawn(p){
-      p.x = W * rand(0.58, 1.0);            // right side
-      p.y = -rand(0, H * 0.18);            // start above the top
-      p.vx = rand(-0.10, 0.10);
-      p.vy = rand(0.35, 1.0);              // fall straight down
-      p.size = rand(4, 11);
-      p.spr = sprites[(Math.random() * sprites.length) | 0];
-      p.a = rand(0.72, 1.0);
-      return p;
-    }
-    var N = Math.max(44, Math.min(84, Math.round((window.innerWidth || W) / 18)));
-    var ps = [];
-    for (var i = 0; i < N; i++){ ps.push(spawn({})); ps[i].y = Math.random() * H; }  // pre-fill the column
-    function frame(){
-      if (!running) return;
-      ctx.clearRect(0, 0, W, H);
-      ctx.globalCompositeOperation = "lighter";
-      for (var i = 0; i < ps.length; i++){
-        var p = ps[i];
-        p.x += p.vx; p.y += p.vy; p.vy += 0.0006;
-        if (p.y > H + 14){ spawn(p); continue; }
-        var t = p.y / H;                                   // fade in at top, out near bottom
-        var fade = p.a * (t < 0.03 ? Math.max(0, t) / 0.03 : t > 0.9 ? Math.max(0, (1 - t) / 0.1) : 1);
-        ctx.globalAlpha = fade;
-        ctx.drawImage(p.spr, p.x - p.size, p.y - p.size, p.size * 2, p.size * 2);
-      }
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);   // start immediately, don't depend on the observer
+    box.innerHTML = html;
     if ("IntersectionObserver" in window){
       new IntersectionObserver(function(es){
-        es.forEach(function(e){
-          if (e.isIntersecting){ if (!running){ running = true; requestAnimationFrame(frame); } }
-          else running = false;
-        });
-      }).observe(hero);
+        es.forEach(function(e){ box.classList.toggle("paused", !e.isIntersecting); });
+      }).observe(document.querySelector(".hero"));
     }
   })();
 

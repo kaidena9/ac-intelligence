@@ -65,7 +65,12 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
   background:linear-gradient(90deg, var(--bg) 0%, rgba(8,13,17,.92) 28%, rgba(8,13,17,.4) 52%, transparent 72%),
     linear-gradient(0deg, var(--bg) 0%, rgba(8,13,17,.82) 9%, transparent 34%)}
 .hero-inner{position:relative;z-index:3;width:100%}
-.hero-particles{position:absolute;inset:0;z-index:2;pointer-events:none}
+.hero-particles{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.hero-particles .p{position:absolute;top:-4vh;border-radius:50%;will-change:transform,opacity;
+  animation-name:heroFall;animation-timing-function:linear;animation-iteration-count:infinite}
+.hero-particles.paused .p{animation-play-state:paused}
+@keyframes heroFall{0%{transform:translateY(0);opacity:0}6%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh);opacity:0}}
+@media (prefers-reduced-motion:reduce){.hero-particles{display:none}}
 .hero-copy{max-width:400px;margin-left:-8px;text-align:center}
 .hero h1{font-size:clamp(2rem,3.8vw,3.1rem);font-weight:400;letter-spacing:-.025em;line-height:1.05;color:#fff;
   text-shadow:0 2px 28px rgba(0,0,0,.55),0 0 34px rgba(55,214,205,.18)}
