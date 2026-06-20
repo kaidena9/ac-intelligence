@@ -164,7 +164,7 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 .divider-grid .dg::before{content:"";position:absolute;top:-18px;left:50%;width:180px;height:180px;transform:translateX(-50%);
   border-radius:50%;z-index:-1;pointer-events:none;background:radial-gradient(circle, rgba(var(--c),.20), transparent 70%)}
 /* SCHEME 1 — deep teal / deep magenta / deep amber (from the hero head) */
-.divider-grid .dg:nth-child(1){--c:26,138,134}
+.divider-grid .dg:nth-child(1){--c:44,86,205}
 .divider-grid .dg:nth-child(2){--c:158,56,112}
 .divider-grid .dg:nth-child(3){--c:176,102,50}
 .divider-grid .dg-ic svg{width:21px;height:21px}
