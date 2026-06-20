@@ -51,7 +51,7 @@
     update();
   })();
 
-  /* hero — soft particles drifting out of the back of the head, down toward the divider.
+  /* hero — soft particles falling down the right side from the top.
      Sprite-based + additive (no shadowBlur), paused off-screen, so it stays cheap. */
   (function heroParticles(){
     var hero = document.querySelector(".hero");
@@ -78,29 +78,29 @@
     resize(); window.addEventListener("resize", resize, { passive: true });
     function rand(a, b){ return a + Math.random() * (b - a); }
     function spawn(p){
-      p.x = W * rand(0.34, 0.60);          // back/lower edge of the head (image is right-anchored)
-      p.y = H * rand(0.32, 0.78);
-      p.vx = rand(-0.26, 0.12);            // drift off the back
-      p.vy = rand(0.4, 1.05);             // and stream down toward the bar
+      p.x = W * rand(0.62, 0.99);          // right side of the screen only
+      p.y = -rand(0, H * 0.12);            // start above the top
+      p.vx = rand(-0.10, 0.10);
+      p.vy = rand(0.35, 1.0);              // fall straight down
       p.size = rand(2, 7);
-      p.life = 0; p.max = rand(170, 360);
       p.spr = sprites[(Math.random() * sprites.length) | 0];
-      p.a = rand(0.35, 0.75);
+      p.a = rand(0.4, 0.82);
       return p;
     }
-    var N = Math.max(26, Math.min(54, Math.round((window.innerWidth || W) / 28)));
+    var N = Math.max(28, Math.min(58, Math.round((window.innerWidth || W) / 24)));
     var ps = [];
-    for (var i = 0; i < N; i++){ ps.push(spawn({})); ps[i].life = Math.random() * ps[i].max; }
+    for (var i = 0; i < N; i++){ ps.push(spawn({})); ps[i].y = Math.random() * H; }  // pre-fill the column
     function frame(){
       if (!running) return;
       ctx.clearRect(0, 0, W, H);
       ctx.globalCompositeOperation = "lighter";
       for (var i = 0; i < ps.length; i++){
         var p = ps[i];
-        p.x += p.vx; p.y += p.vy; p.vy += 0.0014; p.life++;
-        var lf = p.life / p.max;
-        if (lf >= 1 || p.y > H + 12){ spawn(p); p.life = 0; continue; }
-        ctx.globalAlpha = Math.sin(lf * Math.PI) * p.a;
+        p.x += p.vx; p.y += p.vy; p.vy += 0.0006;
+        if (p.y > H + 14){ spawn(p); continue; }
+        var t = p.y / H;                                   // fade in at top, out near bottom
+        var fade = p.a * (t < 0.12 ? Math.max(0, t) / 0.12 : t > 0.8 ? Math.max(0, (1 - t) / 0.2) : 1);
+        ctx.globalAlpha = fade;
         ctx.drawImage(p.spr, p.x - p.size, p.y - p.size, p.size * 2, p.size * 2);
       }
       ctx.globalAlpha = 1;
