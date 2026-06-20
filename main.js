@@ -116,6 +116,24 @@
     } else { running = true; requestAnimationFrame(frame); }
   })();
 
+  /* global cursor-following light (single GPU-translated blob, screen-blended) */
+  (function cursorGlow(){
+    if (reduce || !window.matchMedia || !window.matchMedia("(pointer:fine)").matches) return;
+    var el = document.createElement("div");
+    el.className = "cursor-glow"; el.setAttribute("aria-hidden", "true");
+    document.body.appendChild(el);
+    var x = window.innerWidth / 2, y = window.innerHeight / 2, tick = false;
+    function move(){ el.style.transform = "translate3d(" + x + "px," + y + "px,0)"; tick = false; }
+    move();
+    window.addEventListener("pointermove", function(e){
+      x = e.clientX; y = e.clientY;
+      if (!el.classList.contains("on")) el.classList.add("on");
+      if (!tick){ requestAnimationFrame(move); tick = true; }
+    }, { passive: true });
+    document.addEventListener("mouseleave", function(){ el.classList.remove("on"); });
+    window.addEventListener("blur", function(){ el.classList.remove("on"); });
+  })();
+
   var els = document.querySelectorAll(".reveal");
   if (reduce || !("IntersectionObserver" in window)) {
     els.forEach(function(el){ el.classList.add("in"); });

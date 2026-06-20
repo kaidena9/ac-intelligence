@@ -290,3 +290,11 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
   .hero-cta .btn{width:100%;justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.001ms!important}.reveal{opacity:1;transform:none}}
+
+/* ---------- global cursor-following light ---------- */
+.cursor-glow{position:fixed;top:0;left:0;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;
+  pointer-events:none;z-index:90;opacity:0;transition:opacity .45s ease;will-change:transform;mix-blend-mode:screen;
+  background:radial-gradient(circle, rgba(55,214,205,.12), rgba(55,214,205,.05) 36%, transparent 70%)}
+.cursor-glow.on{opacity:1}
+@media (pointer:coarse){.cursor-glow{display:none}}
+@media (prefers-reduced-motion:reduce){.cursor-glow{display:none}}
