@@ -56,14 +56,14 @@
     if (reduce) return;
     var box = document.querySelector(".hero-particles");
     if (!box) return;
-    var colors = ["90,230,220", "70,200,235", "150,120,235"];
+    var colors = ["90,230,220", "70,200,235", "55,105,230", "140,110,235", "120,60,205"];
     var N = Math.max(36, Math.min(72, Math.round((window.innerWidth || 1200) / 22)));
     var html = "";
     for (var i = 0; i < N; i++){
       var c = colors[i % colors.length];
       var size = (4 + Math.random() * 9).toFixed(1);
       var left = (58 + Math.random() * 42).toFixed(2);
-      var dur = (12 + Math.random() * 12).toFixed(2);
+      var dur = (18 + Math.random() * 16).toFixed(2);
       var delay = (-Math.random() * dur).toFixed(2);
       var op = (0.5 + Math.random() * 0.45).toFixed(2);
       html += '<span class="p" style="left:' + left + '%;width:' + size + 'px;height:' + size + 'px;'
