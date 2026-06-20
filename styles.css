@@ -144,6 +144,16 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
   margin:0 clamp(22px,3vw,42px);box-shadow:0 0 10px var(--glow)}
 @keyframes dmScroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 .curve-sep.div-off .dm-track{animation-play-state:paused}
+.divider-cap-panel{background:none;pointer-events:none}
+.divider-panel{pointer-events:auto;display:flex;align-items:center;gap:clamp(14px,2.6vw,30px);flex-wrap:wrap;justify-content:center;
+  padding:clamp(15px,2.2vw,24px) clamp(22px,3vw,38px);border-radius:18px;max-width:min(90%,700px);
+  border:1px solid rgba(255,255,255,.14);background:linear-gradient(160deg,rgba(255,255,255,.085),rgba(255,255,255,.02));
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);
+  box-shadow:0 32px 72px -38px rgba(0,0,0,.82),inset 0 1px 0 rgba(255,255,255,.16)}
+.divider-panel p{color:#eaf3f4;font-weight:400;letter-spacing:-.01em;font-size:clamp(1rem,1.7vw,1.24rem)}
+.divider-cta{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;color:var(--accent);font-weight:500;font-size:.95rem;transition:gap .25s,color .2s}
+.divider-cta svg{width:16px;height:16px}
+.divider-cta:hover{gap:10px;color:#9af2ec}
 .curve-sep::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
     linear-gradient(180deg,var(--bg) 0%,rgba(8,13,17,0) 32%,rgba(8,13,17,0) 58%,var(--bg) 100%),
