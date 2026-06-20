@@ -79,7 +79,7 @@
     function rand(a, b){ return a + Math.random() * (b - a); }
     function spawn(p){
       p.x = W * rand(0.62, 0.99);          // right side of the screen only
-      p.y = -rand(0, H * 0.12);            // start above the top
+      p.y = -rand(0, H * 0.18);            // start above the top
       p.vx = rand(-0.10, 0.10);
       p.vy = rand(0.35, 1.0);              // fall straight down
       p.size = rand(2, 7);
@@ -99,7 +99,7 @@
         p.x += p.vx; p.y += p.vy; p.vy += 0.0006;
         if (p.y > H + 14){ spawn(p); continue; }
         var t = p.y / H;                                   // fade in at top, out near bottom
-        var fade = p.a * (t < 0.12 ? Math.max(0, t) / 0.12 : t > 0.8 ? Math.max(0, (1 - t) / 0.2) : 1);
+        var fade = p.a * (t < 0.04 ? Math.max(0, t) / 0.04 : t > 0.82 ? Math.max(0, (1 - t) / 0.18) : 1);
         ctx.globalAlpha = fade;
         ctx.drawImage(p.spr, p.x - p.size, p.y - p.size, p.size * 2, p.size * 2);
       }
