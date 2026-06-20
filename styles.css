@@ -99,7 +99,7 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.26),0 14px 38px -12px rgba(55,214,205,.3)}
 
 /* ---------- helix divider (hero dark blends into navy) ---------- */
-.curve-sep{position:relative;line-height:0;overflow:hidden;isolation:isolate;height:clamp(180px,22vw,330px);
+.curve-sep{position:relative;line-height:0;overflow:hidden;isolation:isolate;height:clamp(240px,27vw,400px);
   background:var(--bg)}
 .divider-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;
   mix-blend-mode:screen;opacity:.55;filter:blur(.8px);transform-origin:center;will-change:transform,opacity;animation:divFlow 30s linear infinite;
@@ -112,8 +112,8 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
   50%{transform:scale(1.1) translate3d(3.2%,0,0)}
   75%{transform:scale(1.1) translate3d(0,1.5%,0)}
   100%{transform:scale(1.1) translate3d(-3.2%,0,0)}}
-.divider-img{opacity:.48}
-.divider-img2{opacity:.26;animation:divFlow2 46s linear infinite}
+.divider-img{opacity:.34}
+.divider-img2{opacity:.18;animation:divFlow2 46s linear infinite}
 @keyframes divFlow2{
   0%{transform:scale(-1.14,1.14) translate3d(2.6%,0,0)}
   25%{transform:scale(-1.14,1.14) translate3d(0,1.2%,0)}
@@ -124,6 +124,10 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 @keyframes divBreathe{0%,100%{opacity:.6}50%{opacity:.74}}
 .curve-sep.div-off .divider-img{animation-play-state:paused}
 /* vignette scrim: blends the divider into the page on every edge (covers any hard line) */
+.divider-cap{position:absolute;inset:0;z-index:3;display:grid;place-items:center;text-align:center;padding:0 24px;pointer-events:none;
+  background:radial-gradient(ellipse 46% 64% at 50% 50%, rgba(8,13,17,.82) 0%, rgba(8,13,17,.46) 42%, rgba(8,13,17,0) 72%)}
+.divider-line{font-family:var(--f);font-weight:400;color:#fff;letter-spacing:-.02em;line-height:1.1;
+  font-size:clamp(1.3rem,2.9vw,2.15rem);text-shadow:0 2px 24px rgba(0,0,0,.6),0 0 30px rgba(0,0,0,.4);max-width:20ch}
 .curve-sep::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
     linear-gradient(180deg,var(--bg) 0%,rgba(8,13,17,0) 32%,rgba(8,13,17,0) 58%,var(--bg) 100%),
