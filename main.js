@@ -82,12 +82,12 @@
       p.y = -rand(0, H * 0.18);            // start above the top
       p.vx = rand(-0.10, 0.10);
       p.vy = rand(0.35, 1.0);              // fall straight down
-      p.size = rand(2, 7);
+      p.size = rand(3, 9);
       p.spr = sprites[(Math.random() * sprites.length) | 0];
-      p.a = rand(0.4, 0.82);
+      p.a = rand(0.55, 0.95);
       return p;
     }
-    var N = Math.max(28, Math.min(58, Math.round((window.innerWidth || W) / 24)));
+    var N = Math.max(44, Math.min(84, Math.round((window.innerWidth || W) / 18)));
     var ps = [];
     for (var i = 0; i < N; i++){ ps.push(spawn({})); ps[i].y = Math.random() * H; }  // pre-fill the column
     function frame(){
