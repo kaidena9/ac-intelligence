@@ -108,6 +108,11 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 
 @keyframes divBreathe{0%,100%{opacity:.6}50%{opacity:.74}}
 .curve-sep.div-off .divider-img{animation-play-state:paused}
+/* vignette scrim: blends the divider into the page on every edge (covers any hard line) */
+.curve-sep::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(180deg,var(--bg) 0%,rgba(8,13,17,0) 24%,rgba(8,13,17,0) 76%,var(--bg) 100%),
+    linear-gradient(90deg,var(--bg) 0%,rgba(8,13,17,0) 7%,rgba(8,13,17,0) 93%,var(--bg) 100%)}
 @media (prefers-reduced-motion:reduce){.divider-img{animation:none}}
 
 /* ---------- glass panels (carry the glass look through the page) ---------- */
