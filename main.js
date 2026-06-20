@@ -63,7 +63,7 @@
       var c = colors[i % colors.length];
       var size = (4 + Math.random() * 9).toFixed(1);
       var left = (58 + Math.random() * 42).toFixed(2);
-      var dur = (7 + Math.random() * 9).toFixed(2);
+      var dur = (12 + Math.random() * 12).toFixed(2);
       var delay = (-Math.random() * dur).toFixed(2);
       var op = (0.5 + Math.random() * 0.45).toFixed(2);
       html += '<span class="p" style="left:' + left + '%;width:' + size + 'px;height:' + size + 'px;'
