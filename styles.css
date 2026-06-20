@@ -66,7 +66,7 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
     linear-gradient(0deg, var(--bg) 0%, rgba(8,13,17,.82) 9%, transparent 34%)}
 .hero-inner{position:relative;z-index:3;width:100%}
 .hero-particles{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
-.hero-particles .p{position:absolute;top:-4vh;border-radius:50%;will-change:transform,opacity;
+.hero-particles .p{position:absolute;top:-4vh;border-radius:50%;filter:blur(.7px);will-change:transform,opacity;
   animation-name:heroFall;animation-timing-function:linear;animation-iteration-count:infinite}
 .hero-particles.paused .p{animation-play-state:paused}
 @keyframes heroFall{0%{transform:translateY(0);opacity:0}6%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh);opacity:0}}
