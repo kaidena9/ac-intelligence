@@ -95,14 +95,16 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 .curve-sep{position:relative;line-height:0;overflow:hidden;isolation:isolate;height:clamp(180px,22vw,330px);
   background:var(--bg)}
 .divider-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;
-  mix-blend-mode:screen;opacity:.9;transform-origin:center;will-change:transform,opacity;animation:divFlow 54s ease-in-out infinite;
+  mix-blend-mode:screen;opacity:.9;transform-origin:center;will-change:transform,opacity;animation:divFlow 30s linear infinite;
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 13%,#000 87%,transparent 100%),linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
   mask-image:linear-gradient(180deg,transparent 0,#000 13%,#000 87%,transparent 100%),linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
   -webkit-mask-composite:source-in;mask-composite:intersect}
 @keyframes divFlow{
-  0%{transform:scale(1.05) translate3d(-1.8%,0.7%,0);opacity:.84}
-  50%{transform:scale(1.08) translate3d(1.8%,-0.7%,0);opacity:.96}
-  100%{transform:scale(1.05) translate3d(-1.8%,0.7%,0);opacity:.84}}
+  0%{transform:scale(1.1) translate3d(-3.2%,0,0)}
+  25%{transform:scale(1.1) translate3d(0,-1.5%,0)}
+  50%{transform:scale(1.1) translate3d(3.2%,0,0)}
+  75%{transform:scale(1.1) translate3d(0,1.5%,0)}
+  100%{transform:scale(1.1) translate3d(-3.2%,0,0)}}
 
 @keyframes divBreathe{0%,100%{opacity:.6}50%{opacity:.74}}
 .curve-sep.div-off .divider-img{animation-play-state:paused}
