@@ -133,6 +133,17 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
   font-size:clamp(.92rem,1.5vw,1.08rem);letter-spacing:.005em;text-shadow:0 2px 18px rgba(0,0,0,.65)}
 .divider-strip li:not(:last-child)::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);
   opacity:.75;margin:0 clamp(18px,3.4vw,46px);box-shadow:0 0 10px var(--glow)}
+.divider-cap-marquee{padding:0}
+.divider-marquee{width:100%;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.dm-track{display:flex;align-items:center;width:max-content;list-style:none;will-change:transform;animation:dmScroll 42s linear infinite}
+.dm-track li{display:flex;align-items:center;color:#dfeaec;white-space:nowrap;padding:6px 0;
+  font-size:clamp(.98rem,1.7vw,1.2rem);letter-spacing:.005em;text-shadow:0 2px 18px rgba(0,0,0,.65)}
+.dm-track li::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.7;
+  margin:0 clamp(22px,3vw,42px);box-shadow:0 0 10px var(--glow)}
+@keyframes dmScroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.curve-sep.div-off .dm-track{animation-play-state:paused}
 .curve-sep::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
     linear-gradient(180deg,var(--bg) 0%,rgba(8,13,17,0) 32%,rgba(8,13,17,0) 58%,var(--bg) 100%),
