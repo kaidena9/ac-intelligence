@@ -78,6 +78,30 @@
     }
   })();
 
+  /* falling orbs inside the How-It-Works circles (CSS-animated DOM dots) */
+  (function hiwParticles(){
+    if (reduce) return;
+    document.querySelectorAll(".hiw-particles").forEach(function(box){
+      var card = box.closest(".hiw-card");
+      var purple = card && card.classList.contains("hiw-purple");
+      var cols = purple ? ["190,135,250","150,110,238"] : ["95,235,225","70,200,235"];
+      var html = "";
+      for (var i = 0; i < 16; i++){
+        var c = cols[i % cols.length];
+        var size = (2 + Math.random() * 4.5).toFixed(1);
+        var left = (6 + Math.random() * 88).toFixed(1);
+        var dur = (6 + Math.random() * 8).toFixed(2);
+        var delay = (-Math.random() * dur).toFixed(2);
+        var op = (0.4 + Math.random() * 0.5).toFixed(2);
+        html += '<span class="p" style="left:' + left + '%;width:' + size + 'px;height:' + size + 'px;'
+              + 'background:radial-gradient(circle,rgba(' + c + ',' + op + ') 0%,rgba(' + c + ',0) 70%);'
+              + 'animation-duration:' + dur + 's;animation-delay:' + delay + 's"></span>';
+      }
+      box.innerHTML = html;
+      box.style.setProperty("--fall", ((box.clientHeight || 300) + 26) + "px");
+    });
+  })();
+
   var els = document.querySelectorAll(".reveal");
   if (reduce || !("IntersectionObserver" in window)) {
     els.forEach(function(el){ el.classList.add("in"); });

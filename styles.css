@@ -343,4 +343,7 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 .hiw-card h3{font-size:1.12rem;color:#fff;font-weight:600;letter-spacing:-.01em}
 .hiw-card p{color:var(--ink-2);font-weight:300;font-size:.9rem;line-height:1.5;max-width:22ch}
 .hiw-sub{text-align:center;margin-top:clamp(40px,5vw,64px);color:var(--ink-3);font-size:1.02rem;letter-spacing:.01em}
+.hiw-particles{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;z-index:0}
+.hiw-particles .p{position:absolute;top:-14px;border-radius:50%;will-change:transform,opacity;animation-name:hiwFall;animation-timing-function:linear;animation-iteration-count:infinite}
+@keyframes hiwFall{0%{transform:translateY(0);opacity:0}12%{opacity:1}85%{opacity:1}100%{transform:translateY(var(--fall,320px));opacity:0}}
 @media(max-width:860px){.hiw-grid{grid-template-columns:1fr;gap:30px;justify-items:center}.hiw-flow{display:none}.hiw-teal,.hiw-purple{transform:none}.hiw-card{aspect-ratio:1;max-width:340px;width:100%}}
