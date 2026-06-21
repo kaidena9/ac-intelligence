@@ -323,7 +323,7 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 .hiw-title{text-align:center;font-size:clamp(2rem,4.6vw,3.4rem);font-weight:600;color:#fff;letter-spacing:-.03em;line-height:1.05;position:relative;padding-bottom:20px}
 .hiw-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(440px,64%);height:3px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--accent),#5aa0ff,transparent);box-shadow:0 0 14px var(--glow)}
 .hiw-grid{position:relative;margin-top:clamp(56px,6vw,96px);margin-bottom:clamp(20px,3vw,44px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(34px,5vw,72px);align-items:center}
-.hiw-flow{position:absolute;top:-12%;bottom:-12%;left:0;right:-5%;width:auto;z-index:0;pointer-events:none;overflow:visible}
+.hiw-flow{position:absolute;top:-12%;bottom:-12%;left:0;right:-8%;width:auto;z-index:0;pointer-events:none;overflow:visible}
 .hiw-wave{fill:none;stroke:url(#wgrad);stroke-width:2;vector-effect:non-scaling-stroke;opacity:.3}
 .hiw-wave-glow{fill:none;stroke:url(#wgrad);stroke-width:3;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-dasharray:150 1550;filter:drop-shadow(0 0 7px rgba(130,200,240,.75));animation:wflow 5.5s linear infinite}
 .hiw-arrow{fill:none;stroke:#cffaf4;stroke-width:3;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 7px var(--glow))}
@@ -334,7 +334,7 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 .hiw-frame{position:relative;overflow:hidden;border-radius:50%;height:100%;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:clamp(22px,3.4vw,46px);
   background:linear-gradient(160deg,rgba(17,26,37,.95),rgba(9,15,22,.94));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .hiw-frame::before{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle at 50% 42%,rgba(var(--crgb),.16),transparent 58%),repeating-radial-gradient(circle at 50% 50%,transparent 0 17px,rgba(var(--crgb),.05) 17px 18px)}
+  background:radial-gradient(circle at 50% 42%,rgba(var(--crgb),.15),transparent 58%),repeating-radial-gradient(circle at 50% 50%,transparent 0 18px,rgba(var(--crgb),.045) 18px 19px),repeating-linear-gradient(60deg,transparent 0 13px,rgba(var(--crgb),.05) 13px 14px),repeating-linear-gradient(120deg,transparent 0 13px,rgba(var(--crgb),.05) 13px 14px)}
 .hiw-frame::after{content:"";position:absolute;inset:13px;border-radius:50%;pointer-events:none;z-index:0;border:1px dashed rgba(var(--crgb),.2);animation:hiwspin 30s linear infinite}
 .hiw-frame>*{position:relative;z-index:1}
 @keyframes hiwspin{to{transform:rotate(360deg)}}
