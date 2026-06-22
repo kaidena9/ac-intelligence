@@ -336,17 +336,18 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 .hiw-c1{--c:rgba(80,150,255,.95);--c2:rgba(40,90,215,.6);--cg:rgba(70,130,250,.5);--crgb:80,150,255;transform:translateY(18px)}
 .hiw-c3{--c:rgba(255,165,90,.95);--c2:rgba(220,120,45,.6);--cg:rgba(245,150,80,.5);--crgb:255,165,90;transform:translateY(18px)}
 .hiw-c2{--c:rgba(255,110,205,.95);--c2:rgba(205,55,150,.6);--cg:rgba(240,90,190,.5);--crgb:255,110,205;transform:translateY(-22px)}
-.hiw-frame{position:relative;overflow:hidden;border-radius:50%;height:100%;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:clamp(22px,3.4vw,46px);
+.hiw-frame{position:relative;overflow:hidden;border-radius:50%;height:100%;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:clamp(14px,2.2vw,30px);
   background:linear-gradient(160deg,rgba(17,26,37,.95),rgba(9,15,22,.94));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .hiw-frame::before{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:0;
   background:radial-gradient(circle at 50% 42%,rgba(var(--crgb),.15),transparent 58%),repeating-radial-gradient(circle at 50% 50%,transparent 0 18px,rgba(var(--crgb),.045) 18px 19px),repeating-linear-gradient(60deg,transparent 0 13px,rgba(var(--crgb),.05) 13px 14px),repeating-linear-gradient(120deg,transparent 0 13px,rgba(var(--crgb),.05) 13px 14px)}
 .hiw-frame::after{content:"";position:absolute;inset:13px;border-radius:50%;pointer-events:none;z-index:0;border:1px dashed rgba(var(--crgb),.2);animation:hiwspin 30s linear infinite}
 .hiw-frame>*{position:relative;z-index:1}
 @keyframes hiwspin{to{transform:rotate(360deg)}}
-.hiw-ic{color:var(--c);filter:drop-shadow(0 0 14px var(--cg))}
-.hiw-ic svg{width:58px;height:58px}
-.hiw-card h3{font-size:1.12rem;color:#fff;font-weight:600;letter-spacing:-.01em}
-.hiw-card p{color:var(--ink-2);font-weight:300;font-size:.9rem;line-height:1.5;max-width:22ch}
+.hiw-ic{color:var(--c);margin-bottom:2px;filter:drop-shadow(0 0 16px var(--cg))}
+.hiw-ic svg{width:150px;height:150px}
+
+.hiw-card h3{font-size:1.06rem;color:#fff;font-weight:600;letter-spacing:-.01em}
+.hiw-card p{color:var(--ink-2);font-weight:300;font-size:.85rem;line-height:1.45;max-width:20ch}
 .hiw-sub{text-align:center;margin-top:clamp(40px,5vw,64px);color:var(--ink-3);font-size:1.02rem;letter-spacing:.01em}
 .hiw-particles{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;z-index:0}
 .hiw-particles .p{position:absolute;top:-14px;border-radius:50%;will-change:transform,opacity;animation-name:hiwFall;animation-timing-function:linear;animation-iteration-count:infinite}
