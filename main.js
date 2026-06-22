@@ -83,8 +83,8 @@
     if (reduce) return;
     document.querySelectorAll(".hiw-particles").forEach(function(box){
       var card = box.closest(".hiw-card");
-      var purple = card && card.classList.contains("hiw-purple");
-      var cols = purple ? ["190,135,250","150,110,238"] : ["95,235,225","70,200,235"];
+      var rgb = (card ? getComputedStyle(card).getPropertyValue("--crgb").trim() : "") || "95,235,225";
+      var cols = [rgb];
       var html = "";
       for (var i = 0; i < 16; i++){
         var c = cols[i % cols.length];
