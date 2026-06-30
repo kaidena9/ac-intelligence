@@ -4,8 +4,10 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var nav = document.getElementById("nav");
-  function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 20); }
-  onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+  if (nav) {
+    var onScroll = function(){ nav.classList.toggle("scrolled", window.scrollY > 20); };
+    onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+  }
 
   var btn = document.getElementById("menuBtn");
   var menu = document.getElementById("mobile");
