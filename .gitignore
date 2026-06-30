@@ -6,3 +6,8 @@
 
 # local scratch (screenshots, backups) — never commit
 .redesign-backup/
+
+.old-site-backup/
+
+# scroll-world comparison backdrops (dev artifacts)
+assets/scroll/compare/
