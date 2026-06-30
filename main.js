@@ -25,7 +25,7 @@
   }
 
   /* cursor-following glass sheen on buttons + nav bar */
-  document.querySelectorAll(".btn, .nav-bar, .nav-cta, .svc").forEach(function(el){
+  document.querySelectorAll(".btn, .hbtn-primary, .svc").forEach(function(el){
     el.addEventListener("pointermove", function(e){
       var r = el.getBoundingClientRect();
       el.style.setProperty("--mx", (e.clientX - r.left) + "px");

@@ -38,8 +38,15 @@ h1,h2,h3{font-weight:500;line-height:1.04;letter-spacing:-.02em}
 .hbtn svg{width:15px;height:15px}
 .hbtn-ghost{color:var(--ink-2);border:1px solid transparent}
 .hbtn-ghost:hover{color:#fff}
-.hbtn-primary{color:#04140f;background:var(--accent);border:1px solid rgba(125,244,235,.5)}
-.hbtn-primary:hover{background:#5fe9df;transform:translateY(-1px)}
+.hbtn-primary{position:relative;overflow:hidden;isolation:isolate;color:#eafffd;--mx:50%;--my:50%;
+  background:linear-gradient(150deg,rgba(255,255,255,.10),rgba(12,19,24,.30));border:1px solid rgba(255,255,255,.20);
+  -webkit-backdrop-filter:blur(16px) saturate(1.35);backdrop-filter:blur(16px) saturate(1.35);
+  box-shadow:0 10px 30px -14px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.18)}
+.hbtn-primary>span,.hbtn-primary>svg{position:relative;z-index:2}
+.hbtn-primary::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;opacity:0;transition:opacity .4s;
+  background:radial-gradient(120px circle at var(--mx) var(--my),rgba(255,255,255,.5),rgba(255,255,255,0) 60%)}
+.hbtn-primary:hover::before{opacity:1}
+.hbtn-primary:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.34)}
 @media (prefers-reduced-motion:reduce){.hbtn-primary:hover{transform:none}}
 @media (max-width:520px){.hbtn-ghost{display:none}.hbtn{font-size:.82rem;padding:9px 15px}}
 
