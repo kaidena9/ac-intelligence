@@ -3,3 +3,6 @@
 .env
 *.key
 .kie*
+
+# local scratch (screenshots, backups) — never commit
+.redesign-backup/
