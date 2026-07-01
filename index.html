@@ -11,18 +11,24 @@
   <meta property="og:description" content="One team for the whole AI stack: strategy, dashboards, agents, automations — built into your workflow and supported after launch." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=2" />
-  <link rel="apple-touch-icon" href="assets/favicon-180.png?v=2" />
-  <link rel="stylesheet" href="styles.css?v=102" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=3" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=3" />
+  <link rel="apple-touch-icon" href="assets/favicon-180.png?v=3" />
+  <link rel="stylesheet" href="styles.css?v=161" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="fx" aria-hidden="true"></div>
 
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="nav">
     <div class="nav-inner">
       <a class="brand" href="#hero" aria-label="AC Intelligence home">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="8" stroke="rgba(255,255,255,.82)" stroke-width="1.5"/>
+          <circle cx="12" cy="12" r="1.1" fill="rgba(255,255,255,.42)"/>
+          <circle cx="12" cy="4" r="2.4" fill="#fff"/>
+        </svg>
         <span class="brand-name">AC&nbsp;Intelligence</span>
       </a>
       <nav class="nav-links mono" aria-label="Primary">
@@ -41,42 +47,119 @@
 
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="hero">
-      <div class="wrap hero-inner">
-        <p class="eyebrow mono reveal">[ AI CONSULTING ]</p>
-        <h1 class="hero-title reveal" data-d="1">Make AI your <span class="mono-accent">advantage.</span></h1>
-        <p class="hero-lead reveal" data-d="2">We find where AI actually pays off, build it into the way your team already works, and stay until it runs on its own.</p>
-        <div class="hero-cta reveal" data-d="3">
-          <a class="btn btn-solid" href="#contact">Start a conversation</a>
-          <a class="btn btn-ghost" href="#capabilities">See what we build</a>
-        </div>
-      </div>
-
-      <!-- browser window over terrain -->
       <div class="hero-stage">
-        <div class="terrain" id="heroTerrain" aria-hidden="true"></div>
-        <div class="window hero-window">
+        <div class="hero-pin">
+          <div class="terrain" id="heroTerrain" aria-hidden="true"></div>
+
+          <div class="hero-inner" id="heroInner">
+            <p class="eyebrow mono">[ AI CONSULTING ]</p>
+            <h1 class="hero-title">Make AI your <span class="mono-accent">advantage.</span></h1>
+            <p class="hero-lead">We find where AI actually pays off, build it into the way your team already works, and stay until it runs on its own.</p>
+            <div class="hero-cta">
+              <a class="btn btn-solid" href="#contact">Start a conversation</a>
+              <a class="btn btn-ghost" href="#capabilities">See what we build</a>
+            </div>
+          </div>
+
+          <div class="window hero-window">
           <div class="win-bar">
-            <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="win-title mono">ac.intelligence — one hub</span>
           </div>
           <div class="win-body" id="heroWinBody">
             <!-- dashboard mockup -->
             <div class="dash">
-              <aside class="dash-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="spacer"></i><i></i></aside>
+              <aside class="dash-rail" aria-hidden="true">
+                <span class="rail-ic active" title="Overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg></span>
+                <span class="rail-ic" title="Automations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><polygon points="13 2 4 14 11 14 10 22 20 10 13 10 13 2"/></svg></span>
+                <span class="rail-ic" title="Analytics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="20" x2="6" y2="13"/><line x1="12" y1="20" x2="12" y2="7"/><line x1="18" y1="20" x2="18" y2="11"/></svg></span>
+                <span class="rail-ic" title="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/></svg></span>
+                <i class="spacer"></i>
+                <svg class="brand-mark rail-mark" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="rgba(255,255,255,.82)" stroke-width="1.5"/><circle cx="12" cy="12" r="1.1" fill="rgba(255,255,255,.42)"/><circle cx="12" cy="4" r="2.4" fill="#fff"/></svg>
+              </aside>
               <div class="dash-main">
-                <div class="dash-head">
-                  <span class="mono dim">Operations · live</span>
-                  <span class="dash-pill mono">● 6 agents running</span>
+                <div class="oh-top">
+                  <div class="oh-greet">
+                    <b>Good evening</b>
+                    <span>14 projects tracked · 13 shipped · 1 in progress</span>
+                  </div>
+                  <div class="oh-tools mono">
+                    <span class="oh-search">Search projects…</span>
+                    <span class="oh-chip">Websites</span>
+                    <span class="oh-chip">Automations</span>
+                    <span class="oh-chip">Dashboards</span>
+                  </div>
                 </div>
-                <div class="kpis">
-                  <div class="kpi"><span class="mono dim">Hours saved / wk</span><b>312</b><span class="trend up">▲ 18%</span></div>
-                  <div class="kpi"><span class="mono dim">Leads qualified</span><b>1,204</b><span class="trend up">▲ 9%</span></div>
-                  <div class="kpi"><span class="mono dim">Manual touches</span><b>−74%</b><span class="trend down">▼</span></div>
+                <div class="d-card oh-overview">
+                  <div class="d-head"><span>Overview</span><span class="d-sub">14 projects · avg level 6.8</span></div>
+                  <div class="oh-ov-cols">
+                    <div class="ov-col">
+                      <div class="ov-label">By category</div>
+                      <div class="ov-row"><span>Websites</span><div class="ov-bar"><i style="width:86%"></i></div><b>6</b></div>
+                      <div class="ov-row"><span>Automation</span><div class="ov-bar"><i style="width:58%"></i></div><b>4</b></div>
+                      <div class="ov-row"><span>Dashboards</span><div class="ov-bar"><i style="width:44%"></i></div><b>3</b></div>
+                      <div class="ov-row"><span>Skills</span><div class="ov-bar"><i style="width:30%"></i></div><b>2</b></div>
+                      <div class="ov-row"><span>Assistants</span><div class="ov-bar"><i style="width:16%"></i></div><b>1</b></div>
+                    </div>
+                    <div class="ov-col">
+                      <div class="ov-label">By status</div>
+                      <div class="ov-row"><span>Shipped</span><div class="ov-bar"><i class="ok" style="width:92%"></i></div><b>13</b></div>
+                      <div class="ov-row"><span>In progress</span><div class="ov-bar"><i class="warn" style="width:14%"></i></div><b>1</b></div>
+                      <div class="ov-row"><span>Planning</span><div class="ov-bar"><i style="width:5%"></i></div><b>0</b></div>
+                      <div class="ov-spark mono">Level trend · <span class="pos">▲ 6.8 avg</span></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="dash-chart" aria-hidden="true">
-                  <span style="--h:38%"></span><span style="--h:54%"></span><span style="--h:46%"></span>
-                  <span style="--h:70%"></span><span style="--h:62%"></span><span style="--h:84%"></span>
-                  <span style="--h:78%"></span><span style="--h:94%"></span>
+                <div class="dash-cols">
+                  <div class="dash-graph">
+                    <div class="graph-head mono dim">Throughput · 30d</div>
+                    <div class="chart-legend mono">
+                      <span class="cl"><i style="--d:#34d399"></i>Automations run</span>
+                      <span class="cl"><i style="--d:#6ee7b7"></i>Leads processed</span>
+                      <span class="cl-peak">peak 1.2k / hr</span>
+                    </div>
+                    <svg class="area" viewBox="0 0 300 118" preserveAspectRatio="none" aria-hidden="true">
+                      <defs>
+                        <linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34d399" stop-opacity=".45"/><stop offset="1" stop-color="#34d399" stop-opacity="0"/></linearGradient>
+                        <linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6ee7b7" stop-opacity=".38"/><stop offset="1" stop-color="#6ee7b7" stop-opacity="0"/></linearGradient>
+                        <clipPath id="chartClip"><rect x="0" y="0" width="300" height="118"/></clipPath>
+                      </defs>
+                      <g clip-path="url(#chartClip)">
+                        <g class="stream">
+                          <path d="M-10,62.43 C-6.67,60.87 -3.33,59.05 0,57.85 C3.33,56.65 6.67,55.61 10,55.23 C13.33,54.85 16.67,55.00 20,55.59 C23.33,56.18 26.67,57.44 30,58.77 C33.33,60.10 36.67,62.01 40,63.57 C43.33,65.13 46.67,66.95 50,68.15 C53.33,69.35 56.67,70.39 60,70.77 C63.33,71.15 66.67,71.00 70,70.41 C73.33,69.82 76.67,68.56 80,67.23 C83.33,65.90 86.67,63.99 90,62.43 C93.33,60.87 96.67,59.05 100,57.85 C103.33,56.65 106.67,55.61 110,55.23 C113.33,54.85 116.67,55.00 120,55.59 C123.33,56.18 126.67,57.44 130,58.77 C133.33,60.10 136.67,62.01 140,63.57 C143.33,65.13 146.67,66.95 150,68.15 C153.33,69.35 156.67,70.39 160,70.77 C163.33,71.15 166.67,71.00 170,70.41 C173.33,69.82 176.67,68.56 180,67.23 C183.33,65.90 186.67,63.99 190,62.43 C193.33,60.87 196.67,59.05 200,57.85 C203.33,56.65 206.67,55.61 210,55.23 C213.33,54.85 216.67,55.00 220,55.59 C223.33,56.18 226.67,57.44 230,58.77 C233.33,60.10 236.67,62.01 240,63.57 C243.33,65.13 246.67,66.95 250,68.15 C253.33,69.35 256.67,70.39 260,70.77 C263.33,71.15 266.67,71.00 270,70.41 C273.33,69.82 276.67,68.56 280,67.23 C283.33,65.90 286.67,63.99 290,62.43 C293.33,60.87 296.67,59.05 300,57.85 C303.33,56.65 306.67,55.61 310,55.23 C313.33,54.85 316.67,55.00 320,55.59 C323.33,56.18 326.67,57.44 330,58.77 C333.33,60.10 336.67,62.01 340,63.57 C343.33,65.13 346.67,66.95 350,68.15 C353.33,69.35 356.67,70.39 360,70.77 C363.33,71.15 366.67,71.00 370,70.41 C373.33,69.82 376.67,68.56 380,67.23 C383.33,65.90 386.67,63.99 390,62.43 C393.33,60.87 396.67,59.05 400,57.85 C403.33,56.65 406.67,55.61 410,55.23 L410,118 L-10,118 Z" fill="url(#gb)"/>
+                          <path d="M-10,46.47 C-6.67,44.73 -3.33,42.16 0,40 C3.33,37.84 6.67,35.27 10,33.53 C13.33,31.79 16.67,30.20 20,29.54 C23.33,28.88 26.67,28.88 30,29.54 C33.33,30.20 36.67,31.79 40,33.53 C43.33,35.27 46.67,37.84 50,40 C53.33,42.16 56.67,44.73 60,46.47 C63.33,48.21 66.67,49.80 70,50.46 C73.33,51.13 76.67,51.13 80,50.46 C83.33,49.80 86.67,48.21 90,46.47 C93.33,44.73 96.67,42.16 100,40 C103.33,37.84 106.67,35.27 110,33.53 C113.33,31.79 116.67,30.20 120,29.54 C123.33,28.88 126.67,28.88 130,29.54 C133.33,30.20 136.67,31.79 140,33.53 C143.33,35.27 146.67,37.84 150,40 C153.33,42.16 156.67,44.73 160,46.47 C163.33,48.21 166.67,49.80 170,50.46 C173.33,51.13 176.67,51.13 180,50.46 C183.33,49.80 186.67,48.21 190,46.47 C193.33,44.73 196.67,42.16 200,40 C203.33,37.84 206.67,35.27 210,33.53 C213.33,31.79 216.67,30.20 220,29.54 C223.33,28.88 226.67,28.88 230,29.54 C233.33,30.20 236.67,31.79 240,33.53 C243.33,35.27 246.67,37.84 250,40 C253.33,42.16 256.67,44.73 260,46.47 C263.33,48.21 266.67,49.80 270,50.46 C273.33,51.13 276.67,51.13 280,50.46 C283.33,49.80 286.67,48.21 290,46.47 C293.33,44.73 296.67,42.16 300,40 C303.33,37.84 306.67,35.27 310,33.53 C313.33,31.79 316.67,30.20 320,29.54 C323.33,28.88 326.67,28.88 330,29.54 C333.33,30.20 336.67,31.79 340,33.53 C343.33,35.27 346.67,37.84 350,40 C353.33,42.16 356.67,44.73 360,46.47 C363.33,48.21 366.67,49.80 370,50.46 C373.33,51.13 376.67,51.13 380,50.46 C383.33,49.80 386.67,48.21 390,46.47 C393.33,44.73 396.67,42.16 400,40 C403.33,37.84 406.67,35.27 410,33.53 L410,118 L-10,118 Z" fill="url(#ga)"/>
+                          <path d="M-10,62.43 C-6.67,60.87 -3.33,59.05 0,57.85 C3.33,56.65 6.67,55.61 10,55.23 C13.33,54.85 16.67,55.00 20,55.59 C23.33,56.18 26.67,57.44 30,58.77 C33.33,60.10 36.67,62.01 40,63.57 C43.33,65.13 46.67,66.95 50,68.15 C53.33,69.35 56.67,70.39 60,70.77 C63.33,71.15 66.67,71.00 70,70.41 C73.33,69.82 76.67,68.56 80,67.23 C83.33,65.90 86.67,63.99 90,62.43 C93.33,60.87 96.67,59.05 100,57.85 C103.33,56.65 106.67,55.61 110,55.23 C113.33,54.85 116.67,55.00 120,55.59 C123.33,56.18 126.67,57.44 130,58.77 C133.33,60.10 136.67,62.01 140,63.57 C143.33,65.13 146.67,66.95 150,68.15 C153.33,69.35 156.67,70.39 160,70.77 C163.33,71.15 166.67,71.00 170,70.41 C173.33,69.82 176.67,68.56 180,67.23 C183.33,65.90 186.67,63.99 190,62.43 C193.33,60.87 196.67,59.05 200,57.85 C203.33,56.65 206.67,55.61 210,55.23 C213.33,54.85 216.67,55.00 220,55.59 C223.33,56.18 226.67,57.44 230,58.77 C233.33,60.10 236.67,62.01 240,63.57 C243.33,65.13 246.67,66.95 250,68.15 C253.33,69.35 256.67,70.39 260,70.77 C263.33,71.15 266.67,71.00 270,70.41 C273.33,69.82 276.67,68.56 280,67.23 C283.33,65.90 286.67,63.99 290,62.43 C293.33,60.87 296.67,59.05 300,57.85 C303.33,56.65 306.67,55.61 310,55.23 C313.33,54.85 316.67,55.00 320,55.59 C323.33,56.18 326.67,57.44 330,58.77 C333.33,60.10 336.67,62.01 340,63.57 C343.33,65.13 346.67,66.95 350,68.15 C353.33,69.35 356.67,70.39 360,70.77 C363.33,71.15 366.67,71.00 370,70.41 C373.33,69.82 376.67,68.56 380,67.23 C383.33,65.90 386.67,63.99 390,62.43 C393.33,60.87 396.67,59.05 400,57.85 C403.33,56.65 406.67,55.61 410,55.23" fill="none" stroke="#6ee7b7" stroke-width="1.5"/>
+                          <path class="area-line" d="M-10,46.47 C-6.67,44.73 -3.33,42.16 0,40 C3.33,37.84 6.67,35.27 10,33.53 C13.33,31.79 16.67,30.20 20,29.54 C23.33,28.88 26.67,28.88 30,29.54 C33.33,30.20 36.67,31.79 40,33.53 C43.33,35.27 46.67,37.84 50,40 C53.33,42.16 56.67,44.73 60,46.47 C63.33,48.21 66.67,49.80 70,50.46 C73.33,51.13 76.67,51.13 80,50.46 C83.33,49.80 86.67,48.21 90,46.47 C93.33,44.73 96.67,42.16 100,40 C103.33,37.84 106.67,35.27 110,33.53 C113.33,31.79 116.67,30.20 120,29.54 C123.33,28.88 126.67,28.88 130,29.54 C133.33,30.20 136.67,31.79 140,33.53 C143.33,35.27 146.67,37.84 150,40 C153.33,42.16 156.67,44.73 160,46.47 C163.33,48.21 166.67,49.80 170,50.46 C173.33,51.13 176.67,51.13 180,50.46 C183.33,49.80 186.67,48.21 190,46.47 C193.33,44.73 196.67,42.16 200,40 C203.33,37.84 206.67,35.27 210,33.53 C213.33,31.79 216.67,30.20 220,29.54 C223.33,28.88 226.67,28.88 230,29.54 C233.33,30.20 236.67,31.79 240,33.53 C243.33,35.27 246.67,37.84 250,40 C253.33,42.16 256.67,44.73 260,46.47 C263.33,48.21 266.67,49.80 270,50.46 C273.33,51.13 276.67,51.13 280,50.46 C283.33,49.80 286.67,48.21 290,46.47 C293.33,44.73 296.67,42.16 300,40 C303.33,37.84 306.67,35.27 310,33.53 C313.33,31.79 316.67,30.20 320,29.54 C323.33,28.88 326.67,28.88 330,29.54 C333.33,30.20 336.67,31.79 340,33.53 C343.33,35.27 346.67,37.84 350,40 C353.33,42.16 356.67,44.73 360,46.47 C363.33,48.21 366.67,49.80 370,50.46 C373.33,51.13 376.67,51.13 380,50.46 C383.33,49.80 386.67,48.21 390,46.47 C393.33,44.73 396.67,42.16 400,40 C403.33,37.84 406.67,35.27 410,33.53" fill="none" stroke="#34d399" stroke-width="2"/>
+                        </g>
+                      </g>
+                      <line class="now-line" x1="299" y1="2" x2="299" y2="116" stroke="rgba(255,255,255,.16)" stroke-width="1"/>
+                    </svg>
+                  </div>
+                  <div class="d-card oh-projects">
+                    <div class="d-head"><span>Projects</span><span class="d-sub">View all</span></div>
+                    <div class="proj-row active"><span class="av" style="--a:139,92,246">N</span><div class="pr-main"><b>Northwind Freight</b><span>Automation · shipped</span></div><em>2d</em></div>
+                    <div class="proj-row"><span class="av" style="--a:249,128,40">V</span><div class="pr-main"><b>Vireo Health</b><span>Website · level 7</span></div><em>6d</em></div>
+                    <div class="proj-row"><span class="av" style="--a:59,130,246">H</span><div class="pr-main"><b>Halcyon Capital</b><span>Dashboard · level 6</span></div><em>9d</em></div>
+                    <div class="proj-row"><span class="av" style="--a:244,114,182">M</span><div class="pr-main"><b>Maple &amp; Co</b><span>Website · level 5</span></div><em>11d</em></div>
+                    <div class="proj-row"><span class="av" style="--a:34,211,238">C</span><div class="pr-main"><b>Cobalt Logistics</b><span>Automation · in progress</span></div><em>1d</em></div>
+                  </div>
+                  <div class="d-card oh-cal">
+                    <div class="d-head"><span>June 2026</span><span class="d-sub">+ Add</span></div>
+                    <div class="cal-grid">
+                      <span class="cal-h">Mo</span><span class="cal-h">Tu</span><span class="cal-h">We</span><span class="cal-h">Th</span><span class="cal-h">Fr</span><span class="cal-h">Sa</span><span class="cal-h">Su</span>
+                      <span class="cal-d">1</span><span class="cal-d">2</span><span class="cal-d">3</span><span class="cal-d">4</span><span class="cal-d">5</span><span class="cal-d">6</span><span class="cal-d">7</span>
+                      <span class="cal-d">8</span><span class="cal-d">9</span><span class="cal-d">10</span><span class="cal-d">11</span><span class="cal-d">12</span><span class="cal-d">13</span><span class="cal-d">14</span>
+                      <span class="cal-d">15</span><span class="cal-d">16</span><span class="cal-d">17</span><span class="cal-d">18</span><span class="cal-d">19</span><span class="cal-d">20</span><span class="cal-d">21</span>
+                      <span class="cal-d">22</span><span class="cal-d">23</span><span class="cal-d">24</span><span class="cal-d">25</span><span class="cal-d">26</span><span class="cal-d">27</span><span class="cal-d">28</span>
+                      <span class="cal-d">29</span><span class="cal-d today">30</span>
+                    </div>
+                  </div>
+                  <div class="d-card oh-activity">
+                    <div class="d-head"><span>Recent activity</span><span class="d-sub">workspace</span></div>
+                    <div class="act-row"><span class="av" style="--a:139,92,246">N</span><span class="act-t">Northwind Freight deployed</span><span class="ok">✓</span></div>
+                    <div class="act-row"><span class="av" style="--a:249,128,40">V</span><span class="act-t">Vireo Health shipped</span><span class="ok">✓</span></div>
+                    <div class="act-row"><span class="av" style="--a:59,130,246">H</span><span class="act-t">Halcyon dashboard updated</span><span class="ok">✓</span></div>
+                    <div class="act-row"><span class="av" style="--a:244,114,182">M</span><span class="act-t">Maple &amp; Co onboarded</span><span class="ok">✓</span></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -86,35 +169,39 @@
               <span class="sw-rot" id="swRot">automations</span>
             </div>
           </div>
+          </div>
+          <aside class="hero-copy" id="heroCopy">
+            <p class="eyebrow mono">[ ONE HUB ]</p>
+            <h2 class="copy-title">One hub for your <span class="mono-accent">entire stack.</span></h2>
+            <p class="copy-lead">Every service you run — sites, automations, dashboards, agents — connected into a single place. No more hopping between fifteen tools. Just one screen, built around the way your team actually works.</p>
+            <ul class="copy-ticks mono">
+              <li>Connect every service</li>
+              <li>Built around your workflow</li>
+              <li>One screen, full control</li>
+            </ul>
+          </aside>
+          <p class="scroll-cue mono" id="scrollCue">Keep scrolling <span aria-hidden="true">↓</span></p>
         </div>
-        <p class="scroll-cue mono" id="scrollCue">Keep scrolling <span aria-hidden="true">↓</span></p>
       </div>
     </section>
 
-    <!-- ===================== SCATTERED CARDS ===================== -->
-    <section class="scatter" id="scatter">
-      <div class="scatter-stage">
-        <h2 class="scatter-title reveal">Your AI work is <span class="mono-accent">scattered</span><br>across fifteen tools.</h2>
+    <!-- ===================== SHOWCASE (text left · cards right) ===================== -->
+    <section class="showcase" id="scatter">
+      <div class="wrap showcase-wrap">
+        <div class="showcase-copy">
+          <p class="eyebrow mono">[ WHAT WE BUILD ]</p>
+          <h2 class="showcase-title">Everything AI can do<br>for your <span class="mono-accent">business.</span></h2>
+          <p class="showcase-lead">Strategy, automation, dashboards, voice agents, and the pipelines behind them — one team building the pieces that move your numbers.</p>
+        </div>
 
-        <div class="float-cards" id="floatCards" aria-hidden="true">
-          <figure class="fcard img" data-speed="-60" style="--x:6%;--y:14%;--r:-7deg"><img data-src="assets/scroll/card-vapor.jpg" alt="" /><figcaption class="mono">dashboard.fig</figcaption></figure>
-          <figure class="fcard img" data-speed="40" style="--x:70%;--y:8%;--r:6deg"><img data-src="assets/scroll/card-terrain.jpg" alt="" /><figcaption class="mono">model-viz.glsl</figcaption></figure>
-          <figure class="fcard img" data-speed="-90" style="--x:22%;--y:46%;--r:5deg"><img data-src="assets/scroll/card-prism.jpg" alt="" /><figcaption class="mono">brand-system.png</figcaption></figure>
-          <figure class="fcard img" data-speed="70" style="--x:74%;--y:52%;--r:-5deg"><img data-src="assets/scroll/card-neural.jpg" alt="" /><figcaption class="mono">forecast.model</figcaption></figure>
-          <div class="fcard code" data-speed="-40" style="--x:2%;--y:64%;--r:3deg"><pre class="mono"><span class="c-com">// agent.py</span>
-<span class="c-key">def</span> <span class="c-fn">run</span>(ctx):
-  <span class="c-key">return</span> pipeline(ctx)</pre></div>
-          <div class="fcard note" data-speed="90" style="--x:80%;--y:30%;--r:4deg">
-            <span class="mono dim">Project details</span>
-            <p class="mono">Client: Northwind<br>Deadline: Q3<br>Stack: Python · n8n</p>
-          </div>
-          <div class="fcard todo" data-speed="-30" style="--x:8%;--y:34%;--r:-3deg">
-            <span class="mono dim">To-do</span>
-            <ul class="mono"><li>☑ Map workflows</li><li>☑ Pilot one lane</li><li>☐ Ship to prod</li></ul>
-          </div>
-          <div class="fcard kpi-card" data-speed="55" style="--x:46%;--y:6%;--r:-4deg">
-            <span class="mono dim">Hours saved</span><b class="mono">312/wk</b>
-          </div>
+        <!-- ARRANGEMENT: layout-grid (Option 1 · clean 2×3) -->
+        <div class="showcase-cards layout-grid" id="showcaseCards">
+          <figure class="fcard img" style="--cc:250,204,21"><img data-src="assets/scroll/tools/advertising.jpg?v=2" alt="" /><figcaption>Advertising</figcaption></figure>
+          <figure class="fcard img" style="--cc:34,211,238"><img data-src="assets/scroll/tools/voice.jpg?v=2" alt="" /><figcaption>Voice agents</figcaption></figure>
+          <figure class="fcard img" style="--cc:139,92,246"><img data-src="assets/scroll/tools/strategy.jpg" alt="" /><figcaption>Strategy</figcaption></figure>
+          <figure class="fcard img" style="--cc:96,165,250"><img data-src="assets/scroll/tools/automation.jpg?v=2" alt="" /><figcaption>Automation</figcaption></figure>
+          <figure class="fcard img" style="--cc:52,211,153"><img data-src="assets/scroll/tools/dashboards.jpg" alt="" /><figcaption>Dashboards</figcaption></figure>
+          <figure class="fcard img" style="--cc:244,114,182"><img data-src="assets/scroll/tools/pipelines.jpg" alt="" /><figcaption>Data pipelines</figcaption></figure>
         </div>
       </div>
     </section>
@@ -129,20 +216,22 @@
 
     <!-- ===================== TAG CHIPS ===================== -->
     <section class="chips" id="capabilities">
-      <div class="chip-field" id="chipField" aria-hidden="true">
-        <span class="chip" style="--c:156,195,221;--x:18%;--y:30%;--r:-8deg" data-speed="50">#strategy</span>
-        <span class="chip" style="--c:176,188,198;--x:78%;--y:24%;--r:6deg" data-speed="-70">#dashboards</span>
-        <span class="chip" style="--c:138,170,191;--x:86%;--y:46%;--r:-5deg" data-speed="40">#voice-agents</span>
-        <span class="chip" style="--c:200,210,218;--x:8%;--y:52%;--r:7deg" data-speed="-50">#automations</span>
-        <span class="chip" style="--c:156,195,221;--x:14%;--y:70%;--r:4deg" data-speed="80">#lead-gen</span>
-        <span class="chip" style="--c:170,185,196;--x:72%;--y:68%;--r:-6deg" data-speed="-40">#copilots</span>
-        <span class="chip" style="--c:138,170,191;--x:82%;--y:80%;--r:5deg" data-speed="60">#rag</span>
-        <span class="chip" style="--c:190,202,212;--x:6%;--y:86%;--r:-4deg" data-speed="-80">#pipelines</span>
-        <span class="chip big-chip" style="--c:210,219,226;--x:44%;--y:40%;--r:0deg" data-speed="20">#whole-stack</span>
-      </div>
-      <div class="wrap chips-copy">
-        <h2 class="reveal">One stack. <span class="mono-accent">Every capability.</span></h2>
-        <p class="reveal" data-d="1">Take one piece, or hand us the lot. We scope it, build it, and stand behind it — in plain English the whole way.</p>
+      <div class="chips-frame">
+        <div class="wrap chips-copy">
+          <h2>One stack. <span class="mono-accent">Every capability.</span></h2>
+          <p>Take one piece, or hand us the lot. We scope it, build it, and stand behind it — in plain English the whole way.</p>
+        </div>
+        <div class="chip-field" id="chipField" aria-hidden="true">
+          <span class="chip" style="--c:34,211,238" data-fx="13" data-fy="20" data-r="-6">#automations</span>
+          <span class="chip" style="--c:96,165,250" data-fx="86" data-fy="17" data-r="6">#dashboards</span>
+          <span class="chip" style="--c:139,92,246" data-fx="15" data-fy="46" data-r="-8">#strategy</span>
+          <span class="chip" style="--c:52,211,153" data-fx="87" data-fy="45" data-r="-5">#voice-agents</span>
+          <span class="chip" style="--c:163,230,53" data-fx="10" data-fy="73" data-r="5">#pipelines</span>
+          <span class="chip" style="--c:129,140,248" data-fx="85" data-fy="67" data-r="-6">#copilots</span>
+          <span class="chip" style="--c:244,114,182" data-fx="21" data-fy="85" data-r="4">#lead-gen</span>
+          <span class="chip" style="--c:232,121,249" data-fx="88" data-fy="83" data-r="5">#rag</span>
+          <span class="chip big-chip" style="--c:210,219,226" data-fx="50" data-fy="89" data-r="0">#whole-stack</span>
+        </div>
       </div>
     </section>
 
@@ -253,7 +342,7 @@
   <!-- ===================== FOOTER ===================== -->
   <footer class="foot">
     <div class="wrap foot-inner mono">
-      <span class="foot-brand"><span class="brand-mark" aria-hidden="true"></span>AC Intelligence</span>
+      <span class="foot-brand"><svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="rgba(255,255,255,.82)" stroke-width="1.5"/><circle cx="12" cy="12" r="1.1" fill="rgba(255,255,255,.42)"/><circle cx="12" cy="4" r="2.4" fill="#fff"/></svg>AC Intelligence</span>
       <nav class="foot-links" aria-label="Footer">
         <a href="#capabilities">Capabilities</a>
         <a href="#approach">Approach</a>
@@ -267,6 +356,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="main.js?v=102"></script>
+  <script src="main.js?v=161"></script>
 </body>
 </html>
