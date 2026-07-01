@@ -14,7 +14,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=3" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=3" />
   <link rel="apple-touch-icon" href="assets/favicon-180.png?v=3" />
-  <link rel="stylesheet" href="styles.css?v=162" />
+  <link rel="stylesheet" href="styles.css?v=163" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -194,14 +194,44 @@
           <p class="showcase-lead">Strategy, automation, dashboards, voice agents, and the pipelines behind them — one team building the pieces that move your numbers.</p>
         </div>
 
-        <!-- ARRANGEMENT: layout-grid (Option 1 · clean 2×3) -->
+        <!-- ARRANGEMENT: layout-grid · flip cards (click / Enter to flip) -->
         <div class="showcase-cards layout-grid" id="showcaseCards">
-          <figure class="fcard img" style="--cc:250,204,21"><img data-src="assets/scroll/tools/advertising.jpg?v=2" alt="" /><figcaption>Advertising</figcaption></figure>
-          <figure class="fcard img" style="--cc:34,211,238"><img data-src="assets/scroll/tools/voice.jpg?v=2" alt="" /><figcaption>Voice agents</figcaption></figure>
-          <figure class="fcard img" style="--cc:139,92,246"><img data-src="assets/scroll/tools/strategy.jpg" alt="" /><figcaption>Strategy</figcaption></figure>
-          <figure class="fcard img" style="--cc:96,165,250"><img data-src="assets/scroll/tools/automation.jpg?v=2" alt="" /><figcaption>Automation</figcaption></figure>
-          <figure class="fcard img" style="--cc:52,211,153"><img data-src="assets/scroll/tools/dashboards.jpg" alt="" /><figcaption>Dashboards</figcaption></figure>
-          <figure class="fcard img" style="--cc:244,114,182"><img data-src="assets/scroll/tools/pipelines.jpg" alt="" /><figcaption>Data pipelines</figcaption></figure>
+          <figure class="fcard img flip" style="--cc:250,204,21" tabindex="0" role="button" aria-pressed="false" aria-label="Advertising — flip for details">
+            <div class="flip-inner">
+              <div class="flip-face flip-front"><img data-src="assets/scroll/tools/advertising.jpg?v=2" alt="" /><figcaption>Advertising</figcaption></div>
+              <div class="flip-face flip-back"><h4>Advertising</h4><p>Ad campaigns that tune themselves — creative, targeting and spend shifting toward whatever's actually converting, so your budget follows the winners.</p><span class="flip-cue mono">Tap to flip back</span></div>
+            </div>
+          </figure>
+          <figure class="fcard img flip" style="--cc:34,211,238" tabindex="0" role="button" aria-pressed="false" aria-label="Voice agents — flip for details">
+            <div class="flip-inner">
+              <div class="flip-face flip-front"><img data-src="assets/scroll/tools/voice.jpg?v=2" alt="" /><figcaption>Voice agents</figcaption></div>
+              <div class="flip-face flip-back"><h4>Voice agents</h4><p>Phone and chat agents that answer, qualify and book around the clock — in your brand's voice, handing off to a person the moment it matters.</p><span class="flip-cue mono">Tap to flip back</span></div>
+            </div>
+          </figure>
+          <figure class="fcard img flip" style="--cc:139,92,246" tabindex="0" role="button" aria-pressed="false" aria-label="Strategy — flip for details">
+            <div class="flip-inner">
+              <div class="flip-face flip-front"><img data-src="assets/scroll/tools/strategy.jpg" alt="" /><figcaption>Strategy</figcaption></div>
+              <div class="flip-face flip-back"><h4>Strategy</h4><p>We map where AI actually pays off in your business, then hand you a plan with the numbers behind it — not a list of buzzwords.</p><span class="flip-cue mono">Tap to flip back</span></div>
+            </div>
+          </figure>
+          <figure class="fcard img flip" style="--cc:96,165,250" tabindex="0" role="button" aria-pressed="false" aria-label="Automation — flip for details">
+            <div class="flip-inner">
+              <div class="flip-face flip-front"><img data-src="assets/scroll/tools/automation.jpg?v=2" alt="" /><figcaption>Automation</figcaption></div>
+              <div class="flip-face flip-back"><h4>Automation</h4><p>The repetitive work — data entry, follow-ups, reporting — running quietly in the background so your team spends its hours where a person is needed.</p><span class="flip-cue mono">Tap to flip back</span></div>
+            </div>
+          </figure>
+          <figure class="fcard img flip" style="--cc:52,211,153" tabindex="0" role="button" aria-pressed="false" aria-label="Dashboards — flip for details">
+            <div class="flip-inner">
+              <div class="flip-face flip-front"><img data-src="assets/scroll/tools/dashboards.jpg" alt="" /><figcaption>Dashboards</figcaption></div>
+              <div class="flip-face flip-back"><h4>Dashboards</h4><p>Every number that matters in one live view — pulled from your tools automatically, updated in real time, readable at a glance.</p><span class="flip-cue mono">Tap to flip back</span></div>
+            </div>
+          </figure>
+          <figure class="fcard img flip" style="--cc:244,114,182" tabindex="0" role="button" aria-pressed="false" aria-label="Data pipelines — flip for details">
+            <div class="flip-inner">
+              <div class="flip-face flip-front"><img data-src="assets/scroll/tools/pipelines.jpg" alt="" /><figcaption>Data pipelines</figcaption></div>
+              <div class="flip-face flip-back"><h4>Data pipelines</h4><p>The plumbing that connects your tools and keeps data clean and flowing — so everything downstream can trust what it's working with.</p><span class="flip-cue mono">Tap to flip back</span></div>
+            </div>
+          </figure>
         </div>
       </div>
     </section>
@@ -357,6 +387,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="main.js?v=162"></script>
+  <script src="main.js?v=163"></script>
 </body>
 </html>
