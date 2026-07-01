@@ -20,17 +20,7 @@
   function navScroll(y) { if (nav) nav.classList.toggle("scrolled", (y || window.scrollY) > 30); }
   navScroll();
 
-  /* ---- flip cards: click / Enter / Space toggles front↔back (works without GSAP) ---- */
-  document.querySelectorAll(".showcase-cards .fcard.flip").forEach(function (card) {
-    function toggle() {
-      var flipped = card.classList.toggle("flipped");
-      card.setAttribute("aria-pressed", flipped ? "true" : "false");
-    }
-    card.addEventListener("click", toggle);
-    card.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
-    });
-  });
+  /* flip cards auto-flip on hover / focus — handled entirely in CSS */
 
   /* ---- capability chips: clustered seed → bloom outward (used by both paths) ---- */
   var chipLayout = (function () {
