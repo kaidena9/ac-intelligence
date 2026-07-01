@@ -248,7 +248,7 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
 .fcard.flip .flip-inner{position:relative;width:100%;aspect-ratio:1/1;transform-style:preserve-3d}
 /* the two faces sit on opposite sides of a solid block → turns like a 3D coin, not paper */
 .fcard.flip .flip-front{transform:translateZ(30px)}
-.fcard.flip .flip-face{position:absolute;inset:0;border-radius:50%;overflow:hidden;border:var(--rimw,1.5px) solid rgba(0,0,0,var(--rim,.6));box-shadow:0 30px 50px -18px rgba(0,0,0,.95),0 6px 14px -6px rgba(0,0,0,.7);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.fcard.flip .flip-face{position:absolute;inset:0;border-radius:50%;overflow:hidden;border:var(--rimw,2.2px) solid rgba(120,125,132,var(--rim,.9));box-shadow:0 30px 50px -18px rgba(0,0,0,.95),0 6px 14px -6px rgba(0,0,0,.7);-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .fcard.flip .flip-front img{width:100%;height:100%;object-fit:cover;display:block}
 /* domed light/shade over the photo so the circle reads as a physical disc */
 .fcard.flip .flip-front::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:2;

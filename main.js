@@ -273,8 +273,8 @@
           });
           el.style.opacity = "1";
           // stronger, fully-black rim as they seat into the envelope
-          el.style.setProperty("--rim", (0.6 + g * 0.4).toFixed(3));
-          el.style.setProperty("--rimw", (1.5 + g * 1.6).toFixed(2) + "px");
+          el.style.setProperty("--rim", (0.9 + g * 0.1).toFixed(3));
+          el.style.setProperty("--rimw", (2.2 + g * 1.8).toFixed(2) + "px");
           // scroll-driven flip: 0 → 180 (show back) → 360 (front again)
           if (el._inner) {
             var fb = ph(p, FLIP_START + i * FLIP_STAG, FLIP_WIN);
