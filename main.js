@@ -20,7 +20,12 @@
   function navScroll(y) { if (nav) nav.classList.toggle("scrolled", (y || window.scrollY) > 30); }
   navScroll();
 
-  /* flip cards auto-flip on hover / focus — handled entirely in CSS */
+  /* mobile: tap a circle to flip it (scroll-driven flip is desktop-only) */
+  if (window.matchMedia("(max-width:860px)").matches) {
+    document.querySelectorAll("#showcaseCards .fcard.flip").forEach(function (card) {
+      card.addEventListener("click", function () { card.classList.toggle("flipped"); });
+    });
+  }
 
   /* ---- capability chips: clustered seed → bloom outward (used by both paths) ---- */
   var chipLayout = (function () {

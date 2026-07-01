@@ -278,8 +278,15 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
   .showcase-pin{position:static;height:auto;overflow:visible;padding:clamp(60px,10vh,120px) 0}
   .showcase-wrap{position:static;inset:auto}
   .showcase-copy{position:static;transform:none;left:auto;top:auto;width:auto;max-width:none;text-align:center;margin:0 auto 34px}
-  .showcase-cards{position:static;bottom:auto;flex-wrap:wrap;gap:18px}
-  .showcase-cards .fcard{width:clamp(120px,40vw,180px)}
+  .showcase-cards{position:static;bottom:auto;flex-wrap:wrap;gap:20px}
+  .showcase-cards .fcard{width:clamp(140px,43vw,190px)}
+  /* mobile: tap to flip a circle */
+  .fcard.flip{cursor:pointer}
+  .fcard.flip .flip-inner{transition:transform .7s cubic-bezier(.4,.15,.2,1)}
+  .fcard.flip.flipped .flip-inner{transform:rotateY(180deg)}
+  .fcard.flip .flip-front::before{content:"↻";position:absolute;top:9px;right:9px;z-index:4;
+    width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.4);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem;line-height:1}
 }
 @media(prefers-reduced-motion:reduce){
   .showcase{margin-top:0!important;box-shadow:none!important}
