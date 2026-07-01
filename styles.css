@@ -270,6 +270,9 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
 .cta-inner{position:relative;max-width:720px;margin:0 auto}
 .cta .eyebrow{display:inline-block;margin-bottom:18px}
 .cta-sub{margin:22px auto 34px;max-width:480px;color:var(--ink-2);font-size:1.1rem}
+.cta-email{margin-top:18px;font-size:.92rem;color:var(--ink-3)}
+.cta-email a{color:var(--ink-2);border-bottom:1px solid rgba(255,255,255,.25);transition:color .25s,border-color .25s}
+.cta-email a:hover{color:#fff;border-color:#fff}
 .foot{border-top:1px solid var(--line);padding:38px 0}
 .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.8rem}
 .foot-brand{display:flex;align-items:center;gap:10px;color:var(--ink)}
