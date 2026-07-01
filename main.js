@@ -40,17 +40,21 @@
     });
     function ez(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
     function cl(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
-    return function (p) {
+    return function (p, spin) {
+      spin = spin || 0;
       var vw = field.clientWidth, vh = field.clientHeight;
       var cx = vw / 2, cy = vh * 0.44, R = Math.min(vw, vh) * 0.12;
       chips.forEach(function (c) {
         var t = ez(cl((p - c._delay) / (1 - c._delay)));
-        var clx = c._big ? cx : cx + Math.cos(c._ca) * R;
-        var cly = c._big ? cy : cy + Math.sin(c._ca) * R;
+        var s = 1 - t;                                   // spin only while balled up, fades out on bloom
+        var ang = c._ca + spin * s;                      // orbit around the centre
+        var clx = c._big ? cx : cx + Math.cos(ang) * R;
+        var cly = c._big ? cy : cy + Math.sin(ang) * R;
         var x = clx + (c._fx / 100 * vw - clx) * t;
         var y = cly + (c._fy / 100 * vh - cly) * t;
+        var rot = c._fr * t;                            // centre chip stays still; ring orbits it
         c.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) +
-          "px) translate(-50%,-50%) rotate(" + (c._fr * t).toFixed(2) + "deg) scale(" + (0.84 + 0.16 * t).toFixed(3) + ")";
+          "px) translate(-50%,-50%) rotate(" + rot.toFixed(2) + "deg) scale(" + (0.84 + 0.16 * t).toFixed(3) + ")";
       });
       if (copy) copy.style.opacity = cl((p - 0.12) / 0.4).toFixed(3);
     };
@@ -126,7 +130,15 @@
   }
   setCountUp(0);
 
-  if (heroWindow) {
+  if (heroWindow && window.matchMedia("(max-width:860px)").matches) {
+    // mobile: static hero (headline + dashboard stacked, no pinned scrub)
+    if (heroInner) heroInner.style.opacity = "1";
+    heroWindow.style.opacity = "1";
+    heroWindow.style.setProperty("--ws", "1");
+    heroWindow.style.setProperty("--wx", "0px");
+    heroWindow.style.setProperty("--fill", "1");
+    if (scrollCue) scrollCue.style.display = "none";
+  } else if (heroWindow) {
     ScrollTrigger.create({
       trigger: ".hero-stage",
       start: "top top",
@@ -183,32 +195,127 @@
     });
   }
 
-  /* ---- Showcase: copy rises up from below, cards fade in staggered ---- */
-  var showCopy = document.querySelector(".showcase-copy");
-  if (showCopy) {
-    // copy fades in on the same trigger, duration and ease as the cards
-    gsap.from(showCopy, {
-      autoAlpha: 0, y: 26, duration: 0.7, ease: "power2.out",
-      scrollTrigger: { trigger: "#showcaseCards", start: "top 82%" }
+  /* ============================================================
+     Showcase — pinned scroll story (fully scrubbed, reverses on scroll-up):
+       1. copy slides in from the left; cards deal in from the right
+       2. all cards FLIP to their info backs, hold, then flip back to front
+       3. cards gather into a fanned pile at centre + closing heading rises
+     ============================================================ */
+  (function () {
+    var stage = document.querySelector(".showcase-stage");
+    var pin = document.querySelector(".showcase-pin");
+    var copy = document.querySelector(".showcase-copy");
+    var gHead = document.querySelector(".gather-head");
+    var envBack = document.querySelector(".env-back");
+    var envFront = document.querySelector(".env-front");
+    var cards = gsap.utils.toArray("#showcaseCards .fcard");
+    if (!stage || !pin || !copy || !cards.length) return;
+    if (window.matchMedia("(max-width:860px)").matches) return; // mobile: static grid
+
+    function ss(t) { return t * t * (3 - 2 * t); }            // smoothstep
+    function ph(p, start, win) { return ss(clamp(0, 1, (p - start) / win)); }
+    var PILE = 0.5;                                           // circle size once tucked into the envelope
+    cards.forEach(function (el, i) {
+      el._inner = el.querySelector(".flip-inner");
+      el._fanRot = (i - 2.5) * 8;                             // fanned spread, like a hand of cards
+      el._fanX = (i - 2.5) * 30;                              // wider spread to fill the envelope lip
+      el._fanY = (i - 2.5) * (i - 2.5) * 1.6 - 3;             // edges arc down into the pocket
+      el._depth = 0.7 + (i % 3) * 0.18;                       // varied rise distance → parallax
     });
-  }
-  var showCards = gsap.utils.toArray("#showcaseCards .fcard");
-  if (showCards.length) {
-    gsap.set(showCards, { autoAlpha: 0, y: 26 });
-    gsap.to(showCards, {
-      autoAlpha: 1, y: 0, duration: 0.7, ease: "power2.out", stagger: 0.2,
-      scrollTrigger: { trigger: "#showcaseCards", start: "top 82%" }
+    // per-card offset from its grid spot to the pin centre (layout delta, scroll-independent)
+    function measure() {
+      cards.forEach(function (el) { gsap.set(el, { x: 0, y: 0, rotation: 0, scale: 1 }); });
+      var pr = pin.getBoundingClientRect();
+      var pcx = pr.left + pr.width / 2, pcy = pr.top + pr.height / 2;
+      cards.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        el._hx = pcx - (r.left + r.width / 2);
+        el._hy = pcy - (r.top + r.height / 2);
+      });
+    }
+    measure();
+    ScrollTrigger.addEventListener("refresh", measure);
+    // circles + text are ALREADY present (the curtain reveals them, not a black screen)
+    copy.style.opacity = "1";
+    if (gHead) gHead.style.opacity = "0";
+
+    // phase windows (progress 0→1) — no deal-in; the reveal shows content at rest
+    var FLIP_START = 0.34, FLIP_WIN = 0.13, FLIP_STAG = 0.012;   // flip to back
+    var UNFLIP_START = 0.56;                                     // flip back to front
+    var GATHER_START = 0.76, GATHER_WIN = 0.20;
+
+    ScrollTrigger.create({
+      trigger: ".showcase-stage", start: "top top", end: "bottom bottom", scrub: true,
+      onUpdate: function (self) {
+        var p = self.progress;
+        // copy: sits centred and present, fades out only as the gather begins
+        var cout = ph(p, 0.72, 0.08);
+        copy.style.opacity = (1 - cout).toFixed(3);
+        gsap.set(copy, { x: 0, y: -cout * 24, xPercent: -50, yPercent: -50 });
+        // gather progress
+        var g = ph(p, GATHER_START, GATHER_WIN);
+        // the folder (back wall + front pocket) fades in as the circles tuck into it
+        var eo = ph(p, GATHER_START + 0.03, 0.16).toFixed(3);
+        if (envBack) envBack.style.opacity = eo;
+        if (envFront) envFront.style.opacity = eo;
+        cards.forEach(function (el, i) {
+          var gx = el._hx + el._fanX, gy = el._hy + el._fanY;   // sit at centre; pocket covers ~70%
+          gsap.set(el, {
+            x: gx * g,
+            y: gy * g,
+            rotation: el._fanRot * g,
+            scale: 1 - (1 - PILE) * g
+          });
+          el.style.opacity = "1";
+          // stronger, fully-black rim as they seat into the envelope
+          el.style.setProperty("--rim", (0.6 + g * 0.4).toFixed(3));
+          el.style.setProperty("--rimw", (1.5 + g * 1.6).toFixed(2) + "px");
+          // scroll-driven flip: 0 → 180 (show back) → 360 (front again)
+          if (el._inner) {
+            var fb = ph(p, FLIP_START + i * FLIP_STAG, FLIP_WIN);
+            var uf = ph(p, UNFLIP_START + i * FLIP_STAG, FLIP_WIN);
+            el._inner.style.transform = "rotateY(" + (fb * 180 + uf * 180).toFixed(2) + "deg)";
+          }
+        });
+        // closing heading rises in above the pile
+        if (gHead) {
+          var hin = ph(p, 0.82, 0.13);
+          gHead.style.opacity = hin.toFixed(3);
+          gHead.style.transform = "translateY(" + ((1 - hin) * 20).toFixed(1) + "px)";
+        }
+      }
     });
-  }
+  })();
+
+  /* ---- Approach: Find→Build→Run — the connecting line draws in, steps light up ---- */
+  (function () {
+    var proc = document.getElementById("processPath");
+    if (!proc) return;
+    var steps = Array.prototype.slice.call(proc.querySelectorAll(".pstep"));
+    ScrollTrigger.create({
+      trigger: "#contact", start: "top 72%", end: "center 42%", scrub: true,
+      onUpdate: function (self) {
+        var f = self.progress;
+        proc.style.setProperty("--fill", f.toFixed(3));
+        steps.forEach(function (s, i) {
+          var th = steps.length > 1 ? (i / (steps.length - 1)) * 0.92 : 0;
+          s.classList.toggle("active", f >= th);
+        });
+      }
+    });
+  })();
+
   /* capability chips: clustered seed blooms outward, pinned in one frame */
   if (chipLayout) {
-    chipLayout(0);
-    var chipP = 0;
+    var chipP = 0, chipSpin = 0;
+    chipLayout(0, 0);
+    // continuous slow spin while balled up; scroll drives the bloom (spin fades out on bloom)
+    gsap.ticker.add(function () { chipSpin += 0.006; chipLayout(chipP, chipSpin); });
     ScrollTrigger.create({
       trigger: ".chips", start: "top top", end: "bottom bottom", scrub: true,
-      onUpdate: function (self) { chipP = self.progress; chipLayout(chipP); }
+      onUpdate: function (self) { chipP = self.progress; }
     });
-    window.addEventListener("resize", function () { chipLayout(chipP); });
+    window.addEventListener("resize", function () { chipLayout(chipP, chipSpin); });
   }
 
   /* ---- cursor-reactive life: hero window tilt + magnetic buttons ---- */
