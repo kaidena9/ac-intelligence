@@ -3,6 +3,16 @@
   "use strict";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
+  var isMobile = window.matchMedia("(max-width:860px)").matches;
+
+  /* Booking endpoint: set to a Calendly/Cal.com URL when ready; mailto fallback stays otherwise. */
+  var BOOKING_URL = "";
+  var bookBtn = document.getElementById("bookBtn");
+  if (bookBtn && BOOKING_URL) {
+    bookBtn.href = BOOKING_URL;
+    bookBtn.target = "_blank";
+    bookBtn.rel = "noopener";
+  }
 
   /* ---- reveals (always on, independent of GSAP) ---- */
   var reveals = document.querySelectorAll(".reveal");
@@ -20,69 +30,104 @@
   function navScroll(y) { if (nav) nav.classList.toggle("scrolled", (y || window.scrollY) > 30); }
   navScroll();
 
+  /* ---- mobile menu ---- */
+  var menuBtn = document.getElementById("menuBtn");
+  var mobileMenu = document.getElementById("mobileMenu");
+  function setMenu(open) {
+    if (!menuBtn || !mobileMenu) return;
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    if (open) {
+      mobileMenu.hidden = false;
+      requestAnimationFrame(function () { mobileMenu.classList.add("open"); });
+      document.body.style.overflow = "hidden";
+      if (window.__lenis) window.__lenis.stop();
+      var first = mobileMenu.querySelector("a"); if (first) first.focus();
+    } else {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+      if (window.__lenis) window.__lenis.start();
+      window.setTimeout(function () { mobileMenu.hidden = true; }, 320);
+      menuBtn.focus();
+    }
+  }
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener("click", function () {
+      setMenu(menuBtn.getAttribute("aria-expanded") !== "true");
+    });
+    mobileMenu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { setMenu(false); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menuBtn.getAttribute("aria-expanded") === "true") setMenu(false);
+    });
+  }
+
+  /* ---- smooth anchor scrolling that respects the fixed nav ---- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var id = a.getAttribute("href");
+      if (id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      if (window.__lenis) {
+        e.preventDefault();
+        window.__lenis.scrollTo(target, { offset: -84, duration: 1.15 });
+      }
+    });
+  });
+
+  /* ---- stats count-up (runs once when the CTA scrolls in) ---- */
+  (function () {
+    var stats = document.querySelector(".stats");
+    if (!stats) return;
+    var nums = Array.prototype.slice.call(stats.querySelectorAll("b[data-count]"));
+    if (reduce || !("IntersectionObserver" in window)) return; // markup already holds final values
+    var done = false;
+    var sio = new IntersectionObserver(function (entries) {
+      if (done || !entries.some(function (e) { return e.isIntersecting; })) return;
+      done = true; sio.disconnect();
+      var t0 = null;
+      function tick(ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min(1, (ts - t0) / 1100);
+        var e = 1 - Math.pow(1 - p, 3);
+        nums.forEach(function (b) { b.textContent = Math.round(+b.dataset.count * e); });
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      nums.forEach(function (b) { b.textContent = "0"; });
+      requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
+    sio.observe(stats);
+  })();
+
   /* mobile: tap a circle to flip it (scroll-driven flip is desktop-only) */
-  if (window.matchMedia("(max-width:860px)").matches) {
+  if (isMobile) {
     document.querySelectorAll("#showcaseCards .fcard.flip").forEach(function (card) {
       card.addEventListener("click", function () { card.classList.toggle("flipped"); });
     });
   }
 
-  /* ---- capability chips: clustered seed → bloom outward (used by both paths) ---- */
-  var chipLayout = (function () {
-    var field = document.getElementById("chipField");
-    var copy = document.querySelector(".chips-copy");
-    if (!field) return null;
-    var chips = Array.prototype.slice.call(field.querySelectorAll(".chip"));
-    var ring = chips.filter(function (c) { return !c.classList.contains("big-chip"); });
-    ring.forEach(function (c, i) {
-      c._ca = (i / ring.length) * Math.PI * 2 - Math.PI / 2;   // cluster ring angle
-      c._delay = (i % 4) * 0.05;                                // stagger → parallax depth
-    });
-    chips.forEach(function (c) {
-      c._fx = parseFloat(c.dataset.fx); c._fy = parseFloat(c.dataset.fy);
-      c._fr = parseFloat(c.dataset.r) || 0;
-      if (c.classList.contains("big-chip")) { c._big = true; c._ca = 0; c._delay = 0; }
-    });
-    function ez(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
-    function cl(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
-    return function (p, spin) {
-      spin = spin || 0;
-      var vw = field.clientWidth, vh = field.clientHeight;
-      var cx = vw / 2, cy = vh * 0.44, R = Math.min(vw, vh) * 0.12;
-      chips.forEach(function (c) {
-        var t = ez(cl((p - c._delay) / (1 - c._delay)));
-        var s = 1 - t;                                   // spin only while balled up, fades out on bloom
-        var ang = c._ca + spin * s;                      // orbit around the centre
-        var clx = c._big ? cx : cx + Math.cos(ang) * R;
-        var cly = c._big ? cy : cy + Math.sin(ang) * R;
-        var x = clx + (c._fx / 100 * vw - clx) * t;
-        var y = cly + (c._fy / 100 * vh - cly) * t;
-        var rot = c._fr * t;                            // centre chip stays still; ring orbits it
-        c.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) +
-          "px) translate(-50%,-50%) rotate(" + rot.toFixed(2) + "deg) scale(" + (0.84 + 0.16 * t).toFixed(3) + ")";
-      });
-      if (copy) copy.style.opacity = cl((p - 0.12) / 0.4).toFixed(3);
-    };
-  })();
-
   /* ---- graceful fallback: no GSAP or reduced-motion → static, readable ---- */
   if (reduce || !hasGSAP) {
-    var hw = document.querySelector(".hero-window"); if (hw) { hw.style.setProperty("--ws", "1"); hw.style.setProperty("--wx", "0px"); hw.style.setProperty("--fill", "1"); hw.style.opacity = "1"; }
+    var hw = document.querySelector(".hero-window"); if (hw) { hw.style.setProperty("--ws", "1"); hw.style.setProperty("--wx", "0px"); hw.style.opacity = "1"; }
     var hi = document.getElementById("heroInner"); if (hi) hi.style.opacity = "1";
     var hcp = document.getElementById("heroCopy"); if (hcp) { hcp.style.opacity = "1"; hcp.style.transform = "none"; }
     var scF = document.getElementById("scrollCue"); if (scF) scF.style.display = "none";
-    if (chipLayout) chipLayout(1);
-    // lazy images still load
-    document.querySelectorAll("img[data-src]").forEach(function (im) { im.src = im.getAttribute("data-src"); });
+    var proc = document.getElementById("processPath");
+    if (proc) {
+      proc.style.setProperty("--fill", "1");
+      proc.querySelectorAll(".pstep").forEach(function (s) { s.classList.add("active"); });
+    }
     window.addEventListener("scroll", function () { navScroll(); }, { passive: true });
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
-  /* ---- Lenis smooth scroll wired to ScrollTrigger ---- */
+  /* ---- Lenis smooth scroll wired to ScrollTrigger (single rAF source) ---- */
   var lenis = null;
-  if (window.Lenis) {
+  if (window.Lenis && !isMobile) {
     lenis = new Lenis({ duration: 1.05, smoothWheel: true, wheelMultiplier: 1 });
     window.__lenis = lenis;
     lenis.on("scroll", function (e) { ScrollTrigger.update(); navScroll(e.scroll); });
@@ -92,17 +137,11 @@
     window.addEventListener("scroll", function () { navScroll(); }, { passive: true });
   }
 
-  /* lazy-load card images */
-  document.querySelectorAll("img[data-src]").forEach(function (im) {
-    var src = im.getAttribute("data-src");
-    var pre = new Image(); pre.onload = function () { im.src = src; }; pre.src = src;
-  });
-
   var clamp = gsap.utils.clamp;
-  function rot(el) { var r = parseFloat(getComputedStyle(el).getPropertyValue("--r")) || 0; return r; }
 
   /* ============================================================
-     HERO: window scales up + pins over parallax terrain, word cycle
+     HERO: dashboard scales in over the skyfield, slides left,
+     ops-hub copy enters. scrub is numeric for a soft catch-up feel.
      ============================================================ */
   var heroWindow = document.querySelector(".hero-window");
   var heroInner = document.getElementById("heroInner");
@@ -110,45 +149,30 @@
   var scrollCue = document.getElementById("scrollCue");
   var heroCopy = document.getElementById("heroCopy");
 
-  /* KPI count-up: numbers tick from 0 to target as the dashboard fills in */
-  var kpiItems = (function () {
-    var out = [];
-    document.querySelectorAll(".hero-window .kpi b").forEach(function (b) {
-      var raw = b.textContent.trim();
-      var num = parseInt(raw.replace(/[^0-9]/g, ""), 10);
-      if (isNaN(num)) { out.push(null); return; }
-      var pre = /^[−-]/.test(raw) ? "−" : "";
-      var suf = raw.replace(/^[−-]?[0-9,]+/, "");
-      b.dataset.t = num; b.dataset.pre = pre; b.dataset.suf = suf;
-      b.textContent = pre + "0" + suf;
-      out.push(b);
-    });
-    return out;
-  })();
-  // count-up driven by scroll progress: numbers tick from 0 → target as the parallax scrolls in
-  function setCountUp(kp) {
-    var e = 1 - Math.pow(1 - kp, 3); // ease-out
-    kpiItems.forEach(function (b) {
-      if (!b) return;
-      b.textContent = b.dataset.pre + Math.round((+b.dataset.t) * e) + b.dataset.suf;
-    });
-  }
-  setCountUp(0);
-
-  if (heroWindow && window.matchMedia("(max-width:860px)").matches) {
-    // mobile: static hero (headline + dashboard stacked, no pinned scrub)
+  if (heroWindow && isMobile) {
     if (heroInner) heroInner.style.opacity = "1";
     heroWindow.style.opacity = "1";
     heroWindow.style.setProperty("--ws", "1");
     heroWindow.style.setProperty("--wx", "0px");
-    heroWindow.style.setProperty("--fill", "1");
     if (scrollCue) scrollCue.style.display = "none";
   } else if (heroWindow) {
+    var setTerY = terrain ? gsap.quickSetter(terrain, "yPercent") : null;
+    var setTerS = terrain ? gsap.quickSetter(terrain, "scale") : null;
+    // final scale must keep the window inside the band below the nav (96px)
+    // and above the viewport bottom (28px). 1 when it already fits → crisp text.
+    var fitScale = 1;
+    function measureFit() {
+      var h = heroWindow.offsetHeight;
+      fitScale = h > 0 ? Math.min(1, (window.innerHeight - 124) / h) : 1;
+    }
+    measureFit();
+    window.addEventListener("resize", measureFit, { passive: true });
+    window.addEventListener("load", measureFit);
     ScrollTrigger.create({
       trigger: ".hero-stage",
       start: "top top",
       end: "bottom bottom",
-      scrub: true,
+      scrub: 0.7,
       onUpdate: function (self) {
         var p = self.progress;
         // Beat 1: centered headline fades out
@@ -156,149 +180,156 @@
           heroInner.style.opacity = clamp(0, 1, 1 - p / 0.26).toFixed(3);
           heroInner.style.pointerEvents = p > 0.24 ? "none" : "auto";
         }
-        // Beat 2: dashboard scales in, then slides to the left
-        heroWindow.style.setProperty("--ws", (0.64 + clamp(0, 1, (p - 0.06) / 0.42) * 0.06).toFixed(4));
+        // Beat 2: dashboard scales in, then slides left.
+        // Ends at exactly scale(1) with integer x so the text rasterizes crisp.
+        heroWindow.style.setProperty("--ws", ((0.9 + clamp(0, 1, (p - 0.06) / 0.42) * 0.1) * fitScale).toFixed(4));
         heroWindow.style.opacity = clamp(0, 1, (p - 0.06) / 0.22).toFixed(3);
         var mv = clamp(0, 1, (p - 0.34) / 0.28);
-        heroWindow.style.setProperty("--wx", (mv * -0.15 * window.innerWidth).toFixed(1) + "px");
-        // final scroll: frosted glass solidifies into an opaque app window
-        heroWindow.style.setProperty("--fill", clamp(0, 1, (p - 0.70) / 0.22).toFixed(3));
-        // Beat 3: OneHub copy slides in from the right
+        heroWindow.style.setProperty("--wx", Math.round(mv * -0.17 * window.innerWidth) + "px");
+        // Beat 3: ops-hub copy slides in from the right
         if (heroCopy) {
           var cp = clamp(0, 1, (p - 0.48) / 0.30);
           heroCopy.style.opacity = cp.toFixed(3);
           heroCopy.style.transform = "translateY(-50%) translateX(" + ((1 - cp) * 44).toFixed(1) + "px)";
         }
-        // slow Ken-Burns zoom on the backdrop image
-        if (terrain) gsap.set(terrain, { scale: 1.05 + p * 0.10, yPercent: -p * 6 });
+        // slow Ken-Burns drift on the landscape
+        if (setTerY) setTerY(-p * 6);
+        if (setTerS) setTerS(1.05 + p * 0.1);
         if (scrollCue) scrollCue.style.opacity = clamp(0, 1, 1 - p * 4).toString();
-        setCountUp(clamp(0, 1, (p - 0.12) / 0.38));
       }
     });
   }
 
   /* ============================================================
-     Parallax drift for a set of elements within a trigger section
-     ============================================================ */
-  function parallaxGroup(selector, triggerSel) {
-    var els = Array.prototype.slice.call(document.querySelectorAll(selector));
-    if (!els.length) return;
-    els.forEach(function (el) {
-      gsap.set(el, { rotation: rot(el) });
-      el._setY = gsap.quickSetter(el, "y", "px");
-      el._sp = parseFloat(el.dataset.speed) || 0;
-    });
-    ScrollTrigger.create({
-      trigger: triggerSel,
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-      onUpdate: function (self) {
-        var p = self.progress - 0.5; // -0.5 .. 0.5
-        els.forEach(function (el) { el._setY(p * el._sp); });
-      }
-    });
-  }
-
-  /* ============================================================
-     Showcase — pinned scroll story (fully scrubbed, reverses on scroll-up):
-       1. copy slides in from the left; cards deal in from the right
-       2. all cards FLIP to their info backs, hold, then flip back to front
-       3. cards gather into a fanned pile at centre + closing heading rises
+     Showcase — pinned scroll story (scrubbed, reverses cleanly):
+       1. discs flip to their info backs, hold, flip forward again
+       2. discs gather into a fanned pile tucked into the envelope
      ============================================================ */
   (function () {
     var stage = document.querySelector(".showcase-stage");
     var pin = document.querySelector(".showcase-pin");
     var copy = document.querySelector(".showcase-copy");
     var gHead = document.querySelector(".gather-head");
-    var envBack = document.querySelector(".env-back");
-    var envFront = document.querySelector(".env-front");
+    var ring = document.getElementById("orbitRing");
+    var core = document.getElementById("orbitCore");
     var cards = gsap.utils.toArray("#showcaseCards .fcard");
     if (!stage || !pin || !copy || !cards.length) return;
-    if (window.matchMedia("(max-width:860px)").matches) return; // mobile: static grid
+    if (isMobile) return; // mobile: static grid + tap to flip
 
-    function ss(t) { return t * t * (3 - 2 * t); }            // smoothstep
+    function ss(t) { return t * t * (3 - 2 * t); }
     function ph(p, start, win) { return ss(clamp(0, 1, (p - start) / win)); }
-    var PILE = 0.5;                                           // circle size once tucked into the envelope
+    var PILE = 0.36;                       // disc size once in orbit
+    var R = 200, OY = 0;                   // orbit radius + center offset (measured)
     cards.forEach(function (el, i) {
       el._inner = el.querySelector(".flip-inner");
-      el._fanRot = (i - 2.5) * 8;                             // fanned spread, like a hand of cards
-      el._fanX = (i - 2.5) * 30;                              // wider spread to fill the envelope lip
-      el._fanY = (i - 2.5) * (i - 2.5) * 1.6 - 3;             // edges arc down into the pocket
-      el._depth = 0.7 + (i % 3) * 0.18;                       // varied rise distance → parallax
+      el._a0 = -Math.PI / 2 + (i / cards.length) * Math.PI * 2;  // even spacing, first at 12 o'clock
     });
-    // per-card offset from its grid spot to the pin centre (layout delta, scroll-independent)
     function measure() {
       cards.forEach(function (el) { gsap.set(el, { x: 0, y: 0, rotation: 0, scale: 1 }); });
       var pr = pin.getBoundingClientRect();
       var pcx = pr.left + pr.width / 2, pcy = pr.top + pr.height / 2;
+      R = Math.min(pr.width, pr.height) * 0.22;
+      OY = pr.height * 0.04;               // orbit center sits at 54% height, like the core
+      if (ring) { ring.style.width = (R * 2) + "px"; ring.style.height = (R * 2) + "px"; }
       cards.forEach(function (el) {
         var r = el.getBoundingClientRect();
         el._hx = pcx - (r.left + r.width / 2);
-        el._hy = pcy - (r.top + r.height / 2);
+        el._hy = pcy + OY - (r.top + r.height / 2);
       });
     }
     measure();
     ScrollTrigger.addEventListener("refresh", measure);
-    // circles + text are ALREADY present (the curtain reveals them, not a black screen)
     copy.style.opacity = "1";
     if (gHead) gHead.style.opacity = "0";
 
-    // phase windows (progress 0→1) — no deal-in; the reveal shows content at rest
-    var FLIP_START = 0.34, FLIP_WIN = 0.13, FLIP_STAG = 0.012;   // flip to back
-    var UNFLIP_START = 0.56;                                     // flip back to front
+    var FLIP_START = 0.34, FLIP_WIN = 0.13, FLIP_STAG = 0.012;
+    var UNFLIP_START = 0.56;
     var GATHER_START = 0.76, GATHER_WIN = 0.20;
+    var spinT = 0, lastP = 0;
+
+    function apply(p) {
+      var cout = ph(p, 0.72, 0.08);
+      copy.style.opacity = (1 - cout).toFixed(3);
+      gsap.set(copy, { x: 0, y: -cout * 24, xPercent: -50, yPercent: -50 });
+      var g = ph(p, GATHER_START, GATHER_WIN);
+      var oo = ph(p, GATHER_START + 0.03, 0.16).toFixed(3);
+      if (ring) ring.style.opacity = oo;
+      if (core) core.style.opacity = oo;
+      cards.forEach(function (el, i) {
+        // orbit target: even spacing around the core, drifting with spinT
+        var ang = el._a0 + spinT;
+        var gx = el._hx + Math.cos(ang) * R;
+        var gy = el._hy + Math.sin(ang) * R;
+        gsap.set(el, {
+          x: gx * g,
+          y: gy * g,
+          rotation: 0,
+          scale: 1 - (1 - PILE) * g
+        });
+        el.style.setProperty("--rim", (0.9 + g * 0.1).toFixed(3));
+        el.style.setProperty("--rimw", (2.2 + g * 1.2).toFixed(2) + "px");
+        if (el._inner) {
+          var fb = ph(p, FLIP_START + i * FLIP_STAG, FLIP_WIN);
+          var uf = ph(p, UNFLIP_START + i * FLIP_STAG, FLIP_WIN);
+          el._inner.style.transform = "rotateY(" + (fb * 180 + uf * 180).toFixed(2) + "deg)";
+        }
+      });
+      if (gHead) {
+        var hin = ph(p, 0.82, 0.13);
+        gHead.style.opacity = hin.toFixed(3);
+        gHead.style.transform = "translateY(" + ((1 - hin) * 20).toFixed(1) + "px)";
+      }
+    }
+
+    // the orbit keeps drifting while gathered, even with no scroll input
+    gsap.ticker.add(function (t, dt) {
+      if (ph(lastP, GATHER_START, GATHER_WIN) > 0) {
+        spinT += (dt / 1000) * 0.22;
+        apply(lastP);
+      }
+    });
 
     ScrollTrigger.create({
-      trigger: ".showcase-stage", start: "top top", end: "bottom bottom", scrub: true,
-      onUpdate: function (self) {
-        var p = self.progress;
-        // copy: sits centred and present, fades out only as the gather begins
-        var cout = ph(p, 0.72, 0.08);
-        copy.style.opacity = (1 - cout).toFixed(3);
-        gsap.set(copy, { x: 0, y: -cout * 24, xPercent: -50, yPercent: -50 });
-        // gather progress
-        var g = ph(p, GATHER_START, GATHER_WIN);
-        // the folder (back wall + front pocket) fades in as the circles tuck into it
-        var eo = ph(p, GATHER_START + 0.03, 0.16).toFixed(3);
-        if (envBack) envBack.style.opacity = eo;
-        if (envFront) envFront.style.opacity = eo;
-        cards.forEach(function (el, i) {
-          var gx = el._hx + el._fanX, gy = el._hy + el._fanY;   // sit at centre; pocket covers ~70%
-          gsap.set(el, {
-            x: gx * g,
-            y: gy * g,
-            rotation: el._fanRot * g,
-            scale: 1 - (1 - PILE) * g
-          });
-          el.style.opacity = "1";
-          // stronger, fully-black rim as they seat into the envelope
-          el.style.setProperty("--rim", (0.9 + g * 0.1).toFixed(3));
-          el.style.setProperty("--rimw", (2.2 + g * 1.8).toFixed(2) + "px");
-          // scroll-driven flip: 0 → 180 (show back) → 360 (front again)
-          if (el._inner) {
-            var fb = ph(p, FLIP_START + i * FLIP_STAG, FLIP_WIN);
-            var uf = ph(p, UNFLIP_START + i * FLIP_STAG, FLIP_WIN);
-            el._inner.style.transform = "rotateY(" + (fb * 180 + uf * 180).toFixed(2) + "deg)";
-          }
-        });
-        // closing heading rises in above the pile
-        if (gHead) {
-          var hin = ph(p, 0.82, 0.13);
-          gHead.style.opacity = hin.toFixed(3);
-          gHead.style.transform = "translateY(" + ((1 - hin) * 20).toFixed(1) + "px)";
-        }
-      }
+      trigger: ".showcase-stage", start: "top top", end: "bottom bottom", scrub: 0.7,
+      onUpdate: function (self) { lastP = self.progress; apply(lastP); }
     });
   })();
 
-  /* ---- Approach: Find→Build→Run — the connecting line draws in, steps light up ---- */
+  /* ---- live work embeds: scale the desktop-width iframes to their cards ---- */
+  (function () {
+    if (isMobile) return;
+    var lives = document.querySelectorAll(".wc-live");
+    if (!lives.length) return;
+    function scaleAll() {
+      lives.forEach(function (wrap) {
+        var f = wrap.querySelector("iframe");
+        if (!f) return;
+        var s = wrap.clientWidth / 1200;
+        var y = parseInt(f.dataset.y || "0", 10);   // crop offset into the page (at 1200px width)
+        // fixed render height (data-h) keeps vh-based layouts stable while we crop;
+        // without it, render just enough to fill the card.
+        var rh = parseInt(f.dataset.h || "0", 10) || (y + Math.ceil(wrap.clientHeight / s));
+        f.style.transform = "scale(" + s.toFixed(4) + ")";
+        f.style.top = (-y * s).toFixed(1) + "px";
+        f.style.height = rh + "px";
+      });
+    }
+    lives.forEach(function (wrap) {
+      var f = wrap.querySelector("iframe");
+      if (f) f.addEventListener("load", function () { scaleAll(); f.classList.add("ready"); });
+    });
+    scaleAll();
+    window.addEventListener("resize", scaleAll, { passive: true });
+    window.addEventListener("load", scaleAll);
+  })();
+
+  /* ---- Approach: Find→Build→Run — the line draws in, steps light up ---- */
   (function () {
     var proc = document.getElementById("processPath");
     if (!proc) return;
     var steps = Array.prototype.slice.call(proc.querySelectorAll(".pstep"));
     ScrollTrigger.create({
-      trigger: "#contact", start: "top 72%", end: "center 42%", scrub: true,
+      trigger: "#approach", start: "top 70%", end: "center 42%", scrub: 0.6,
       onUpdate: function (self) {
         var f = self.progress;
         proc.style.setProperty("--fill", f.toFixed(3));
@@ -310,29 +341,8 @@
     });
   })();
 
-  /* capability chips: clustered seed blooms outward, pinned in one frame */
-  if (chipLayout) {
-    var chipP = 0, chipSpin = 0;
-    chipLayout(0, 0);
-    // continuous slow spin while balled up; scroll drives the bloom (spin fades out on bloom)
-    gsap.ticker.add(function () { chipSpin += 0.006; chipLayout(chipP, chipSpin); });
-    ScrollTrigger.create({
-      trigger: ".chips", start: "top top", end: "bottom bottom", scrub: true,
-      onUpdate: function (self) { chipP = self.progress; }
-    });
-    window.addEventListener("resize", function () { chipLayout(chipP, chipSpin); });
-  }
-
-  /* ---- cursor-reactive life: hero window tilt + magnetic buttons ---- */
+  /* ---- cursor-reactive life: magnetic buttons ---- */
   if (window.matchMedia("(pointer:fine)").matches) {
-    if (heroWindow) {
-      window.addEventListener("mousemove", function (e) {
-        var nx = e.clientX / window.innerWidth - 0.5;
-        var ny = e.clientY / window.innerHeight - 0.5;
-        heroWindow.style.setProperty("--ty", (nx * 6).toFixed(2) + "deg");
-        heroWindow.style.setProperty("--tx", (-ny * 5).toFixed(2) + "deg");
-      }, { passive: true });
-    }
     document.querySelectorAll(".btn").forEach(function (b) {
       b.addEventListener("mousemove", function (e) {
         var r = b.getBoundingClientRect();
@@ -344,5 +354,7 @@
     });
   }
 
+  /* layout settles after fonts/images: re-measure all triggers */
+  window.addEventListener("load", function () { ScrollTrigger.refresh(); });
   ScrollTrigger.refresh();
 })();
