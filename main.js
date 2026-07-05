@@ -183,14 +183,18 @@
         // Beat 2: dashboard scales in, then slides left.
         // Ends at exactly scale(1) with integer x so the text rasterizes crisp.
         heroWindow.style.setProperty("--ws", ((0.9 + clamp(0, 1, (p - 0.06) / 0.42) * 0.1) * fitScale).toFixed(4));
-        heroWindow.style.opacity = clamp(0, 1, (p - 0.06) / 0.22).toFixed(3);
         var mv = clamp(0, 1, (p - 0.34) / 0.28);
         heroWindow.style.setProperty("--wx", Math.round(mv * -0.17 * window.innerWidth) + "px");
         // Beat 3: ops-hub copy slides in from the right
+        // Beat 4: console + copy drift up and dim as the pin hands off — no dead scroll
+        var fo = clamp(0, 1, (p - 0.86) / 0.14);
+        var fy = (fo * -46).toFixed(1);
+        heroWindow.style.opacity = (clamp(0, 1, (p - 0.06) / 0.22) * (1 - fo * 0.85)).toFixed(3);
+        heroWindow.style.setProperty("--wy", fy + "px");
         if (heroCopy) {
           var cp = clamp(0, 1, (p - 0.48) / 0.30);
-          heroCopy.style.opacity = cp.toFixed(3);
-          heroCopy.style.transform = "translateY(-50%) translateX(" + ((1 - cp) * 44).toFixed(1) + "px)";
+          heroCopy.style.opacity = (cp * (1 - fo * 0.85)).toFixed(3);
+          heroCopy.style.transform = "translateY(calc(-50% + " + fy + "px)) translateX(" + ((1 - cp) * 44).toFixed(1) + "px)";
         }
         // slow Ken-Burns drift on the landscape
         if (setTerY) setTerY(-p * 6);
@@ -284,7 +288,7 @@
         }
       });
       if (gHead) {
-        var hin = ph(p, 0.82, 0.13);
+        var hin = ph(p, 0.78, 0.10);
         gHead.style.opacity = hin.toFixed(3);
         gHead.style.transform = "translateY(" + ((1 - hin) * 20).toFixed(1) + "px)";
       }
@@ -327,6 +331,23 @@
       var f = wrap.querySelector("iframe");
       if (f) f.addEventListener("load", function () { scaleAll(); f.classList.add("ready"); });
     });
+    // load the heavy live embeds only when the reader is actually heading toward them
+    if ("IntersectionObserver" in window) {
+      var lio = new IntersectionObserver(function (en) {
+        en.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var f = e.target.querySelector("iframe");
+          if (f && f.dataset.src && !f.src) f.src = f.dataset.src;
+          lio.unobserve(e.target);
+        });
+      }, { rootMargin: "1200px 0px" });
+      lives.forEach(function (wrap) { lio.observe(wrap); });
+    } else {
+      lives.forEach(function (wrap) {
+        var f = wrap.querySelector("iframe");
+        if (f && f.dataset.src && !f.src) f.src = f.dataset.src;
+      });
+    }
     scaleAll();
     window.addEventListener("resize", scaleAll, { passive: true });
     window.addEventListener("load", scaleAll);
@@ -348,6 +369,23 @@
         });
       }
     });
+  })();
+
+  /* ---- why-us code window: lines boot in on first view ---- */
+  (function () {
+    var pre = document.querySelector(".why .code-block") || document.querySelector(".code-block");
+    if (!pre || !("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    pre.innerHTML = pre.innerHTML.split("\n").map(function (l) {
+      return '<span class="cl-line">' + (l || " ") + "</span>";
+    }).join("\n");
+    var lines = pre.querySelectorAll(".cl-line");
+    var cio = new IntersectionObserver(function (en) {
+      if (!en.some(function (e) { return e.isIntersecting; })) return;
+      cio.disconnect();
+      lines.forEach(function (l, i) { setTimeout(function () { l.classList.add("lit"); }, 90 * i); });
+    }, { threshold: 0.35 });
+    cio.observe(pre);
   })();
 
   /* ---- cursor-reactive life: magnetic buttons ---- */

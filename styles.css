@@ -10,7 +10,7 @@
   --panel-2:#141821;
   --ink:#f3f4f6;
   --ink-2:#9aa1aa;
-  --ink-3:#5c636c;
+  --ink-3:#7b8391;
   --line:rgba(255,255,255,.09);
   --line-2:rgba(255,255,255,.16);
   --accent-rgb:255,255,255; /* white — active / interactive signal */
@@ -131,7 +131,7 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
 /* native-size window: rests at scale(1) so text rasterizes pixel-crisp.
    Centered in the band below the floating nav; JS clamps the final scale to fit. */
 .hero-window{position:absolute;top:calc(50% + 34px);left:50%;width:min(780px,90vw);z-index:3;opacity:0;
-  transform:translate(calc(-50% + var(--wx,0px)),-50%) scale(var(--ws,.72));
+  transform:translate(calc(-50% + var(--wx,0px)),calc(-50% + var(--wy,0px))) scale(var(--ws,.72));
   transform-origin:center center;will-change:transform,opacity;backface-visibility:hidden}
 /* dusk glass shell: translucent plum panel that lets the sunset through */
 .window.hero-window{border:1px solid rgba(238,222,255,.17);border-radius:20px;
@@ -241,6 +241,9 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
 
 
 /* code block inside windows */
+.code-block .cl-line{display:inline-block;opacity:0;transform:translateX(-8px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.code-block .cl-line.lit{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.code-block .cl-line{opacity:1!important;transform:none!important}}
 .win-body .code-block{font-family:var(--code);padding:24px clamp(18px,3vw,30px);font-size:.84rem;line-height:1.9;color:var(--ink-2)}
 .c-com{color:var(--ink-3)}.c-key{color:#7dd3fc}.c-fn{color:#6ee7b7}
 
@@ -432,7 +435,7 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
 .fit-list{list-style:none;display:flex;flex-direction:column;gap:15px;color:var(--ink-2);font-size:.98rem}
 .fit-list li{position:relative;padding-left:26px;line-height:1.55}
 .fit-list li::before{content:"";position:absolute;left:0;top:.44em;width:11px;height:6px;border-left:2px solid var(--up);border-bottom:2px solid var(--up);transform:rotate(-45deg)}
-.fit-list.not li::before{width:10px;height:10px;border:0;top:.36em;
+.fit-list.not li::before{width:10px;height:10px;border:0;top:.36em;transform:none;
   background:linear-gradient(45deg,transparent 42%,var(--down) 42%,var(--down) 58%,transparent 58%),
              linear-gradient(-45deg,transparent 42%,var(--down) 42%,var(--down) 58%,transparent 58%)}
 
@@ -441,6 +444,10 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
    ============================================================ */
 .faq{padding:clamp(70px,11vh,130px) 0;border-top:1px solid var(--line)}
 .faq-inner{display:grid;grid-template-columns:.85fr 1.3fr;gap:clamp(36px,5vw,80px);align-items:start}
+.faq-note{margin-top:28px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025);max-width:300px}
+.faq-note p{font-size:.86rem;color:var(--ink-2);line-height:1.55}
+.faq-note a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.faq-note .fn-tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
 .faq-head h2{font-size:clamp(1.7rem,1rem+2.6vw,2.8rem);margin-top:14px;max-width:12ch}
 .faq-list{display:flex;flex-direction:column}
 .faq-item{border-top:1px solid var(--line)}
@@ -501,7 +508,11 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
   .about-inner{grid-template-columns:1fr;gap:32px}
   .fit-cols{grid-template-columns:1fr}
   .faq-inner{grid-template-columns:1fr;gap:26px}
-  .faq-head h2{max-width:none}
+  .faq-note{margin-top:28px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025);max-width:300px}
+.faq-note p{font-size:.86rem;color:var(--ink-2);line-height:1.55}
+.faq-note a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.faq-note .fn-tag{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+.faq-head h2{max-width:none}
 }
 
 /* reduced motion: drop the tall pinned stages so nothing overlaps */
@@ -549,4 +560,14 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
   .fx::before,.fcard,.dot.ok,  .orbit-ring,.orbit-core{display:none!important}
   .fcard{translate:none!important}
   .fcard.flip .flip-inner{transition:none!important}
+}
+
+
+/* mobile: static shot of the Duskline console under the hero copy */
+.hero-console-mobile{display:none}
+@media(max-width:880px){
+  .hero-console-mobile{display:block;margin:34px auto 0;width:min(440px,88vw);border-radius:14px;overflow:hidden;
+    border:1px solid rgba(238,222,255,.2);box-shadow:0 24px 60px -18px rgba(10,4,26,.85)}
+  .hero-console-mobile img{width:100%;height:auto;display:block}
+  .hero-console-mobile figcaption{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);text-align:center;padding:9px 10px;background:rgba(12,8,24,.7)}
 }
