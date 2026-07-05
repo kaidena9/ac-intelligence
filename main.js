@@ -228,9 +228,18 @@
       cards.forEach(function (el) { gsap.set(el, { x: 0, y: 0, rotation: 0, scale: 1 }); });
       var pr = pin.getBoundingClientRect();
       var pcx = pr.left + pr.width / 2, pcy = pr.top + pr.height / 2;
-      R = Math.min(pr.width, pr.height) * 0.22;
-      OY = pr.height * 0.04;               // orbit center sits at 54% height, like the core
-      if (ring) { ring.style.width = (R * 2) + "px"; ring.style.height = (R * 2) + "px"; }
+      R = Math.min(pr.width, pr.height) * 0.19;
+      // Keep the TOP of the orbit a clear gap below the gather-head text so the two
+      // never overlap, at any viewport height. Drop the center down as far as needed.
+      var GAP = 36;
+      var cardHalf = (cards[0] ? cards[0].offsetWidth : 180) * PILE / 2;
+      var ghBottom = pr.height * 0.30;
+      if (gHead) ghBottom = gHead.getBoundingClientRect().bottom - pr.top;
+      var centerY = Math.max(pr.height * 0.54, ghBottom + GAP + R + cardHalf);
+      centerY = Math.min(centerY, pr.height - (R + cardHalf) - 28); // stay off the bottom edge
+      OY = centerY - pr.height / 2;        // orbit center offset from the pin's vertical middle
+      if (ring)  { ring.style.width = (R * 2) + "px"; ring.style.height = (R * 2) + "px"; ring.style.top = centerY + "px"; }
+      if (core)  core.style.top = centerY + "px";
       cards.forEach(function (el) {
         var r = el.getBoundingClientRect();
         el._hx = pcx - (r.left + r.width / 2);
