@@ -252,7 +252,7 @@
     }
     measure();
     ScrollTrigger.addEventListener("refresh", measure);
-    copy.style.opacity = "1";
+    copy.style.opacity = "0"; /* fades in once the curtain has cleared the hero */
     if (gHead) gHead.style.opacity = "0";
 
     var FLIP_START = 0.34, FLIP_WIN = 0.13, FLIP_STAG = 0.012;
@@ -262,7 +262,8 @@
 
     function apply(p) {
       var cout = ph(p, 0.72, 0.08);
-      copy.style.opacity = (1 - cout).toFixed(3);
+      var cin = ph(p, 0.01, 0.06);
+      copy.style.opacity = (cin * (1 - cout)).toFixed(3);
       gsap.set(copy, { x: 0, y: -cout * 24, xPercent: -50, yPercent: -50 });
       var g = ph(p, GATHER_START, GATHER_WIN);
       var oo = ph(p, GATHER_START + 0.03, 0.16).toFixed(3);
