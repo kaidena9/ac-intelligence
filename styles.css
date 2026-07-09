@@ -563,6 +563,80 @@ h1,h2,h3{font-weight:600;letter-spacing:-.025em;line-height:1.04}
 }
 
 
+/* ============================================================
+   BOOKING PAGE (book.html)
+   ============================================================ */
+.book{position:relative;min-height:100vh;display:flex;align-items:center;padding:clamp(120px,16vh,170px) 0 clamp(70px,10vh,110px);overflow:hidden}
+/* full-bleed dusk-lake backdrop, scrimmed like the hero terrain */
+.book-bg{position:fixed;inset:0;z-index:-1;background:#07080a url("assets/scroll/booking-bg.jpg") center/cover no-repeat}
+.book-bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(8,9,12,.7) 0%,rgba(10,9,16,.42) 30%,rgba(10,9,16,.5) 62%,rgba(8,9,12,.92) 100%),
+  radial-gradient(ellipse 90% 72% at 50% 42%,transparent,rgba(8,9,12,.5)),
+  linear-gradient(180deg,rgba(34,20,52,.32),rgba(24,14,40,.3))}
+.book-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5.5vw,84px);align-items:center;width:100%}
+.book-copy .eyebrow{display:inline-block;margin-bottom:20px}
+.book-title{font-size:clamp(2.2rem,1.2rem+3.8vw,3.9rem);letter-spacing:-.033em;font-weight:700;line-height:1.05;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.45)}
+.book-lead{margin:20px 0 30px;max-width:46ch;color:rgba(255,255,255,.86);font-size:clamp(1rem,.94rem+.3vw,1.12rem);line-height:1.6;text-shadow:0 1px 14px rgba(0,0,0,.4)}
+.book-ticks{list-style:none;display:flex;flex-direction:column;gap:16px}
+.book-ticks li{display:flex;align-items:flex-start;gap:14px}
+.bt-ic{flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;color:#F5C284;
+  border:1px solid rgba(245,194,132,.32);background:rgba(12,10,18,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.bt-ic svg{width:18px;height:18px}
+.book-ticks b{display:block;font-size:.96rem;font-weight:650;letter-spacing:-.01em;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.book-ticks span+div span,.book-ticks li>div>span{display:block;margin-top:3px;font-size:.85rem;line-height:1.5;color:rgba(255,255,255,.72);max-width:40ch;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+/* glass form card — same dusk-glass family as the hero window */
+.book-card{position:relative;border-radius:20px;padding:clamp(24px,3vw,38px);
+  border:1px solid rgba(238,222,255,.18);
+  background:linear-gradient(165deg,rgba(22,16,36,.72),rgba(10,8,20,.62));
+  -webkit-backdrop-filter:blur(20px) saturate(1.3);backdrop-filter:blur(20px) saturate(1.3);
+  box-shadow:0 40px 100px -28px rgba(6,3,16,.9),inset 0 1px 0 rgba(255,255,255,.12)}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
+  .book-card{background:linear-gradient(165deg,rgba(22,16,36,.96),rgba(10,8,20,.94))}
+}
+.bf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bf-field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.bf-field label{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(226,212,248,.8)}
+.bf-field label em{font-style:normal;text-transform:none;letter-spacing:.02em;color:rgba(214,198,242,.5);font-weight:500}
+.bf-field input,.bf-field textarea{font:inherit;font-size:.95rem;color:#fff;padding:12px 14px;border-radius:10px;
+  border:1px solid rgba(238,222,255,.16);background:rgba(236,220,255,.05);transition:border-color .25s,background .25s,box-shadow .25s}
+.bf-field input::placeholder,.bf-field textarea::placeholder{color:rgba(206,190,236,.38)}
+.bf-field input:focus,.bf-field textarea:focus{outline:none;border-color:rgba(245,194,132,.55);background:rgba(236,220,255,.08);
+  box-shadow:0 0 0 3px rgba(245,194,132,.14)}
+.bf-field textarea{resize:vertical;min-height:120px;line-height:1.55}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.bf-submit{position:relative;width:100%;margin-top:4px}
+.bf-submit:disabled{opacity:.75;cursor:default}
+.bf-spin{display:none;width:16px;height:16px;border-radius:50%;border:2px solid rgba(7,8,10,.25);border-top-color:#07080a;animation:bfSpin .7s linear infinite}
+.bf-submit.sending .bf-spin{display:inline-block}
+@keyframes bfSpin{to{transform:rotate(360deg)}}
+.bf-error{margin-top:12px;font-size:.8rem;color:#fb7185}
+.bf-error a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.bf-note{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:.72rem;letter-spacing:.04em;color:rgba(214,198,242,.62)}
+.bf-note svg{width:14px;height:14px;flex:none;color:#F5C284}
+/* success state */
+.book-done{text-align:center;padding:clamp(14px,2vw,24px) 6px}
+.book-done:focus{outline:none}
+.bd-ic{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;margin-bottom:18px;color:#F5C284;
+  border:1px solid rgba(245,194,132,.4);background:rgba(245,194,132,.1);box-shadow:0 0 34px -8px rgba(245,194,132,.45)}
+.bd-ic svg{width:26px;height:26px}
+.book-done h2{font-size:clamp(1.5rem,1.1rem+1.4vw,2.1rem);letter-spacing:-.025em;color:#fff;margin-bottom:12px}
+.book-done p{color:rgba(255,255,255,.82);font-size:.98rem;line-height:1.6;max-width:38ch;margin:0 auto 10px}
+.book-done p b{color:#fff}
+.bd-sub{font-size:.74rem!important;letter-spacing:.06em;color:rgba(214,198,242,.6)!important;margin-bottom:22px!important}
+.book-foot{position:relative;background:rgba(8,9,12,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+@media(max-width:960px){
+  .book-inner{grid-template-columns:1fr;gap:40px}
+  .book{align-items:flex-start}
+  .book-copy{text-align:left;max-width:560px}
+}
+@media(max-width:560px){
+  .bf-row{grid-template-columns:1fr}
+  .book{padding-top:104px}
+}
+@media(prefers-reduced-motion:reduce){
+  .bf-spin{animation:none}
+}
+
 /* mobile: static shot of the Duskline console under the hero copy */
 .hero-console-mobile{display:none}
 @media(max-width:880px){
