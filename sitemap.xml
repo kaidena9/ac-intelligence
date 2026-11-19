@@ -12,4 +12,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.acintelligence.net/privacy.html</loc>
+  </url>
 </urlset>
